@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>José Rizal — World Journey Map</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+  <link rel="stylesheet" href="/style/journey.css"/>
+</head>
+<body>
+
+
+       <!-- NAVBAR -->
+
+  <nav id="mainNav">
+    <a class="nav-brand" href="/pages/index.html">✦ Rizal</a>
+    <a class="nav-back" href="/pages/index.html">← Back to Main</a>
+  </nav>
+
+  
+       <!-- HERO BANNER -->
+
+  <div id="journey-hero">
+    <div class="journey-hero-inner">
+      <span class="section-label">His Footsteps Across the World</span>
+      <h2 class="section-title">The <span>World Journey</span> of Rizal</h2>
+      <div class="section-ornament">
+        <div class="section-ornament-line"></div>
+        <div class="section-ornament-diamond"></div>
+        <div class="section-ornament-line"></div>
+      </div>
+      <p class="section-intro">
+        From the Philippines to the capitals of Europe, Japan, and America —
+        trace every country, every sacrifice, every step of his extraordinary
+        journey on the globe below.
+      </p>
+    </div>
+  </div>
+
+
+       <!-- GLOBE STAGE -->
+ 
+  <div id="globe-stage">
+    <canvas id="globe"></canvas>
+    <div class="globe-vignette"></div>
+
+    <!-- Top bar -->
+    <div class="globe-topbar">
+      <div class="globe-topbar-title">✦ Rizal's World Journey</div>
+      <div class="globe-stop-counter" id="stop-counter">Stop 1 of 7</div>
+    </div>
+
+    <!-- Location card -->
+    <div id="location-card">
+      <div class="card-stop-num" id="card-stop-num">Stop 1 of 7</div>
+      <span class="card-flag" id="card-flag">🇵🇭</span>
+      <div class="card-country" id="card-country">Philippines</div>
+      <div class="card-city" id="card-city">Philippines</div>
+      <div class="card-years" id="card-years">1861 – 1896</div>
+      <div class="card-desc" id="card-desc"></div>
+      <button class="learn-more-btn" onclick="openPopup()">✦ What Rizal Did Here</button>
+      <div class="globe-nav-btns">
+        <button class="globe-nav-btn" id="prev-btn" onclick="prevStop()" disabled>← Prev</button>
+        <button class="globe-nav-btn" id="next-btn" onclick="nextStop()">Next →</button>
+      </div>
+    </div>
+
+    <!-- Loading indicator -->
+    <div id="globe-loading">
+      <div>
+        <span class="g-dot"></span>
+        <span class="g-dot"></span>
+        <span class="g-dot"></span>
+      </div>
+      <div class="g-loading-text">Loading world map…</div>
+    </div>
+  </div>
+
+  
+       <!-- JOURNEY TIMELINE BAR -->
+  
+  <div id="journey-timeline">
+    <div class="jt-label">Journey Timeline — Click any stop to navigate</div>
+    <div class="jt-track" id="jt-track">
+      <div class="jt-line"></div>
+      <div class="jt-progress" id="jt-progress" style="width:0%"></div>
+    </div>
+  </div>
+
+ 
+       <!-- POPUP MODAL -->
+
+  <div id="popup-backdrop" onclick="closePopup()"></div>
+  <div id="popup">
+    <div class="popup-header">
+      <div>
+        <span class="popup-flag-lg" id="popup-flag">🇵🇭</span>
+        <div class="popup-loc-label" id="popup-loc-label">Philippines</div>
+        <div class="popup-title" id="popup-title">Philippines</div>
+      </div>
+      <button class="popup-close" onclick="closePopup()">✕</button>
+    </div>
+    <div class="popup-body" id="popup-body"></div>
+  </div>
+
+  <script src="/script/journey.js"></script>
+</body>
+</html>
