@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>José Rizal — Bayaning Pilipino</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="../style/style.css" />
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="preloader-quill"></div>
+      <p class="preloader-text">BAYANING PILIPINO</p>
+    </div>
+    <div id="ink-container"></div>
+
+    <nav class="navbar navbar-expand-lg" id="mainNav">
+      <div class="container">
+        <a class="nav-brand" href="#">✦ Rizal</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+          <ul class="navbar-nav gap-1">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#timeline">Timeline</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#works">Works</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#legacy">Legacy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="#gallery">Gallery</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section id="hero">
+      <canvas class="particles-canvas" id="particles"></canvas>
+
+      <div class="corner-ornament tl"></div>
+      <div class="corner-ornament tr"></div>
+      <div class="corner-ornament bl"></div>
+      <div class="corner-ornament br"></div>
+      <div class="hero-frame"></div>
+
+      <div
+        class="floating-leaf"
+        style="top: 15%; left: 5%; animation-delay: 0s">
+        🌿
+      </div>
+      <div
+        class="floating-leaf"
+        style="top: 20%; right: 6%; animation-delay: 2s; font-size: 6rem">
+        ⚜
+      </div>
+      <div
+        class="floating-leaf"
+        style="bottom: 18%; left: 8%; animation-delay: 1s; font-size: 5rem">
+        📜
+      </div>
+      <div
+        class="floating-leaf"
+        style="bottom: 25%; right: 5%; animation-delay: 3s">
+        🌿
+      </div>
+
+      <div class="hero-content">
+        <p class="hero-year">1861 — 1896</p>
+        <p class="hero-eyebrow">El Héroe Nacional de Filipinas</p>
+        <div class="hero-divider">
+          <div class="hero-divider-line"></div>
+          <span class="hero-divider-star">✦</span>
+          <div class="hero-divider-line"></div>
+        </div>
+        <h1 class="hero-title">José <span>Rizal</span></h1>
+        <p class="hero-subtitle">
+          Gat José Protasio Rizal Mercado y Alonso Realonda
+        </p>
+        <p class="hero-quote">
+          The youth is the hope of our motherland. He who does not know how to
+          look back at where he came from will never get to his destination.
+        </p>
+        <div class="hero-cta">
+          <a href="#timeline" class="btn-primary-custom"
+            ><span>Discover His Story</span></a
+          >
+          <a href="#works" class="btn-outline-custom">His Works</a>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <div class="scroll-arrow"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <div class="container">
+        <div class="section-header reveal-el">
+          <span class="section-label">Chronology</span>
+          <h2 class="section-title">
+            The Life of a <span>National Hero</span>
+          </h2>
+          <div class="section-ornament">
+            <div class="section-ornament-line"></div>
+            <div class="section-ornament-diamond"></div>
+            <div class="section-ornament-line"></div>
+          </div>
+        </div>
+
+        <div class="timeline-wrapper">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <div class="timeline-img">
+                <img src="../assets/logo.png" alt="Young Jose Rizal portrait" />
+              </div>
+              <div class="timeline-card-body">
+                <span class="timeline-card-year">✦ JUNE 19, 1861</span>
+                <h3>Birth in Calamba, Laguna</h3>
+                <p>
+                  José Protasio Rizal Mercado y Alonso Realonda was born the
+                  seventh of eleven children to Francisco Engracio Rizal Mercado
+                  and Teodora Morales Alonso Realonda, a family of mixed
+                  Chinese, Spanish, and Tagalog descent.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-spacer"></div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-spacer"></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-img">
+                <img
+                  src="../assets/school.jpg"
+                  alt="Rizal at Ateneo Municipal de Manila" />
+              </div>
+              <div class="timeline-card-body">
+                <span class="timeline-card-year">✦ 1872 — 1877</span>
+                <h3>Ateneo Municipal de Manila</h3>
+                <p>
+                  Rizal enrolled in the Ateneo Municipal de Manila, excelling in
+                  academics, literature, painting, sculpture, and poetry. He
+                  graduated as one of nine students awarded the title of
+                  Sobresaliente — the highest academic honor.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <div class="timeline-img">
+                <img
+                  src="../assets/madrid&paris.jpg"
+                  alt="Jose Rizal in London 1888" />
+              </div>
+              <div class="timeline-card-body">
+                <span class="timeline-card-year">✦ 1882</span>
+                <h3>Journey to Europe — Madrid & Paris</h3>
+                <p>
+                  Rizal secretly left the Philippines to study in Spain. He
+                  enrolled at the Universidad Central de Madrid, earning his
+                  licentiate in medicine in 1884. He also took courses in
+                  philosophy, literature, and the fine arts.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-spacer"></div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-spacer"></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-img">
+                <img
+                  src="../assets/noli.webp"
+                  alt="Noli Me Tangere first edition cover" />
+              </div>
+              <div class="timeline-card-body">
+                <span class="timeline-card-year">✦ 1887</span>
+                <h3>Noli Me Tangere Published</h3>
+                <p>
+                  Rizal published his first novel <em>Noli Me Tangere</em> in
+                  Berlin, Germany. The novel exposed the abuses of the Spanish
+                  colonial government and the Catholic clergy, igniting a fire
+                  of nationalism across the Philippine archipelago.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <div class="timeline-img">
+                <img
+                  src="../assets/el fili.webp"
+                  alt="El Filibusterismo first edition cover" />
+              </div>
+              <div class="timeline-card-body">
+                <span class="timeline-card-year">✦ 1891</span>
+                <h3>El Filibusterismo Published</h3>
+                <p>
+                  The sequel to Noli Me Tangere, <em>El Filibusterismo</em>, was
+                  published in Ghent, Belgium. Darker and more politically
+                  charged than its predecessor, the novel depicted a revolution
+                  against colonial oppression and stirred deeper unrest.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-spacer"></div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-spacer"></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-img">
+                <img
+                  src="../assets/execution.webp"
+                  alt="Execution of Jose Rizal at Bagumbayan 1896" />
+              </div>
+              <div class="timeline-card-body">
+                <span class="timeline-card-year">✦ DECEMBER 30, 1896</span>
+                <h3>Martyrdom at Bagumbayan</h3>
+                <p>
+                  At the age of 35, Rizal was executed by firing squad at
+                  Bagumbayan Field, now known as Luneta Park in Manila. He faced
+                  death calmly, turning to face the rising sun. His sacrifice
+                  ignited the Philippine Revolution and cemented his legacy as a
+                  national hero.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="works">
+      <div class="container">
+        <div class="section-header reveal-el">
+          <span class="section-label">Literary & Scientific Legacy</span>
+          <h2 class="section-title">His <span>Immortal Works</span></h2>
+          <div class="section-ornament">
+            <div class="section-ornament-line"></div>
+            <div class="section-ornament-diamond"></div>
+            <div class="section-ornament-line"></div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="work-card reveal-card">
+              <div class="work-icon">📖</div>
+              <span class="work-tag">Novel</span>
+              <h3>Noli Me Tangere</h3>
+              <p>
+                A scathing exposé of Spanish colonial rule and the abuses of the
+                friars. The title, Latin for "Touch Me Not," symbolizes the
+                untouched social cancers festering in Philippine society.
+              </p>
+              <span class="work-year">✦ Berlin, 1887</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="work-card reveal-card" style="transition-delay: 0.1s">
+              <div class="work-icon">⚔️</div>
+              <span class="work-tag">Novel</span>
+              <h3>El Filibusterismo</h3>
+              <p>
+                The sequel and spiritual successor to Noli Me Tangere. A darker,
+                more politically complex narrative of revolution, despair, and
+                the limits of peaceful reform under colonial oppression.
+              </p>
+              <span class="work-year">✦ Ghent, 1891</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="work-card reveal-card" style="transition-delay: 0.2s">
+              <div class="work-icon">✒️</div>
+              <span class="work-tag">Poetry</span>
+              <h3>Mi Último Adiós</h3>
+              <p>
+                Rizal's farewell poem, written on the eve of his execution.
+                Hidden inside an oil lamp, the poem expresses his love for the
+                Philippines and his willingness to die for his country's
+                freedom.
+              </p>
+              <span class="work-year">✦ Fort Santiago, 1896</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="work-card reveal-card" style="transition-delay: 0.1s">
+              <div class="work-icon">🏛️</div>
+              <span class="work-tag">Essay</span>
+              <h3>La Solidaridad Articles</h3>
+              <p>
+                A series of political essays published in the La Solidaridad
+                newspaper advocating for Philippine representation in the
+                Spanish Cortes and equal rights for Filipinos alongside
+                peninsulares.
+              </p>
+              <span class="work-year">✦ Madrid, 1889–1895</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="work-card reveal-card" style="transition-delay: 0.2s">
+              <div class="work-icon">🔬</div>
+              <span class="work-tag">Science</span>
+              <h3>Ophthalmological Studies</h3>
+              <p>
+                A trained ophthalmologist, Rizal studied and practiced medicine
+                in Europe. He dedicated much of his work to treating the poor,
+                most famously operating on his own mother's failing eyesight.
+              </p>
+              <span class="work-year">✦ Madrid & Heidelberg, 1887</span>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="work-card reveal-card" style="transition-delay: 0.3s">
+              <div class="work-icon">🎨</div>
+              <span class="work-tag">Arts & Language</span>
+              <h3>Polymath & Sculptor</h3>
+              <p>
+                Rizal spoke 22 languages, was a skilled painter, sculptor, poet,
+                and novelist. His sculptures, sketches, and carvings reveal a
+                deeply artistic soul who channeled his passions into every
+                medium available.
+              </p>
+              <span class="work-year">✦ Throughout his life</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quote-banner">
+      <div class="container">
+        <blockquote class="banner-quote reveal-quote">
+          Ang hindi marunong lumingon sa pinanggalingan ay hindi makararating sa
+          paroroonan.
+        </blockquote>
+        <p class="banner-attribution reveal-quote-attr">
+          — José Rizal · Bayaning Pilipino
+        </p>
+      </div>
+    </section>
+
+    <section id="legacy">
+      <div class="container">
+        <div class="section-header reveal-el">
+          <span class="section-label">By the Numbers</span>
+          <h2 class="section-title">A Legacy <span>Immortalized</span></h2>
+          <div class="section-ornament">
+            <div class="section-ornament-line"></div>
+            <div class="section-ornament-diamond"></div>
+            <div class="section-ornament-line"></div>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-6 col-md-3">
+            <div class="legacy-stat reveal-stat">
+              <span class="legacy-num" data-count="22">0</span>
+              <span class="legacy-label">Languages Spoken</span>
+              <p class="legacy-desc">From Tagalog to Sanskrit</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="legacy-stat reveal-stat" style="transition-delay: 0.1s">
+              <span class="legacy-num" data-count="35">0</span>
+              <span class="legacy-label">Age at Martyrdom</span>
+              <p class="legacy-desc">December 30, 1896</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="legacy-stat reveal-stat" style="transition-delay: 0.2s">
+              <span class="legacy-num" data-count="2">0</span>
+              <span class="legacy-label">Major Novels</span>
+              <p class="legacy-desc">Noli & El Fili</p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="legacy-stat reveal-stat" style="transition-delay: 0.3s">
+              <span class="legacy-num" data-count="163">0</span>
+              <span class="legacy-label">Years of Inspiration</span>
+              <p class="legacy-desc">His flame still burns</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-header reveal-el">
+          <span class="section-label">Visual Tribute</span>
+          <h2 class="section-title">Moments & <span>Milestones</span></h2>
+          <div class="section-ornament">
+            <div class="section-ornament-line"></div>
+            <div class="section-ornament-diamond"></div>
+            <div class="section-ornament-line"></div>
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-6 col-lg-4">
+            <div class="gallery-item reveal-gallery">
+              <div class="gallery-bg">🏡</div>
+              <div class="gallery-caption">
+                <h4>Calamba, Laguna</h4>
+                <span>Birthplace of the National Hero, 1861</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="gallery-item reveal-gallery"
+              style="transition-delay: 0.1s">
+              <div class="gallery-bg">🎓</div>
+              <div class="gallery-caption">
+                <h4>University of Madrid</h4>
+                <span>Where brilliance was forged, 1882</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="gallery-item reveal-gallery"
+              style="transition-delay: 0.2s">
+              <div class="gallery-bg">📜</div>
+              <div class="gallery-caption">
+                <h4>Noli Me Tangere Manuscript</h4>
+                <span>The fire that awakened a nation, 1887</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="gallery-item reveal-gallery"
+              style="transition-delay: 0.1s">
+              <div class="gallery-bg">🏝️</div>
+              <div class="gallery-caption">
+                <h4>Dapitan Exile</h4>
+                <span>Years of quiet brilliance, 1892–1896</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="gallery-item reveal-gallery"
+              style="transition-delay: 0.2s">
+              <div class="gallery-bg">🕯️</div>
+              <div class="gallery-caption">
+                <h4>Mi Último Adiós</h4>
+                <span>Written in his final hours, 1896</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="gallery-item reveal-gallery"
+              style="transition-delay: 0.3s">
+              <div class="gallery-bg">🌅</div>
+              <div class="gallery-caption">
+                <h4>Luneta Park — Bagumbayan</h4>
+                <span>Where a hero became eternal, Dec 30, 1896</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="footer-brand">✦ José Rizal</div>
+            <p class="footer-tagline">
+              "The Great Malayan" — National Hero of the Philippines
+            </p>
+            <p
+              style="
+                color: rgba(122, 78, 30, 0.7);
+                font-size: 0.9rem;
+                line-height: 1.7;
+              ">
+              A tribute to the poet, novelist, ophthalmologist, sculptor,
+              painter, educator, and nationalist who gave his life so that a
+              nation might live in dignity and freedom.
+            </p>
+          </div>
+          <div class="col-6 col-lg-2 offset-lg-2 mb-5 mb-lg-0">
+            <p
+              style="
+                font-family: &quot;Cinzel&quot;, serif;
+                font-size: 0.7rem;
+                letter-spacing: 3px;
+                color: var(--gold);
+                margin-bottom: 20px;
+              ">
+              EXPLORE
+            </p>
+            <div class="footer-nav">
+              <a href="#timeline">Timeline</a>
+              <a href="#works">His Works</a>
+              <a href="#legacy">Legacy</a>
+              <a href="#gallery">Gallery</a>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3 offset-lg-1">
+            <p
+              style="
+                font-family: &quot;Cinzel&quot;, serif;
+                font-size: 0.7rem;
+                letter-spacing: 3px;
+                color: var(--gold);
+                margin-bottom: 20px;
+              ">
+              QUICK FACTS
+            </p>
+            <div class="footer-nav">
+              <a href="#">Born: June 19, 1861</a>
+              <a href="#">Died: December 30, 1896</a>
+              <a href="#">Calamba, Laguna</a>
+              <a href="#">Republic of the Philippines</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-ornament" style="margin-top: 50px">
+          <div class="footer-ornament-line"></div>
+          <span style="color: var(--gold); font-size: 1.2rem">✦</span>
+          <div class="footer-ornament-line"></div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            A TRIBUTE TO THE NATIONAL HERO OF THE PHILIPPINES &nbsp;✦&nbsp; JOSE
+            RIZAL &nbsp;✦&nbsp; 1861–1896
+          </p>
+          <p style="margin-top: 6px; opacity: 0.5">
+            "Ang bayan ko'y sadyang mahal, iniaalay ko ang buhay."
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../script/script.js"></script>
+  </body>
+</html>
