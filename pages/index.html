@@ -1,574 +1,1254 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>José Rizal — Bayaning Pilipino</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap"
-      rel="stylesheet" />
-    <link rel="stylesheet" href="../style/style.css" />
-  </head>
-  <body>
-    <div id="preloader">
-      <div class="preloader-quill"></div>
-      <p class="preloader-text">BAYANING PILIPINO</p>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>José Rizal — Bayaning Pilipino</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+  <style>
+    /* ══════════════════════════════════════════════
+       ROOT & RESET
+    ══════════════════════════════════════════════ */
+    :root {
+      --gold: #C9A84C;
+      --gold2: #E2B96A;
+      --gold3: #F0D080;
+      --gold-dim: #7A4E1E;
+      --bg: #0E0A03;
+      --bg2: #140E04;
+      --bg3: #1C1508;
+      --surface: rgba(20,14,4,0.94);
+      --text: #F0E8D0;
+      --text2: #C8B888;
+      --text3: #7A6A48;
+      --border: rgba(201,168,76,0.22);
+      --border2: rgba(201,168,76,0.45);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'EB Garamond', Georgia, serif; overflow-x: hidden; }
+
+    /* ══════════════════════════════════════════════
+       PRELOADER
+    ══════════════════════════════════════════════ */
+    #preloader {
+      position: fixed; inset: 0; background: var(--bg); z-index: 9999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+      transition: opacity 0.8s ease, visibility 0.8s;
+    }
+    #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .preloader-quill {
+      width: 3px; height: 60px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: quillDrop 1.2s ease-in-out infinite alternate;
+    }
+    .preloader-text {
+      font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 6px;
+      color: var(--gold); text-transform: uppercase; opacity: 0.7;
+    }
+    @keyframes quillDrop { from { transform: translateY(-10px) scaleY(0.8); } to { transform: translateY(10px) scaleY(1.1); } }
+
+    /* ══════════════════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════════════════ */
+    #mainNav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(14,10,3,0.92); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border); padding: 14px 0;
+      transition: padding 0.3s;
+    }
+    .nav-brand {
+      font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 3px;
+      color: var(--gold) !important; text-decoration: none;
+    }
+    .nav-link-custom {
+      font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--text3) !important;
+      padding: 6px 14px !important; transition: color 0.3s;
+      text-decoration: none;
+    }
+    .nav-link-custom:hover { color: var(--gold2) !important; }
+    .navbar-toggler { border-color: var(--border2); }
+    .navbar-toggler-icon { filter: invert(0.8) sepia(1) saturate(2) hue-rotate(5deg); }
+
+    /* ══════════════════════════════════════════════
+       HERO SECTION
+    ══════════════════════════════════════════════ */
+    #hero {
+      position: relative; height: 100vh; min-height: 650px;
+      background: radial-gradient(ellipse at 50% 40%, #2A1E06 0%, #120D02 50%, #060400 100%);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .particles-canvas { position: absolute; inset: 0; pointer-events: none; }
+    .hero-frame {
+      position: absolute; inset: 24px;
+      border: 1px solid rgba(201,168,76,0.15); pointer-events: none;
+    }
+    .corner-ornament {
+      position: absolute; width: 50px; height: 50px; pointer-events: none;
+    }
+    .corner-ornament.tl { top: 24px; left: 24px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+    .corner-ornament.tr { top: 24px; right: 24px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+    .corner-ornament.bl { bottom: 24px; left: 24px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+    .corner-ornament.br { bottom: 24px; right: 24px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+    .floating-leaf {
+      position: absolute; font-size: 7rem; opacity: 0.06;
+      animation: floatLeaf 8s ease-in-out infinite alternate;
+      pointer-events: none; user-select: none;
+    }
+    @keyframes floatLeaf { from { transform: translateY(0) rotate(-5deg); } to { transform: translateY(-20px) rotate(5deg); } }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 20px; }
+    .hero-year { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 8px; color: var(--text2); margin-bottom: 12px; opacity: 0; animation: fadeUp 1s ease 0.3s forwards; }
+    .hero-eyebrow { font-family: 'EB Garamond', serif; font-style: italic; font-size: 18px; color: var(--gold2); margin-bottom: 18px; opacity: 0; animation: fadeUp 1s ease 0.5s forwards; }
+    .hero-divider { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 18px; opacity: 0; animation: fadeUp 1s ease 0.65s forwards; }
+    .hero-divider-line { height: 1px; width: 80px; background: linear-gradient(to right, transparent, var(--gold)); }
+    .hero-divider-line:last-child { background: linear-gradient(to left, transparent, var(--gold)); }
+    .hero-divider-star { color: var(--gold); font-size: 12px; }
+    .hero-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(42px, 8vw, 100px); font-weight: 700;
+      line-height: 1; letter-spacing: 4px; margin-bottom: 16px;
+      color: var(--text);
+      opacity: 0; animation: fadeUp 1.2s ease 0.8s forwards;
+    }
+    .hero-title span { color: var(--gold); }
+    .hero-subtitle {
+      font-family: 'Cinzel', serif; font-size: clamp(9px, 1.1vw, 13px);
+      letter-spacing: 3px; color: var(--text2); text-transform: uppercase; margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 1s ease 1.0s forwards;
+    }
+    .hero-quote {
+      font-family: 'EB Garamond', serif; font-style: italic;
+      font-size: clamp(15px, 1.6vw, 20px); line-height: 1.8;
+      color: var(--text2); max-width: 680px; margin: 0 auto 40px;
+      opacity: 0; animation: fadeUp 1s ease 1.2s forwards;
+    }
+    .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 1s ease 1.4s forwards; }
+    .btn-primary-custom {
+      font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--bg) !important;
+      background: var(--gold); border: none; padding: 15px 42px;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary-custom:hover { background: var(--gold3); transform: translateY(-2px); }
+    .btn-outline-custom {
+      font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--text2);
+      border: 1px solid var(--border2); padding: 15px 42px;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: all 0.3s;
+    }
+    .btn-outline-custom:hover { color: var(--gold); border-color: var(--gold); }
+    .scroll-indicator {
+      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0; animation: fadeIn 1s ease 2s forwards;
+    }
+    .scroll-arrow {
+      width: 22px; height: 36px; border: 1.5px solid rgba(201,168,76,0.4);
+      border-radius: 11px; position: relative; overflow: hidden;
+    }
+    .scroll-arrow::after {
+      content: ''; position: absolute; left: 50%; top: 6px;
+      width: 3px; height: 7px; background: var(--gold);
+      border-radius: 2px; transform: translateX(-50%);
+      animation: scrollDot 2s ease-in-out infinite;
+    }
+    .scroll-indicator span { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; color: var(--text3); text-transform: uppercase; }
+    @keyframes scrollDot { 0% { opacity: 1; top: 6px; } 100% { opacity: 0; top: 22px; } }
+
+    /* ══════════════════════════════════════════════
+       SHARED SECTION STYLES
+    ══════════════════════════════════════════════ */
+    section { padding: 100px 0; }
+    .section-header { text-align: center; margin-bottom: 70px; }
+    .section-label {
+      font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(26px, 4vw, 42px); font-weight: 700;
+      color: var(--text); margin-bottom: 24px;
+    }
+    .section-title span { color: var(--gold); }
+    .section-ornament { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .section-ornament-line { width: 80px; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
+    .section-ornament-line:last-child { background: linear-gradient(to left, transparent, var(--gold)); }
+    .section-ornament-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); }
+
+    /* ══════════════════════════════════════════════
+       TIMELINE SECTION
+    ══════════════════════════════════════════════ */
+    #timeline { background: var(--bg2); }
+    .timeline-wrapper { position: relative; max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    .timeline-line {
+      position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 1px; background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      display: grid; grid-template-columns: 1fr 24px 1fr;
+      gap: 0 30px; align-items: start; margin-bottom: 60px;
+    }
+    .timeline-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--gold); border: 3px solid var(--bg2);
+      box-shadow: 0 0 12px rgba(201,168,76,0.6);
+      margin-top: 28px; justify-self: center;
+    }
+    .timeline-spacer { }
+    .timeline-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      padding: 0; overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .timeline-card:hover { transform: translateY(-4px); border-color: var(--border2); }
+    .timeline-img { width: 100%; height: 160px; overflow: hidden; background: var(--bg2); display: flex; align-items: center; justify-content: center; }
+    .timeline-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; filter: sepia(0.3); transition: opacity 0.3s; }
+    .timeline-card:hover .timeline-img img { opacity: 0.9; }
+    .timeline-card-body { padding: 20px; }
+    .timeline-card-year { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+    .timeline-card h3 { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 600; color: var(--text); margin: 8px 0 10px; }
+    .timeline-card p { font-size: 14px; line-height: 1.8; color: var(--text2); }
+
+    /* ══════════════════════════════════════════════
+       3D GLOBE JOURNEY SECTION  ← NEW
+    ══════════════════════════════════════════════ */
+    #globe-journey {
+      background: radial-gradient(ellipse at center, #1A1005 0%, #0A0702 60%, #060400 100%);
+      padding: 100px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #globe-journey .section-header { margin-bottom: 50px; }
+
+    /* Globe canvas area */
+    #globe-stage {
+      position: relative;
+      height: 80vh; min-height: 520px;
+      overflow: hidden;
+    }
+    canvas#globe {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+    }
+    .globe-vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 32%, rgba(6,4,0,0.80) 100%);
+      pointer-events: none;
+    }
+
+    /* Location card */
+    #location-card {
+      position: absolute; left: 50px; top: 50%;
+      transform: translateY(-50%) translateX(-140%);
+      width: 295px;
+      background: rgba(18,12,3,0.96);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      padding: 26px;
+      transition: transform 0.8s cubic-bezier(0.22,1,0.36,1);
+      z-index: 10;
+    }
+    #location-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    #location-card.show { transform: translateY(-50%) translateX(0); }
+    .card-stop-num { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px; color: var(--text3); text-transform: uppercase; margin-bottom: 8px; }
+    .card-flag { font-size: 26px; margin-bottom: 8px; display: block; }
+    .card-country { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+    .card-city { font-family: 'Cinzel Decorative', serif; font-size: 18px; font-weight: 700; line-height: 1.1; margin-bottom: 3px; color: var(--text); }
+    .card-years { font-size: 13px; color: var(--text3); font-style: italic; margin-bottom: 14px; }
+    .card-desc { font-size: 13px; line-height: 1.75; color: var(--text2); border-top: 1px solid var(--border); padding-top: 12px; margin-bottom: 16px; }
+    .learn-more-btn {
+      width: 100%; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--bg); background: var(--gold); border: none; padding: 11px 0; cursor: pointer;
+      transition: background 0.3s; margin-bottom: 8px;
+    }
+    .learn-more-btn:hover { background: var(--gold3); }
+    .nav-btns { display: flex; gap: 8px; }
+    .nav-btn {
+      flex: 1; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text3); background: transparent; border: 1px solid var(--border);
+      padding: 9px 0; cursor: pointer; transition: all 0.3s;
+    }
+    .nav-btn:hover { color: var(--gold); border-color: var(--gold2); }
+    .nav-btn:disabled { opacity: 0.25; cursor: default; }
+
+    /* Globe top overlay */
+    .globe-topbar {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 18px 50px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(6,4,0,0.85) 0%, transparent 100%);
+      z-index: 10; pointer-events: none;
+    }
+    .globe-topbar-title { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 3px; color: var(--gold); }
+    .globe-stop-counter { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; color: var(--text3); text-transform: uppercase; }
+
+    /* Globe loading */
+    #globe-loading {
+      position: absolute; inset: 0; z-index: 5;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      pointer-events: none; transition: opacity 0.6s;
+    }
+    #globe-loading.hide { opacity: 0; }
+    .g-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); display: inline-block; margin: 0 3px; animation: blink 1.2s ease-in-out infinite; }
+    .g-dot:nth-child(2) { animation-delay: .2s; }
+    .g-dot:nth-child(3) { animation-delay: .4s; }
+    .g-loading-text { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--text3); }
+
+    /* Timeline bar */
+    #journey-timeline {
+      background: rgba(6,4,0,0.97);
+      border-top: 1px solid var(--border);
+      padding: 18px 50px 24px;
+    }
+    .jt-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
+    .jt-track { display: flex; align-items: center; position: relative; }
+    .jt-line { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: rgba(201,168,76,0.15); transform: translateY(-50%); }
+    .jt-progress { position: absolute; top: 50%; left: 0; height: 1px; background: linear-gradient(to right, var(--gold-dim), var(--gold)); transform: translateY(-50%); transition: width 0.9s ease; }
+    .jt-stop { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; cursor: pointer; z-index: 1; padding: 0 2px; }
+    .jt-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--text3); transition: all 0.3s; margin-bottom: 7px; flex-shrink: 0; }
+    .jt-stop.active .jt-dot, .jt-stop.visited .jt-dot { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 8px rgba(201,168,76,0.6); }
+    .jt-stop.active .jt-dot { width: 12px; height: 12px; margin-bottom: 5px; }
+    .jt-name { font-family: 'Cinzel', serif; font-size: 7px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text3); text-align: center; transition: color 0.3s; max-width: 54px; line-height: 1.3; }
+    .jt-stop.active .jt-name { color: var(--gold); }
+    .jt-stop.visited .jt-name { color: var(--text2); }
+
+    /* Popup */
+    #popup-backdrop { position: fixed; inset: 0; background: rgba(4,2,0,0.90); z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.4s; backdrop-filter: blur(6px); }
+    #popup-backdrop.show { opacity: 1; pointer-events: all; }
+    #popup {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%,-50%) scale(0.94);
+      width: min(720px, 92vw); max-height: 84vh; overflow-y: auto;
+      background: var(--bg2); border: 1px solid var(--border2);
+      z-index: 1001; opacity: 0; pointer-events: none;
+      transition: all 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    #popup::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+    #popup.show { opacity: 1; pointer-events: all; transform: translate(-50%,-50%) scale(1); }
+    .popup-header { background: var(--bg3); padding: 26px 30px 22px; border-bottom: 1px solid var(--border); position: sticky; top: 0; display: flex; align-items: flex-start; justify-content: space-between; }
+    .popup-flag-lg { font-size: 34px; margin-bottom: 8px; display: block; }
+    .popup-loc-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .popup-title { font-family: 'Cinzel Decorative', serif; font-size: 22px; font-weight: 700; color: var(--text); }
+    .popup-close { background: none; border: 1px solid var(--border); color: var(--text3); width: 34px; height: 34px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; margin-top: 4px; }
+    .popup-close:hover { color: var(--gold); border-color: var(--gold2); }
+    .popup-body { padding: 26px 30px; }
+    .popup-section { margin-bottom: 26px; }
+    .popup-section:last-child { margin-bottom: 0; }
+    .popup-section-title { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+    .popup-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .popup-section-text { font-size: 15px; line-height: 1.85; color: var(--text2); }
+    .popup-works { display: flex; flex-direction: column; gap: 10px; }
+    .popup-work-item { background: var(--bg3); border-left: 2px solid var(--gold); padding: 12px 16px; font-size: 14px; line-height: 1.6; color: var(--text2); }
+    .popup-work-item strong { display: block; color: var(--gold2); font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 1px; margin-bottom: 3px; }
+    .popup-people { display: flex; flex-wrap: wrap; gap: 8px; }
+    .popup-person { background: var(--bg3); border: 1px solid var(--border); padding: 6px 14px; font-size: 13px; color: var(--text2); }
+    #popup::-webkit-scrollbar { width: 3px; }
+    #popup::-webkit-scrollbar-thumb { background: var(--gold-dim); }
+
+    /* ══════════════════════════════════════════════
+       WORKS SECTION
+    ══════════════════════════════════════════════ */
+    #works { background: var(--bg); }
+    .work-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      padding: 32px 28px; height: 100%; transition: transform 0.3s, border-color 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .work-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+    .work-card:hover { transform: translateY(-5px); border-color: var(--border2); }
+    .work-icon { font-size: 2.5rem; margin-bottom: 14px; display: block; }
+    .work-tag { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; display: block; }
+    .work-card h3 { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+    .work-card p { font-size: 14px; line-height: 1.8; color: var(--text2); margin-bottom: 16px; }
+    .work-year { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; color: var(--text3); }
+
+    /* ══════════════════════════════════════════════
+       QUOTE BANNER
+    ══════════════════════════════════════════════ */
+    #quote-banner {
+      background: linear-gradient(135deg, #1A1005 0%, #0D0803 50%, #1A1005 100%);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 80px 0; text-align: center;
+    }
+    .banner-quote {
+      font-family: 'EB Garamond', serif; font-style: italic;
+      font-size: clamp(18px, 3vw, 28px); line-height: 1.7; color: var(--text2);
+      max-width: 750px; margin: 0 auto 20px;
+    }
+    .banner-attribution { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 3px; color: var(--gold); }
+
+    /* ══════════════════════════════════════════════
+       LEGACY STATS
+    ══════════════════════════════════════════════ */
+    #legacy { background: var(--bg2); }
+    .legacy-stat { text-align: center; padding: 40px 20px; border: 1px solid var(--border); transition: border-color 0.3s; }
+    .legacy-stat:hover { border-color: var(--border2); }
+    .legacy-num { font-family: 'Cinzel Decorative', serif; font-size: clamp(40px,6vw,70px); color: var(--gold); display: block; line-height: 1; margin-bottom: 10px; }
+    .legacy-label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text); display: block; margin-bottom: 8px; }
+    .legacy-desc { font-size: 13px; color: var(--text3); }
+
+    /* ══════════════════════════════════════════════
+       GALLERY
+    ══════════════════════════════════════════════ */
+    #gallery { background: var(--bg); }
+    .gallery-item {
+      position: relative; height: 260px; overflow: hidden;
+      border: 1px solid var(--border); cursor: pointer;
+      transition: border-color 0.3s;
+    }
+    .gallery-item:hover { border-color: var(--border2); }
+    .gallery-item:hover .gallery-caption { transform: translateY(0); }
+    .gallery-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 5rem; background: var(--bg3); opacity: 0.6; }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(14,10,3,0.98) 0%, transparent 100%);
+      padding: 40px 20px 20px; transform: translateY(30px); transition: transform 0.4s;
+    }
+    .gallery-caption h4 { font-family: 'Cinzel', serif; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+    .gallery-caption span { font-size: 12px; color: var(--gold); font-style: italic; }
+
+    /* ══════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════ */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 80px 0 40px;
+    }
+    .footer-brand { font-family: 'Cinzel Decorative', serif; font-size: 22px; color: var(--gold); margin-bottom: 16px; }
+    .footer-tagline { font-style: italic; font-size: 14px; color: var(--text2); margin-bottom: 16px; }
+    .footer-nav { display: flex; flex-direction: column; gap: 10px; }
+    .footer-nav a { font-size: 13px; color: var(--text3); text-decoration: none; transition: color 0.3s; }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-ornament { display: flex; align-items: center; gap: 16px; }
+    .footer-ornament-line { flex: 1; height: 1px; background: var(--border); }
+    .footer-bottom { text-align: center; padding-top: 30px; }
+    .footer-bottom p { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; color: var(--text3); text-transform: uppercase; }
+
+    /* ══════════════════════════════════════════════
+       REVEAL ANIMATIONS
+    ══════════════════════════════════════════════ */
+    .reveal-el, .reveal-card, .reveal-stat, .reveal-gallery, .reveal-quote, .reveal-quote-attr {
+      opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-el.visible, .reveal-card.visible, .reveal-stat.visible,
+    .reveal-gallery.visible, .reveal-quote.visible, .reveal-quote-attr.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes blink { 0%,80%,100% { opacity: .2; } 40% { opacity: 1; } }
+
+    @media (max-width: 768px) {
+      .timeline-line { left: 20px; }
+      .timeline-item { grid-template-columns: 24px 1fr; }
+      .timeline-item .timeline-spacer { display: none; }
+      .timeline-item .timeline-dot { grid-row: 1; }
+      .timeline-item .timeline-card { grid-column: 2; }
+      #location-card { left: 12px; right: 12px; width: auto; top: auto; bottom: 120px; transform: translateX(-130%); }
+      #location-card.show { transform: translateX(0); }
+      #journey-timeline { padding: 14px 16px 20px; }
+      .jt-name { font-size: 6px; }
+      .globe-topbar { padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-quill"></div>
+    <p class="preloader-text">Bayaning Pilipino</p>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg" id="mainNav">
+    <div class="container">
+      <a class="nav-brand" href="#">✦ Rizal</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav gap-1">
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="#timeline">Timeline</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="#globe-journey">Journey Map</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="#works">Works</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="#legacy">Legacy</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-custom" href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
     </div>
-    <div id="ink-container"></div>
+  </nav>
 
-    <nav class="navbar navbar-expand-lg" id="mainNav">
-      <div class="container">
-        <a class="nav-brand" href="#">✦ Rizal</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navMenu">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-          <ul class="navbar-nav gap-1">
-            <li class="nav-item">
-              <a class="nav-link nav-link-custom" href="#timeline">Timeline</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-custom" href="#works">Works</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-custom" href="#legacy">Legacy</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-custom" href="#gallery">Gallery</a>
-            </li>
-          </ul>
+  <!-- HERO -->
+  <section id="hero">
+    <canvas class="particles-canvas" id="particles"></canvas>
+    <div class="corner-ornament tl"></div>
+    <div class="corner-ornament tr"></div>
+    <div class="corner-ornament bl"></div>
+    <div class="corner-ornament br"></div>
+    <div class="hero-frame"></div>
+    <div class="floating-leaf" style="top:15%;left:5%;animation-delay:0s">🌿</div>
+    <div class="floating-leaf" style="top:20%;right:6%;animation-delay:2s;font-size:6rem">⚜</div>
+    <div class="floating-leaf" style="bottom:18%;left:8%;animation-delay:1s;font-size:5rem">📜</div>
+    <div class="floating-leaf" style="bottom:25%;right:5%;animation-delay:3s">🌿</div>
+    <div class="hero-content">
+      <p class="hero-year">1 8 6 1 &nbsp;—&nbsp; 1 8 9 6</p>
+      <p class="hero-eyebrow">El Héroe Nacional de Filipinas</p>
+      <div class="hero-divider">
+        <div class="hero-divider-line"></div>
+        <span class="hero-divider-star">✦</span>
+        <div class="hero-divider-line"></div>
+      </div>
+      <h1 class="hero-title">José <span>Rizal</span></h1>
+      <p class="hero-subtitle">Gat José Protasio Rizal Mercado y Alonso Realonda</p>
+      <p class="hero-quote">
+        "The youth is the hope of our motherland. He who does not know how to look back at where he came from will never get to his destination."
+      </p>
+      <div class="hero-cta">
+        <a href="#timeline" class="btn-primary-custom"><span>Discover His Story</span></a>
+        <a href="#works" class="btn-outline-custom">His Works</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-arrow"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <div class="container">
+      <div class="section-header reveal-el">
+        <span class="section-label">Chronology</span>
+        <h2 class="section-title">The Life of a <span>National Hero</span></h2>
+        <div class="section-ornament">
+          <div class="section-ornament-line"></div>
+          <div class="section-ornament-diamond"></div>
+          <div class="section-ornament-line"></div>
         </div>
       </div>
-    </nav>
-
-    <section id="hero">
-      <canvas class="particles-canvas" id="particles"></canvas>
-
-      <div class="corner-ornament tl"></div>
-      <div class="corner-ornament tr"></div>
-      <div class="corner-ornament bl"></div>
-      <div class="corner-ornament br"></div>
-      <div class="hero-frame"></div>
-
-      <div
-        class="floating-leaf"
-        style="top: 15%; left: 5%; animation-delay: 0s">
-        🌿
-      </div>
-      <div
-        class="floating-leaf"
-        style="top: 20%; right: 6%; animation-delay: 2s; font-size: 6rem">
-        ⚜
-      </div>
-      <div
-        class="floating-leaf"
-        style="bottom: 18%; left: 8%; animation-delay: 1s; font-size: 5rem">
-        📜
-      </div>
-      <div
-        class="floating-leaf"
-        style="bottom: 25%; right: 5%; animation-delay: 3s">
-        🌿
-      </div>
-
-      <div class="hero-content">
-        <p class="hero-year">1861 — 1896</p>
-        <p class="hero-eyebrow">El Héroe Nacional de Filipinas</p>
-        <div class="hero-divider">
-          <div class="hero-divider-line"></div>
-          <span class="hero-divider-star">✦</span>
-          <div class="hero-divider-line"></div>
+      <div class="timeline-wrapper">
+        <div class="timeline-line"></div>
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-img"><div style="font-size:4rem;opacity:.5">🏡</div></div>
+            <div class="timeline-card-body">
+              <span class="timeline-card-year">✦ June 19, 1861</span>
+              <h3>Birth in Calamba, Laguna</h3>
+              <p>José Protasio Rizal Mercado y Alonso Realonda was born the seventh of eleven children to Francisco Rizal Mercado and Teodora Alonso Realonda, a family of mixed Chinese, Spanish, and Tagalog descent.</p>
+            </div>
+          </div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-spacer"></div>
         </div>
-        <h1 class="hero-title">José <span>Rizal</span></h1>
-        <p class="hero-subtitle">
-          Gat José Protasio Rizal Mercado y Alonso Realonda
-        </p>
-        <p class="hero-quote">
-          The youth is the hope of our motherland. He who does not know how to
-          look back at where he came from will never get to his destination.
-        </p>
-        <div class="hero-cta">
-          <a href="#timeline" class="btn-primary-custom"
-            ><span>Discover His Story</span></a
-          >
-          <a href="#works" class="btn-outline-custom">His Works</a>
-        </div>
-      </div>
-
-      <div class="scroll-indicator">
-        <div class="scroll-arrow"></div>
-        <span>Scroll</span>
-      </div>
-    </section>
-
-    <section id="timeline">
-      <div class="container">
-        <div class="section-header reveal-el">
-          <span class="section-label">Chronology</span>
-          <h2 class="section-title">
-            The Life of a <span>National Hero</span>
-          </h2>
-          <div class="section-ornament">
-            <div class="section-ornament-line"></div>
-            <div class="section-ornament-diamond"></div>
-            <div class="section-ornament-line"></div>
+        <div class="timeline-item">
+          <div class="timeline-spacer"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-img"><div style="font-size:4rem;opacity:.5">🎓</div></div>
+            <div class="timeline-card-body">
+              <span class="timeline-card-year">✦ 1872 — 1877</span>
+              <h3>Ateneo Municipal de Manila</h3>
+              <p>Rizal excelled in academics, literature, painting, sculpture, and poetry. He graduated as one of nine students awarded the title of <em>Sobresaliente</em> — the highest academic honor — and composed his first poem at age 8.</p>
+            </div>
           </div>
         </div>
-
-        <div class="timeline-wrapper">
-          <div class="timeline-line"></div>
-
-          <div class="timeline-item">
-            <div class="timeline-card">
-              <div class="timeline-img">
-                <img src="../assets/logo.png" alt="Young Jose Rizal portrait" />
-              </div>
-              <div class="timeline-card-body">
-                <span class="timeline-card-year">✦ JUNE 19, 1861</span>
-                <h3>Birth in Calamba, Laguna</h3>
-                <p>
-                  José Protasio Rizal Mercado y Alonso Realonda was born the
-                  seventh of eleven children to Francisco Engracio Rizal Mercado
-                  and Teodora Morales Alonso Realonda, a family of mixed
-                  Chinese, Spanish, and Tagalog descent.
-                </p>
-              </div>
-            </div>
-            <div class="timeline-dot"></div>
-            <div class="timeline-spacer"></div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-spacer"></div>
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-img">
-                <img
-                  src="../assets/school.jpg"
-                  alt="Rizal at Ateneo Municipal de Manila" />
-              </div>
-              <div class="timeline-card-body">
-                <span class="timeline-card-year">✦ 1872 — 1877</span>
-                <h3>Ateneo Municipal de Manila</h3>
-                <p>
-                  Rizal enrolled in the Ateneo Municipal de Manila, excelling in
-                  academics, literature, painting, sculpture, and poetry. He
-                  graduated as one of nine students awarded the title of
-                  Sobresaliente — the highest academic honor.
-                </p>
-              </div>
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-img"><div style="font-size:4rem;opacity:.5">⛵</div></div>
+            <div class="timeline-card-body">
+              <span class="timeline-card-year">✦ 1882 — 1892</span>
+              <h3>Journey to Europe, Asia & America</h3>
+              <p>Rizal secretly left the Philippines at 21, traveling through Spain, France, Germany, England, Belgium, Austria, Switzerland, Japan, and the United States — earning two degrees, writing two novels, and awakening a nation.</p>
             </div>
           </div>
-
-          <div class="timeline-item">
-            <div class="timeline-card">
-              <div class="timeline-img">
-                <img
-                  src="../assets/madrid&paris.jpg"
-                  alt="Jose Rizal in London 1888" />
-              </div>
-              <div class="timeline-card-body">
-                <span class="timeline-card-year">✦ 1882</span>
-                <h3>Journey to Europe — Madrid & Paris</h3>
-                <p>
-                  Rizal secretly left the Philippines to study in Spain. He
-                  enrolled at the Universidad Central de Madrid, earning his
-                  licentiate in medicine in 1884. He also took courses in
-                  philosophy, literature, and the fine arts.
-                </p>
-              </div>
-            </div>
-            <div class="timeline-dot"></div>
-            <div class="timeline-spacer"></div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-spacer"></div>
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-img">
-                <img
-                  src="../assets/noli.webp"
-                  alt="Noli Me Tangere first edition cover" />
-              </div>
-              <div class="timeline-card-body">
-                <span class="timeline-card-year">✦ 1887</span>
-                <h3>Noli Me Tangere Published</h3>
-                <p>
-                  Rizal published his first novel <em>Noli Me Tangere</em> in
-                  Berlin, Germany. The novel exposed the abuses of the Spanish
-                  colonial government and the Catholic clergy, igniting a fire
-                  of nationalism across the Philippine archipelago.
-                </p>
-              </div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-spacer"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-spacer"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-img"><div style="font-size:4rem;opacity:.5">📖</div></div>
+            <div class="timeline-card-body">
+              <span class="timeline-card-year">✦ 1887</span>
+              <h3>Noli Me Tangere Published</h3>
+              <p>Rizal published his first novel in Berlin, Germany. The novel exposed the abuses of the Spanish colonial government and the Catholic clergy, igniting the fire of nationalism across the Philippine archipelago.</p>
             </div>
           </div>
-
-          <div class="timeline-item">
-            <div class="timeline-card">
-              <div class="timeline-img">
-                <img
-                  src="../assets/el fili.webp"
-                  alt="El Filibusterismo first edition cover" />
-              </div>
-              <div class="timeline-card-body">
-                <span class="timeline-card-year">✦ 1891</span>
-                <h3>El Filibusterismo Published</h3>
-                <p>
-                  The sequel to Noli Me Tangere, <em>El Filibusterismo</em>, was
-                  published in Ghent, Belgium. Darker and more politically
-                  charged than its predecessor, the novel depicted a revolution
-                  against colonial oppression and stirred deeper unrest.
-                </p>
-              </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-img"><div style="font-size:4rem;opacity:.5">⚔️</div></div>
+            <div class="timeline-card-body">
+              <span class="timeline-card-year">✦ 1891</span>
+              <h3>El Filibusterismo Published</h3>
+              <p>The darker sequel, published in Ghent, Belgium. More politically charged than Noli, the novel depicted revolution as the only answer to colonial oppression — dedicated to the martyred priests Gomez, Burgos, and Zamora.</p>
             </div>
-            <div class="timeline-dot"></div>
-            <div class="timeline-spacer"></div>
           </div>
-
-          <div class="timeline-item">
-            <div class="timeline-spacer"></div>
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <div class="timeline-img">
-                <img
-                  src="../assets/execution.webp"
-                  alt="Execution of Jose Rizal at Bagumbayan 1896" />
-              </div>
-              <div class="timeline-card-body">
-                <span class="timeline-card-year">✦ DECEMBER 30, 1896</span>
-                <h3>Martyrdom at Bagumbayan</h3>
-                <p>
-                  At the age of 35, Rizal was executed by firing squad at
-                  Bagumbayan Field, now known as Luneta Park in Manila. He faced
-                  death calmly, turning to face the rising sun. His sacrifice
-                  ignited the Philippine Revolution and cemented his legacy as a
-                  national hero.
-                </p>
-              </div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-spacer"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-spacer"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-img"><div style="font-size:4rem;opacity:.5">🕯️</div></div>
+            <div class="timeline-card-body">
+              <span class="timeline-card-year">✦ December 30, 1896</span>
+              <h3>Martyrdom at Bagumbayan</h3>
+              <p>At 35, Rizal was executed by firing squad at Bagumbayan Field, now Luneta Park. He faced death calmly, turning to face the rising sun. His sacrifice ignited the Philippine Revolution and cemented his legacy as the national hero.</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="works">
-      <div class="container">
-        <div class="section-header reveal-el">
-          <span class="section-label">Literary & Scientific Legacy</span>
-          <h2 class="section-title">His <span>Immortal Works</span></h2>
-          <div class="section-ornament">
-            <div class="section-ornament-line"></div>
-            <div class="section-ornament-diamond"></div>
-            <div class="section-ornament-line"></div>
-          </div>
+  <!-- ══════ 3D GLOBE JOURNEY SECTION ══════ -->
+  <section id="globe-journey">
+    <div class="container">
+      <div class="section-header reveal-el">
+        <span class="section-label">His Footsteps Across the World</span>
+        <h2 class="section-title">The <span>World Journey</span> of Rizal</h2>
+        <div class="section-ornament">
+          <div class="section-ornament-line"></div>
+          <div class="section-ornament-diamond"></div>
+          <div class="section-ornament-line"></div>
         </div>
-
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-4">
-            <div class="work-card reveal-card">
-              <div class="work-icon">📖</div>
-              <span class="work-tag">Novel</span>
-              <h3>Noli Me Tangere</h3>
-              <p>
-                A scathing exposé of Spanish colonial rule and the abuses of the
-                friars. The title, Latin for "Touch Me Not," symbolizes the
-                untouched social cancers festering in Philippine society.
-              </p>
-              <span class="work-year">✦ Berlin, 1887</span>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="work-card reveal-card" style="transition-delay: 0.1s">
-              <div class="work-icon">⚔️</div>
-              <span class="work-tag">Novel</span>
-              <h3>El Filibusterismo</h3>
-              <p>
-                The sequel and spiritual successor to Noli Me Tangere. A darker,
-                more politically complex narrative of revolution, despair, and
-                the limits of peaceful reform under colonial oppression.
-              </p>
-              <span class="work-year">✦ Ghent, 1891</span>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="work-card reveal-card" style="transition-delay: 0.2s">
-              <div class="work-icon">✒️</div>
-              <span class="work-tag">Poetry</span>
-              <h3>Mi Último Adiós</h3>
-              <p>
-                Rizal's farewell poem, written on the eve of his execution.
-                Hidden inside an oil lamp, the poem expresses his love for the
-                Philippines and his willingness to die for his country's
-                freedom.
-              </p>
-              <span class="work-year">✦ Fort Santiago, 1896</span>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="work-card reveal-card" style="transition-delay: 0.1s">
-              <div class="work-icon">🏛️</div>
-              <span class="work-tag">Essay</span>
-              <h3>La Solidaridad Articles</h3>
-              <p>
-                A series of political essays published in the La Solidaridad
-                newspaper advocating for Philippine representation in the
-                Spanish Cortes and equal rights for Filipinos alongside
-                peninsulares.
-              </p>
-              <span class="work-year">✦ Madrid, 1889–1895</span>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="work-card reveal-card" style="transition-delay: 0.2s">
-              <div class="work-icon">🔬</div>
-              <span class="work-tag">Science</span>
-              <h3>Ophthalmological Studies</h3>
-              <p>
-                A trained ophthalmologist, Rizal studied and practiced medicine
-                in Europe. He dedicated much of his work to treating the poor,
-                most famously operating on his own mother's failing eyesight.
-              </p>
-              <span class="work-year">✦ Madrid & Heidelberg, 1887</span>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="work-card reveal-card" style="transition-delay: 0.3s">
-              <div class="work-icon">🎨</div>
-              <span class="work-tag">Arts & Language</span>
-              <h3>Polymath & Sculptor</h3>
-              <p>
-                Rizal spoke 22 languages, was a skilled painter, sculptor, poet,
-                and novelist. His sculptures, sketches, and carvings reveal a
-                deeply artistic soul who channeled his passions into every
-                medium available.
-              </p>
-              <span class="work-year">✦ Throughout his life</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="quote-banner">
-      <div class="container">
-        <blockquote class="banner-quote reveal-quote">
-          Ang hindi marunong lumingon sa pinanggalingan ay hindi makararating sa
-          paroroonan.
-        </blockquote>
-        <p class="banner-attribution reveal-quote-attr">
-          — José Rizal · Bayaning Pilipino
+        <p style="font-size:15px;color:var(--text2);margin-top:20px;font-style:italic;max-width:600px;margin-left:auto;margin-right:auto;">
+          From Calamba to the capitals of Europe — trace every city, every sacrifice, every step of his extraordinary journey on the globe below.
         </p>
       </div>
-    </section>
+    </div>
 
-    <section id="legacy">
-      <div class="container">
-        <div class="section-header reveal-el">
-          <span class="section-label">By the Numbers</span>
-          <h2 class="section-title">A Legacy <span>Immortalized</span></h2>
-          <div class="section-ornament">
-            <div class="section-ornament-line"></div>
-            <div class="section-ornament-diamond"></div>
-            <div class="section-ornament-line"></div>
+    <!-- Globe stage -->
+    <div id="globe-stage">
+      <canvas id="globe"></canvas>
+      <div class="globe-vignette"></div>
+
+      <!-- Top bar -->
+      <div class="globe-topbar">
+        <div class="globe-topbar-title">✦ Rizal's World Journey</div>
+        <div class="globe-stop-counter" id="stop-counter">Stop 1 of 7</div>
+      </div>
+
+      <!-- Location card -->
+      <div id="location-card">
+        <div class="card-stop-num" id="card-stop-num">Stop 1 of 7</div>
+        <span class="card-flag" id="card-flag">🇵🇭</span>
+        <div class="card-country" id="card-country">Philippines</div>
+        <div class="card-city" id="card-city">Calamba, Laguna</div>
+        <div class="card-years" id="card-years">1861 – 1882</div>
+        <div class="card-desc" id="card-desc"></div>
+        <button class="learn-more-btn" onclick="openPopup()">✦ What Rizal Did Here</button>
+        <div class="nav-btns">
+          <button class="nav-btn" id="prev-btn" onclick="prevStop()" disabled>← Prev</button>
+          <button class="nav-btn" id="next-btn" onclick="nextStop()">Next →</button>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div id="globe-loading">
+        <div><span class="g-dot"></span><span class="g-dot"></span><span class="g-dot"></span></div>
+        <div class="g-loading-text">Loading world map…</div>
+      </div>
+    </div>
+
+    <!-- Timeline bar -->
+    <div id="journey-timeline">
+      <div class="jt-label">Journey Timeline — Click any stop to navigate</div>
+      <div class="jt-track" id="jt-track">
+        <div class="jt-line"></div>
+        <div class="jt-progress" id="jt-progress" style="width:0%"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section id="works">
+    <div class="container">
+      <div class="section-header reveal-el">
+        <span class="section-label">Literary & Scientific Legacy</span>
+        <h2 class="section-title">His <span>Immortal Works</span></h2>
+        <div class="section-ornament">
+          <div class="section-ornament-line"></div>
+          <div class="section-ornament-diamond"></div>
+          <div class="section-ornament-line"></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4"><div class="work-card reveal-card">
+          <div class="work-icon">📖</div><span class="work-tag">Novel</span>
+          <h3>Noli Me Tangere</h3>
+          <p>A scathing exposé of Spanish colonial rule. "Touch Me Not" — the untouched social cancers festering in Philippine society. Banned by the Church. Beloved by every Filipino.</p>
+          <span class="work-year">✦ Berlin, 1887</span>
+        </div></div>
+        <div class="col-md-6 col-lg-4"><div class="work-card reveal-card" style="transition-delay:.1s">
+          <div class="work-icon">⚔️</div><span class="work-tag">Novel</span>
+          <h3>El Filibusterismo</h3>
+          <p>The darker sequel — revolution as the inevitable fruit of oppression. Dedicated to the martyred priests Gomez, Burgos, and Zamora. Published in Ghent, 1891.</p>
+          <span class="work-year">✦ Ghent, 1891</span>
+        </div></div>
+        <div class="col-md-6 col-lg-4"><div class="work-card reveal-card" style="transition-delay:.2s">
+          <div class="work-icon">✒️</div><span class="work-tag">Poetry</span>
+          <h3>Mi Último Adiós</h3>
+          <p>His farewell poem, written on the eve of execution and hidden inside an alcohol lamp. One of the most moving poems ever written in any language.</p>
+          <span class="work-year">✦ Fort Santiago, 1896</span>
+        </div></div>
+        <div class="col-md-6 col-lg-4"><div class="work-card reveal-card" style="transition-delay:.1s">
+          <div class="work-icon">🏛️</div><span class="work-tag">Essay</span>
+          <h3>La Solidaridad Articles</h3>
+          <p>Political essays advocating Philippine representation in the Spanish Cortes and equal rights for Filipinos. Published in Madrid's reform newspaper.</p>
+          <span class="work-year">✦ Madrid, 1889–1895</span>
+        </div></div>
+        <div class="col-md-6 col-lg-4"><div class="work-card reveal-card" style="transition-delay:.2s">
+          <div class="work-icon">🔬</div><span class="work-tag">Science</span>
+          <h3>Ophthalmological Studies</h3>
+          <p>A trained ophthalmologist who treated the poor for free. He famously operated on his own mother's cataracts in Hong Kong, restoring her sight.</p>
+          <span class="work-year">✦ Paris, Heidelberg & Hong Kong</span>
+        </div></div>
+        <div class="col-md-6 col-lg-4"><div class="work-card reveal-card" style="transition-delay:.3s">
+          <div class="work-icon">🎨</div><span class="work-tag">Arts & Language</span>
+          <h3>Polymath & Sculptor</h3>
+          <p>Rizal spoke 22 languages, painted, sculpted, wrote poetry, and conducted zoological research in Dapitan. He was the most brilliant Filipino of his age.</p>
+          <span class="work-year">✦ Throughout his life</span>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE BANNER -->
+  <section id="quote-banner">
+    <div class="container">
+      <blockquote class="banner-quote reveal-quote">
+        Ang hindi marunong lumingon sa pinanggalingan ay hindi makararating sa paroroonan.
+      </blockquote>
+      <p class="banner-attribution reveal-quote-attr">— José Rizal · Bayaning Pilipino</p>
+    </div>
+  </section>
+
+  <!-- LEGACY -->
+  <section id="legacy">
+    <div class="container">
+      <div class="section-header reveal-el">
+        <span class="section-label">By the Numbers</span>
+        <h2 class="section-title">A Legacy <span>Immortalized</span></h2>
+        <div class="section-ornament">
+          <div class="section-ornament-line"></div>
+          <div class="section-ornament-diamond"></div>
+          <div class="section-ornament-line"></div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-6 col-md-3"><div class="legacy-stat reveal-stat">
+          <span class="legacy-num" data-count="22">0</span>
+          <span class="legacy-label">Languages Spoken</span>
+          <p class="legacy-desc">From Tagalog to Sanskrit</p>
+        </div></div>
+        <div class="col-6 col-md-3"><div class="legacy-stat reveal-stat" style="transition-delay:.1s">
+          <span class="legacy-num" data-count="35">0</span>
+          <span class="legacy-label">Age at Martyrdom</span>
+          <p class="legacy-desc">December 30, 1896</p>
+        </div></div>
+        <div class="col-6 col-md-3"><div class="legacy-stat reveal-stat" style="transition-delay:.2s">
+          <span class="legacy-num" data-count="7">0</span>
+          <span class="legacy-label">Countries Visited</span>
+          <p class="legacy-desc">Across 4 continents</p>
+        </div></div>
+        <div class="col-6 col-md-3"><div class="legacy-stat reveal-stat" style="transition-delay:.3s">
+          <span class="legacy-num" data-count="163">0</span>
+          <span class="legacy-label">Years of Inspiration</span>
+          <p class="legacy-desc">His flame still burns</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-header reveal-el">
+        <span class="section-label">Visual Tribute</span>
+        <h2 class="section-title">Moments & <span>Milestones</span></h2>
+        <div class="section-ornament">
+          <div class="section-ornament-line"></div>
+          <div class="section-ornament-diamond"></div>
+          <div class="section-ornament-line"></div>
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-4"><div class="gallery-item reveal-gallery"><div class="gallery-bg">🏡</div><div class="gallery-caption"><h4>Calamba, Laguna</h4><span>Birthplace of the National Hero, 1861</span></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="gallery-item reveal-gallery" style="transition-delay:.1s"><div class="gallery-bg">🎓</div><div class="gallery-caption"><h4>University of Madrid</h4><span>Where brilliance was forged, 1882</span></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="gallery-item reveal-gallery" style="transition-delay:.2s"><div class="gallery-bg">🗼</div><div class="gallery-caption"><h4>Berlin & London</h4><span>Noli published, Morga annotated, 1887–1888</span></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="gallery-item reveal-gallery" style="transition-delay:.1s"><div class="gallery-bg">🌸</div><div class="gallery-caption"><h4>Tokyo, Japan</h4><span>A golden interlude with O-Sei-San, 1888</span></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="gallery-item reveal-gallery" style="transition-delay:.2s"><div class="gallery-bg">🏝️</div><div class="gallery-caption"><h4>Dapitan Exile</h4><span>Years of quiet brilliance, 1892–1896</span></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="gallery-item reveal-gallery" style="transition-delay:.3s"><div class="gallery-bg">🌅</div><div class="gallery-caption"><h4>Luneta — Bagumbayan</h4><span>Where a hero became eternal, Dec 30, 1896</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <div class="footer-brand">✦ José Rizal</div>
+          <p class="footer-tagline">"The Great Malayan" — National Hero of the Philippines</p>
+          <p style="color:var(--text3);font-size:.9rem;line-height:1.7;">A tribute to the poet, novelist, ophthalmologist, sculptor, painter, educator, and nationalist who gave his life so that a nation might live in dignity and freedom.</p>
+        </div>
+        <div class="col-6 col-lg-2 offset-lg-2 mb-5 mb-lg-0">
+          <p style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;color:var(--gold);margin-bottom:20px;">EXPLORE</p>
+          <div class="footer-nav">
+            <a href="#timeline">Timeline</a>
+            <a href="#globe-journey">World Journey</a>
+            <a href="#works">His Works</a>
+            <a href="#legacy">Legacy</a>
+            <a href="#gallery">Gallery</a>
           </div>
         </div>
-        <div class="row g-4">
-          <div class="col-6 col-md-3">
-            <div class="legacy-stat reveal-stat">
-              <span class="legacy-num" data-count="22">0</span>
-              <span class="legacy-label">Languages Spoken</span>
-              <p class="legacy-desc">From Tagalog to Sanskrit</p>
-            </div>
-          </div>
-          <div class="col-6 col-md-3">
-            <div class="legacy-stat reveal-stat" style="transition-delay: 0.1s">
-              <span class="legacy-num" data-count="35">0</span>
-              <span class="legacy-label">Age at Martyrdom</span>
-              <p class="legacy-desc">December 30, 1896</p>
-            </div>
-          </div>
-          <div class="col-6 col-md-3">
-            <div class="legacy-stat reveal-stat" style="transition-delay: 0.2s">
-              <span class="legacy-num" data-count="2">0</span>
-              <span class="legacy-label">Major Novels</span>
-              <p class="legacy-desc">Noli & El Fili</p>
-            </div>
-          </div>
-          <div class="col-6 col-md-3">
-            <div class="legacy-stat reveal-stat" style="transition-delay: 0.3s">
-              <span class="legacy-num" data-count="163">0</span>
-              <span class="legacy-label">Years of Inspiration</span>
-              <p class="legacy-desc">His flame still burns</p>
-            </div>
+        <div class="col-6 col-lg-3 offset-lg-1">
+          <p style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;color:var(--gold);margin-bottom:20px;">QUICK FACTS</p>
+          <div class="footer-nav">
+            <a href="#">Born: June 19, 1861</a>
+            <a href="#">Died: December 30, 1896</a>
+            <a href="#">Calamba, Laguna</a>
+            <a href="#">7 Countries Visited</a>
           </div>
         </div>
       </div>
-    </section>
-
-    <section id="gallery">
-      <div class="container">
-        <div class="section-header reveal-el">
-          <span class="section-label">Visual Tribute</span>
-          <h2 class="section-title">Moments & <span>Milestones</span></h2>
-          <div class="section-ornament">
-            <div class="section-ornament-line"></div>
-            <div class="section-ornament-diamond"></div>
-            <div class="section-ornament-line"></div>
-          </div>
-        </div>
-        <div class="row g-3">
-          <div class="col-md-6 col-lg-4">
-            <div class="gallery-item reveal-gallery">
-              <div class="gallery-bg">🏡</div>
-              <div class="gallery-caption">
-                <h4>Calamba, Laguna</h4>
-                <span>Birthplace of the National Hero, 1861</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div
-              class="gallery-item reveal-gallery"
-              style="transition-delay: 0.1s">
-              <div class="gallery-bg">🎓</div>
-              <div class="gallery-caption">
-                <h4>University of Madrid</h4>
-                <span>Where brilliance was forged, 1882</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div
-              class="gallery-item reveal-gallery"
-              style="transition-delay: 0.2s">
-              <div class="gallery-bg">📜</div>
-              <div class="gallery-caption">
-                <h4>Noli Me Tangere Manuscript</h4>
-                <span>The fire that awakened a nation, 1887</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div
-              class="gallery-item reveal-gallery"
-              style="transition-delay: 0.1s">
-              <div class="gallery-bg">🏝️</div>
-              <div class="gallery-caption">
-                <h4>Dapitan Exile</h4>
-                <span>Years of quiet brilliance, 1892–1896</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div
-              class="gallery-item reveal-gallery"
-              style="transition-delay: 0.2s">
-              <div class="gallery-bg">🕯️</div>
-              <div class="gallery-caption">
-                <h4>Mi Último Adiós</h4>
-                <span>Written in his final hours, 1896</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div
-              class="gallery-item reveal-gallery"
-              style="transition-delay: 0.3s">
-              <div class="gallery-bg">🌅</div>
-              <div class="gallery-caption">
-                <h4>Luneta Park — Bagumbayan</h4>
-                <span>Where a hero became eternal, Dec 30, 1896</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="footer-ornament" style="margin-top:50px">
+        <div class="footer-ornament-line"></div>
+        <span style="color:var(--gold);font-size:1.2rem">✦</span>
+        <div class="footer-ornament-line"></div>
       </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 mb-5 mb-lg-0">
-            <div class="footer-brand">✦ José Rizal</div>
-            <p class="footer-tagline">
-              "The Great Malayan" — National Hero of the Philippines
-            </p>
-            <p
-              style="
-                color: rgba(122, 78, 30, 0.7);
-                font-size: 0.9rem;
-                line-height: 1.7;
-              ">
-              A tribute to the poet, novelist, ophthalmologist, sculptor,
-              painter, educator, and nationalist who gave his life so that a
-              nation might live in dignity and freedom.
-            </p>
-          </div>
-          <div class="col-6 col-lg-2 offset-lg-2 mb-5 mb-lg-0">
-            <p
-              style="
-                font-family: &quot;Cinzel&quot;, serif;
-                font-size: 0.7rem;
-                letter-spacing: 3px;
-                color: var(--gold);
-                margin-bottom: 20px;
-              ">
-              EXPLORE
-            </p>
-            <div class="footer-nav">
-              <a href="#timeline">Timeline</a>
-              <a href="#works">His Works</a>
-              <a href="#legacy">Legacy</a>
-              <a href="#gallery">Gallery</a>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3 offset-lg-1">
-            <p
-              style="
-                font-family: &quot;Cinzel&quot;, serif;
-                font-size: 0.7rem;
-                letter-spacing: 3px;
-                color: var(--gold);
-                margin-bottom: 20px;
-              ">
-              QUICK FACTS
-            </p>
-            <div class="footer-nav">
-              <a href="#">Born: June 19, 1861</a>
-              <a href="#">Died: December 30, 1896</a>
-              <a href="#">Calamba, Laguna</a>
-              <a href="#">Republic of the Philippines</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer-ornament" style="margin-top: 50px">
-          <div class="footer-ornament-line"></div>
-          <span style="color: var(--gold); font-size: 1.2rem">✦</span>
-          <div class="footer-ornament-line"></div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>
-            A TRIBUTE TO THE NATIONAL HERO OF THE PHILIPPINES &nbsp;✦&nbsp; JOSE
-            RIZAL &nbsp;✦&nbsp; 1861–1896
-          </p>
-          <p style="margin-top: 6px; opacity: 0.5">
-            "Ang bayan ko'y sadyang mahal, iniaalay ko ang buhay."
-          </p>
-        </div>
+      <div class="footer-bottom" style="margin-top:30px">
+        <p>A Tribute to the National Hero of the Philippines &nbsp;✦&nbsp; José Rizal &nbsp;✦&nbsp; 1861–1896</p>
+        <p style="margin-top:6px;opacity:.5">"Ang bayan ko'y sadyang mahal, iniaalay ko ang buhay."</p>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../script/script.js"></script>
-  </body>
+  <!-- POPUP -->
+  <div id="popup-backdrop" onclick="closePopup()"></div>
+  <div id="popup">
+    <div class="popup-header">
+      <div>
+        <span class="popup-flag-lg" id="popup-flag">🇵🇭</span>
+        <div class="popup-loc-label" id="popup-loc-label">Philippines</div>
+        <div class="popup-title" id="popup-title">Calamba, Laguna</div>
+      </div>
+      <button class="popup-close" onclick="closePopup()">✕</button>
+    </div>
+    <div class="popup-body" id="popup-body"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+  /* ══════════════════════════════════════════════
+     PRELOADER
+  ══════════════════════════════════════════════ */
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 900);
+  });
+
+  /* ══════════════════════════════════════════════
+     PARTICLES (hero canvas)
+  ══════════════════════════════════════════════ */
+  (function(){
+    const c = document.getElementById('particles');
+    const cx = c.getContext('2d');
+    const pts = [];
+    function resize(){ c.width = c.offsetWidth; c.height = c.offsetHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    for(let i=0;i<80;i++) pts.push({
+      x:Math.random()*c.width, y:Math.random()*c.height,
+      vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3,
+      r:Math.random()*1.5+.3, a:Math.random()*.5+.1
+    });
+    function draw(){
+      cx.clearRect(0,0,c.width,c.height);
+      pts.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0||p.x>c.width) p.vx*=-1;
+        if(p.y<0||p.y>c.height) p.vy*=-1;
+        cx.beginPath(); cx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        cx.fillStyle=`rgba(201,168,76,${p.a})`; cx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  /* ══════════════════════════════════════════════
+     SCROLL REVEALS
+  ══════════════════════════════════════════════ */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal-el,.reveal-card,.reveal-stat,.reveal-gallery,.reveal-quote,.reveal-quote-attr')
+    .forEach(el => revealObserver.observe(el));
+
+  /* ══════════════════════════════════════════════
+     COUNTER ANIMATION
+  ══════════════════════════════════════════════ */
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      const el = e.target;
+      const target = +el.dataset.count;
+      let cur = 0;
+      const inc = target / 60;
+      const t = setInterval(() => {
+        cur = Math.min(cur + inc, target);
+        el.textContent = Math.floor(cur);
+        if(cur >= target) clearInterval(t);
+      }, 24);
+      counterObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.legacy-num').forEach(el => counterObserver.observe(el));
+
+  /* ══════════════════════════════════════════════
+     JOURNEY STOPS DATA (7 countries)
+  ══════════════════════════════════════════════ */
+  const stops = [
+    {
+      city:"Philippines", country:"Philippines", flag:"🇵🇭",
+      years:"1861 – 1896", lat:12.8, lng:122.0,
+      desc:"Rizal's homeland — birthplace in Calamba, exile in Dapitan, and martyrdom at Bagumbayan, Manila.",
+      what:"Born June 19, 1861 in Calamba, Laguna, Rizal grew up witnessing colonial injustice. He studied at Ateneo de Manila and UST before secretly leaving for Europe at 21. He returned in 1887 (under surveillance after Noli was banned) and in 1892, where he founded La Liga Filipina — and was arrested three days later. He was exiled to Dapitan, Mindanao for 4 years, where he built a school, engineered a water system, practiced medicine for free, and discovered new species named after him. On December 30, 1896, he was executed at Bagumbayan (now Luneta Park), Manila, aged 35. His death ignited the Philippine Revolution.",
+      works:[
+        {title:"Sa Aking Mga Kabata (1869)",desc:"Written at age 8 — a declaration that a people who love their language love their freedom."},
+        {title:"La Liga Filipina (1892)",desc:"A civic organization for peaceful reform, founded in Manila. Crushed by Spain upon his arrest three days later."},
+        {title:"Mi Último Adiós (1896)",desc:"His final poem, written the night before his execution and hidden in an alcohol lamp given to Josephine Bracken."},
+        {title:"Scientific discoveries in Dapitan",desc:"Discovered new species: Draco rizali (lizard), Apogonia rizali (beetle), Rhacophorus rizali (frog) — all named in his honor."}
+      ],
+      people:["Teodora Alonso (mother)","Francisco Rizal Mercado (father)","Paciano Rizal (elder brother & mentor)","Leonor Rivera (childhood sweetheart)","Josephine Bracken (common-law wife, Dapitan)","Andres Bonifacio (attended La Liga founding — later founded Katipunan)"]
+    },
+    {
+      city:"Spain", country:"Spain", flag:"🇪🇸",
+      years:"1882 – 1885 & 1891", lat:40.0, lng:-3.5,
+      desc:"Rizal's first European destination. He earned two degrees in Madrid and Barcelona, joined the Propaganda Movement, and became the leading voice for Filipino rights in Europe.",
+      what:"Rizal arrived in Barcelona in June 1882 and enrolled at the Universidad Central de Madrid, earning his Licentiate in Medicine (1884) and Licentiate in Philosophy & Letters (1885). He became the heart of the Propaganda Movement alongside Marcelo del Pilar and Graciano López Jaena. In 1884 he delivered a celebrated speech at a banquet honoring painters Juan Luna and Félix Hidalgo — so electrifying it was reproduced across Europe. He wrote his first political essay 'Amor Patrio' in Barcelona (1882), and contributed regularly to La Solidaridad in Madrid. In 1891 he briefly returned to Spain before heading to Belgium to print El Filibusterismo.",
+      works:[
+        {title:"Amor Patrio (Barcelona, 1882)",desc:"One of his first political essays, written in Barcelona under the pen name Laong Laan — a passionate call for love of the Philippine homeland."},
+        {title:"Two university degrees (Madrid, 1884–1885)",desc:"Licentiate in Medicine and Licentiate in Philosophy & Letters from Universidad Central de Madrid."},
+        {title:"La Solidaridad articles",desc:"Regular political essays advocating Philippine autonomy, representation in the Spanish Cortes, and equality for Filipinos."},
+        {title:"Famous banquet speech (Madrid, 1884)",desc:"Toast honoring Luna and Hidalgo — boldly declaring Filipinos the equals of any European people."}
+      ],
+      people:["Marcelo H. del Pilar","Graciano López Jaena","Juan Luna (painter)","Félix Resurección Hidalgo","Miguel Morayta (Spanish liberal professor)","Consuelo Ortiga y Pérez (love interest)"]
+    },
+    {
+      city:"France", country:"France", flag:"🇫🇷",
+      years:"1883 & 1885–1886", lat:46.5, lng:2.3,
+      desc:"Rizal visited Paris twice — once on a summer break from Madrid, then returned to specialize in ophthalmology under Europe's finest eye surgeon.",
+      what:"On his first visit in 1883, Rizal was overwhelmed by Paris — its museums, hospitals, and free society. He joined a Masonic lodge (Acacia) and later became a master mason in 1890. He returned in 1885–1886 to train under Dr. Louis de Weckert, the leading ophthalmologist in Europe. He mastered surgical techniques he would later use to treat poor Filipinos for free — including operating on his own mother's cataracts in Hong Kong. He lived frugally in Paris, spending time with Filipino artists including Juan Luna, and studying European art at the Louvre.",
+      works:[
+        {title:"Ophthalmology training under Dr. de Weckert",desc:"Mastered eye surgery techniques — skills he later used to restore the sight of poor patients and his own mother."},
+        {title:"Masonic membership (Acacia Lodge)",desc:"Joined the Masonic lodge Acacia in Paris in 1883; became a master mason in 1890 — part of his network of liberal reform advocates."},
+        {title:"Art studies at the Louvre",desc:"Studied European painting and sculpture alongside Juan Luna, deepening the artistic sensibility visible in his own drawings and sculptures."}
+      ],
+      people:["Dr. Louis de Weckert (ophthalmology mentor)","Juan Luna (Filipino painter in Paris)","Paz Pardo de Tavera (Juan Luna's wife)","Filipino artists' community in Paris"]
+    },
+    {
+      city:"Germany", country:"Germany", flag:"🇩🇪",
+      years:"1886 – 1887", lat:51.0, lng:10.0,
+      desc:"Germany was Rizal's greatest intellectual triumph. In Heidelberg he began Noli Me Tangere; in Berlin he published it — and was embraced by Europe's finest scientists.",
+      what:"In Heidelberg, Rizal trained under Dr. Otto Becker at the University Eye Clinic and began seriously writing Noli Me Tangere. He wrote the beloved poem 'A las Flores de Heidelberg' and began his lifelong correspondence with Professor Ferdinand Blumentritt. In Berlin, he joined the Anthropological Society and became close friends with Rudolf Virchow — father of modern pathology. He presented papers on Philippine ethnology to European academics. In March 1887, funded entirely by his friend Máximo Viola, he published Noli Me Tangere. The novel was immediately banned by the Catholic Church in the Philippines — and immediately beloved by every Filipino who could find a copy.",
+      works:[
+        {title:"A las Flores de Heidelberg (1886)",desc:"A beloved poem inspired by the spring flowers along the Neckar River — celebrating beauty and longing for the Philippines."},
+        {title:"Noli Me Tangere — published Berlin, March 1887",desc:"His explosive first novel exposing colonial and clerical abuse. Banned by the Church. Beloved by all Filipinos. Changed Philippine history."},
+        {title:"Scientific papers presented in Berlin",desc:"Presented ethnological and anthropological studies on the Philippines to Berlin's Anthropological and Geographical Societies."}
+      ],
+      people:["Dr. Otto Becker (Heidelberg Eye Clinic mentor)","Ferdinand Blumentritt (began lifelong correspondence)","Rudolf Virchow (father of modern pathology — close friend)","Máximo Viola (financed the printing of Noli Me Tangere)","Pastor Karl Ullmer (host and friend in Heidelberg)"]
+    },
+    {
+      city:"United Kingdom", country:"United Kingdom", flag:"🇬🇧",
+      years:"1888 – 1889", lat:54.0, lng:-2.0,
+      desc:"In London, Rizal spent over a year at the British Museum on a landmark scholarly project — using Spain's own records to prove Filipino civilization was great before colonization.",
+      what:"Rizal arrived in Liverpool on May 24, 1888 and settled in London, boarding with the Beckett family at 37 Chalcot Crescent, Primrose Hill. He spent nearly every day at the British Museum hand-copying and annotating Antonio de Morga's 1609 'Sucesos de las Islas Filipinas' — turning a Spanish colonial chronicle into a radical proof of pre-colonial Filipino cultural greatness. He befriended Dr. Reinhold Rost and Filipino lawyer Antonio Ma. Regidor. He fell in love with Gertrude Beckett, one of his landladies' daughters, but duty prevailed. He wrote his first contribution to La Solidaridad from London. He maintained near-daily correspondence with Ferdinand Blumentritt throughout his stay.",
+      works:[
+        {title:"Annotated Edition of Morga's Sucesos de las Islas Filipinas",desc:"His most important scholarly work — using Spain's own 1609 colonial records to prove Filipino civilization was advanced, rich, and complete long before Spanish arrival."},
+        {title:"La Solidaridad articles from London",desc:"Wrote political essays for the reform newspaper, including his first contribution 'Lo que han hecho los jesuitas en Filipinas.'"}
+      ],
+      people:["Dr. Reinhold Rost (British Museum and India Office)","Antonio Ma. Regidor (Filipino lawyer in London exile)","Gertrude Beckett (love interest)","Ferdinand Blumentritt (near-daily correspondence)"]
+    },
+    {
+      city:"Japan", country:"Japan", flag:"🇯🇵",
+      years:"Feb – Apr 1888", lat:36.5, lng:138.0,
+      desc:"Forty-five of the happiest days of Rizal's life — in the land of cherry blossoms, where he fell deeply in love with O-Sei-San, daughter of a samurai.",
+      what:"After his first return visit to Manila in 1887, Rizal departed again on February 3, 1888. He arrived in Yokohama on February 28 and traveled to Tokyo, where he was welcomed at the Spanish Legation. He was enchanted by Japan — its cleanliness, courtesy, industry, and beauty. He met Seiko Usui (O-Sei-San), daughter of a samurai family, who became his guide, interpreter, Japanese tutor, and sweetheart. She taught him Japanese, showed him temples and shrines, and — in Rizal's own words — 'no woman like you has ever loved me.' He was offered a permanent position at the Spanish Legation and nearly stayed forever. But duty to his people prevailed. On April 13, 1888, with a broken heart, he departed for the United States. He wrote in his diary: 'Sayonara, Sayonara, O-Sei-San!'",
+      works:[
+        {title:"Japanese language notebook 'Japon 1888'",desc:"Compiled a Japanese vocabulary notebook now preserved at the Lopez Museum. Learned conversational Japanese in only 6 weeks."},
+        {title:"Diary observations on Japan",desc:"Wrote glowing entries on Japanese society, culture, art, architecture, and the Japanese people — comparing Japan's progress favorably to colonized Philippines."}
+      ],
+      people:["O-Sei-San / Seiko Usui (Japanese love interest, daughter of a samurai family)","Juan Perez Caballero (secretary, Spanish Legation Tokyo)","Tetcho Suehiro (Japanese human-rights journalist, later travel companion to USA)"]
+    },
+    {
+      city:"United States", country:"United States", flag:"🇺🇸",
+      years:"Apr – May 1888", lat:37.0, lng:-96.0,
+      desc:"Rizal crossed America by transcontinental train in 1888 — impressed by its material progress, deeply troubled by its racial inequality.",
+      what:"Rizal arrived aboard the SS Belgic in San Francisco on April 28, 1888, staying at the Palace Hotel. He then took a transcontinental train across America — through Reno, Salt Lake City, Wyoming, Colorado, and Chicago — to New York. He observed American society closely along the way. He was genuinely impressed by America's energy, infrastructure, and democratic ideals — but deeply disturbed by its racial hypocrisy. He witnessed anti-Chinese discrimination in California and segregation of Black Americans elsewhere, and later remarked: 'America is the land par excellence of freedom — but only for the whites.' He saw a mirror of colonial Manila in American racial hierarchy. From New York he sailed for England to begin his work at the British Museum.",
+      works:[
+        {title:"Observations on American society",desc:"Recorded detailed impressions of the United States — admiring its progress while condemning its racial double standards, drawing parallels to colonial Philippines."}
+      ],
+      people:["Tetcho Suehiro (Japanese journalist, travel companion from Japan)","Filipino and Asian community members in California"]
+    }
+  ];
+
+  /* ══════════════════════════════════════════════
+     3D GLOBE ENGINE
+  ══════════════════════════════════════════════ */
+  const globeCanvas = document.getElementById('globe');
+  const gCtx = globeCanvas.getContext('2d');
+  let gW, gH, gR, gProjection, gPath, gGraticule;
+  let gLand = null, gBorders = null, gMapReady = false;
+  let gCurrentLng = -121.16, gTargetLng = -121.16;
+  let gRotLat = -5, gPulse = 0, gCurrentStop = 0;
+  const gStars = [];
+
+  function globeResize() {
+    const stage = document.getElementById('globe-stage');
+    gW = globeCanvas.width  = stage.offsetWidth;
+    gH = globeCanvas.height = stage.offsetHeight;
+    gR = Math.min(gW, gH) * 0.40;
+    if (gProjection) {
+      gProjection.scale(gR).translate([gW/2, gH/2]);
+      gPath = d3.geoPath(gProjection, gCtx);
+    }
+  }
+
+  function initGlobe() {
+    for(let i=0;i<260;i++) gStars.push({
+      x:Math.random(), y:Math.random(),
+      r:Math.random()*1.2+0.2, a:Math.random()*0.55+0.2
+    });
+    gProjection = d3.geoOrthographic()
+      .scale(gR).translate([gW/2, gH/2])
+      .clipAngle(90).precision(0.5);
+    gGraticule = d3.geoGraticule()();
+    gPath = d3.geoPath(gProjection, gCtx);
+  }
+
+  async function loadGlobeMap() {
+    try {
+      const res  = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+      const topo = await res.json();
+      gLand    = topojson.feature(topo, topo.objects.land);
+      gBorders = topojson.mesh(topo, topo.objects.countries, (a,b) => a!==b);
+      gMapReady = true;
+      document.getElementById('globe-loading').classList.add('hide');
+    } catch(e) {
+      gMapReady = false;
+      document.getElementById('globe-loading').classList.add('hide');
+    }
+  }
+
+  function drawGlobeFrame() {
+    gCtx.clearRect(0, 0, gW, gH);
+
+    // Stars
+    gStars.forEach(s => {
+      gCtx.beginPath(); gCtx.arc(s.x*gW, s.y*gH, s.r, 0, Math.PI*2);
+      gCtx.fillStyle = `rgba(255,248,220,${s.a})`; gCtx.fill();
+    });
+
+    // Ease rotation
+    const diff = gTargetLng - gCurrentLng;
+    if(Math.abs(diff) > 0.015) gCurrentLng += diff * 0.045;
+    else { gCurrentLng = gTargetLng; gCurrentLng -= 0.018; gTargetLng -= 0.018; }
+
+    gProjection.rotate([gCurrentLng, gRotLat, 0]);
+
+    // Atmosphere
+    const atm = gCtx.createRadialGradient(gW/2,gH/2,gR*0.97,gW/2,gH/2,gR*1.20);
+    atm.addColorStop(0, 'rgba(100,70,10,0.20)');
+    atm.addColorStop(1, 'transparent');
+    gCtx.beginPath(); gCtx.arc(gW/2,gH/2,gR*1.20,0,Math.PI*2);
+    gCtx.fillStyle = atm; gCtx.fill();
+
+    // Ocean
+    const ocean = gCtx.createRadialGradient(gW/2-gR*.28,gH/2-gR*.28,gR*.04,gW/2,gH/2,gR);
+    ocean.addColorStop(0,'#1C1508'); ocean.addColorStop(.55,'#100C04'); ocean.addColorStop(1,'#070501');
+    gCtx.beginPath(); gPath({type:'Sphere'}); gCtx.fillStyle=ocean; gCtx.fill();
+
+    // Graticule
+    gCtx.beginPath(); gPath(gGraticule);
+    gCtx.strokeStyle='rgba(201,168,76,0.06)'; gCtx.lineWidth=0.5; gCtx.stroke();
+
+    // Land
+    if(gMapReady && gLand){
+      gCtx.beginPath(); gPath(gLand);
+      gCtx.fillStyle='#2A3D1A'; gCtx.fill();
+      gCtx.strokeStyle='#3A5525'; gCtx.lineWidth=0.4; gCtx.stroke();
+    }
+
+    // Borders
+    if(gMapReady && gBorders){
+      gCtx.beginPath(); gPath(gBorders);
+      gCtx.strokeStyle='rgba(80,120,50,0.45)'; gCtx.lineWidth=0.3; gCtx.stroke();
+    }
+
+    // Journey paths
+    for(let i=0;i<stops.length-1;i++){
+      if(i>=gCurrentStop) continue;
+      const a=stops[i], b=stops[i+1];
+      gCtx.beginPath();
+      gPath({type:'LineString',coordinates:[[a.lng,a.lat],[b.lng,b.lat]]});
+      gCtx.strokeStyle='rgba(201,168,76,0.78)'; gCtx.lineWidth=1.8;
+      gCtx.setLineDash([4,7]); gCtx.lineCap='round'; gCtx.stroke();
+      gCtx.setLineDash([]);
+    }
+
+    // Markers
+    gPulse += 0.055;
+    stops.forEach((s,i) => {
+      const pt = gProjection([s.lng, s.lat]); if(!pt) return;
+      const dist = d3.geoDistance([s.lng,s.lat],[-gProjection.rotate()[0],-gProjection.rotate()[1]]);
+      if(dist > Math.PI/2 - 0.05) return;
+      const [px,py] = pt;
+      const isActive = i===gCurrentStop, isVisited = i<gCurrentStop;
+
+      if(isActive){
+        const p = 0.5+0.5*Math.sin(gPulse);
+        gCtx.beginPath(); gCtx.arc(px,py,22+p*6,0,Math.PI*2);
+        gCtx.strokeStyle=`rgba(201,168,76,${0.18*p})`; gCtx.lineWidth=1.5; gCtx.stroke();
+        gCtx.beginPath(); gCtx.arc(px,py,13,0,Math.PI*2);
+        gCtx.fillStyle='rgba(201,168,76,0.16)'; gCtx.fill();
+      }
+      const r = isActive?8:isVisited?5:3.5;
+      gCtx.beginPath(); gCtx.arc(px,py,r,0,Math.PI*2);
+      gCtx.fillStyle = isActive?'#C9A84C':isVisited?'#8A7040':'rgba(240,220,160,0.4)'; gCtx.fill();
+      gCtx.strokeStyle = isActive?'#E8C97A':isVisited?'rgba(180,150,70,0.8)':'rgba(200,180,100,0.25)';
+      gCtx.lineWidth = isActive?2:1; gCtx.stroke();
+
+      if(isActive){
+        const label = s.city.split(',')[0];
+        gCtx.font='600 12px "Cinzel",serif'; gCtx.textAlign='center';
+        gCtx.fillStyle='rgba(8,5,0,0.8)'; gCtx.fillText(label,px+1,py-15);
+        gCtx.fillStyle='#E8C97A'; gCtx.fillText(label,px,py-16);
+      }
+    });
+
+    // Specular
+    const spec = gCtx.createRadialGradient(gW/2-gR*.35,gH/2-gR*.35,0,gW/2-gR*.08,gH/2-gR*.08,gR*.65);
+    spec.addColorStop(0,'rgba(255,240,180,0.10)'); spec.addColorStop(1,'transparent');
+    gCtx.beginPath(); gPath({type:'Sphere'}); gCtx.fillStyle=spec; gCtx.fill();
+
+    // Globe rim
+    gCtx.beginPath(); gPath({type:'Sphere'});
+    gCtx.strokeStyle='rgba(201,168,76,0.30)'; gCtx.lineWidth=1.5; gCtx.stroke();
+
+    requestAnimationFrame(drawGlobeFrame);
+  }
+
+  function setGlobeTarget(s){ gTargetLng = -s.lng + 28; }
+
+  /* ── Globe UI ── */
+  function updateGlobeCard(){
+    const s = stops[gCurrentStop];
+    document.getElementById('card-stop-num').textContent = `Stop ${gCurrentStop+1} of ${stops.length}`;
+    document.getElementById('card-flag').textContent = s.flag;
+    document.getElementById('card-country').textContent = s.country;
+    document.getElementById('card-city').textContent = s.city;
+    document.getElementById('card-years').textContent = s.years;
+    document.getElementById('card-desc').textContent = s.desc;
+    document.getElementById('stop-counter').textContent = `Stop ${gCurrentStop+1} of ${stops.length}`;
+    document.getElementById('prev-btn').disabled = gCurrentStop===0;
+    document.getElementById('next-btn').disabled = gCurrentStop===stops.length-1;
+    setGlobeTarget(s);
+    updateJourneyTimeline();
+  }
+
+  function buildJourneyTimeline(){
+    const track = document.getElementById('jt-track');
+    stops.forEach((s,i) => {
+      const el = document.createElement('div');
+      el.className = 'jt-stop'+(i===0?' active':'');
+      el.innerHTML = `<div class="jt-dot"></div><div class="jt-name">${s.city.split(',')[0]}</div>`;
+      el.onclick = () => goToGlobeStop(i);
+      track.appendChild(el);
+    });
+  }
+
+  function updateJourneyTimeline(){
+    document.querySelectorAll('.jt-stop').forEach((el,i) => {
+      el.className = 'jt-stop'+(i===gCurrentStop?' active':'')+(i<gCurrentStop?' visited':'');
+    });
+    document.getElementById('jt-progress').style.width = (gCurrentStop/(stops.length-1)*100)+'%';
+  }
+
+  function goToGlobeStop(i){
+    gCurrentStop = i;
+    const card = document.getElementById('location-card');
+    card.classList.remove('show');
+    setTimeout(() => { updateGlobeCard(); card.classList.add('show'); }, 300);
+  }
+
+  function nextStop(){ if(gCurrentStop<stops.length-1) goToGlobeStop(gCurrentStop+1); }
+  function prevStop(){ if(gCurrentStop>0) goToGlobeStop(gCurrentStop-1); }
+
+  /* ── Popup ── */
+  function openPopup(){
+    const s = stops[gCurrentStop];
+    document.getElementById('popup-flag').textContent = s.flag;
+    document.getElementById('popup-loc-label').textContent = s.country;
+    document.getElementById('popup-title').textContent = s.city;
+    document.getElementById('popup-body').innerHTML = `
+      <div class="popup-section">
+        <div class="popup-section-title">What Rizal Did Here</div>
+        <div class="popup-section-text">${s.what}</div>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">Works &amp; Achievements</div>
+        <div class="popup-works">${s.works.map(w=>`<div class="popup-work-item"><strong>${w.title}</strong>${w.desc}</div>`).join('')}</div>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">Notable People</div>
+        <div class="popup-people">${s.people.map(p=>`<div class="popup-person">${p}</div>`).join('')}</div>
+      </div>`;
+    document.getElementById('popup-backdrop').classList.add('show');
+    document.getElementById('popup').classList.add('show');
+  }
+
+  function closePopup(){
+    document.getElementById('popup-backdrop').classList.remove('show');
+    document.getElementById('popup').classList.remove('show');
+  }
+
+  /* ── Init globe when section enters viewport ── */
+  let globeInitted = false;
+  const globeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting && !globeInitted){
+        globeInitted = true;
+        globeResize();
+        initGlobe();
+        buildJourneyTimeline();
+        updateGlobeCard();
+        loadGlobeMap();
+        drawGlobeFrame();
+        setTimeout(() => document.getElementById('location-card').classList.add('show'), 600);
+      }
+    });
+  }, { threshold: 0.1 });
+  globeObserver.observe(document.getElementById('globe-journey'));
+  window.addEventListener('resize', () => { if(globeInitted) globeResize(); });
+
+  </script>
+</body>
 </html>
