@@ -1,20 +1,30 @@
+/*
+   José Rizal — World Journey Map
+   journey.css
+   Linked by: journey.html
+
+   Contains Globe and Book styles create new file for new styles
+
+*/
 
 :root {
-  --gold: #C9A84C;
-  --gold2: #E2B96A;
-  --gold3: #F0D080;
-  --gold-dim: #7A4E1E;
-  --bg: #0E0A03;
-  --bg2: #140E04;
-  --bg3: #1C1508;
-  --text: #F0E8D0;
-  --text2: #C8B888;
-  --text3: #7A6A48;
+  --gold: #c9a84c;
+  --gold2: #e2b96a;
+  --gold3: #f0d080;
+  --gold-dim: #7a4e1e;
+  --bg: #0e0a03;
+  --bg2: #140e04;
+  --bg3: #1c1508;
+  --text: #f0e8d0;
+  --text2: #c8b888;
+  --text3: #7a6a48;
   --border: rgba(201, 168, 76, 0.22);
   --border2: rgba(201, 168, 76, 0.45);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -27,16 +37,17 @@ html {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'EB Garamond', Georgia, serif;
+  font-family: "EB Garamond", Georgia, serif;
   overflow-x: hidden;
 }
 
-
 #mainNav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 200;
-  background: rgba(14, 10, 3, 0.95);
+  background: rgba(14, 10, 3, 0.97);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   padding: 16px 40px;
@@ -46,7 +57,7 @@ body {
 }
 
 .nav-brand {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 15px;
   letter-spacing: 3px;
   color: var(--gold);
@@ -54,7 +65,7 @@ body {
 }
 
 .nav-back {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 10px;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -70,10 +81,14 @@ body {
   border-color: var(--gold);
 }
 
-
 #journey-hero {
   padding-top: 80px;
-  background: radial-gradient(ellipse at 50% 0%, #2A1E06 0%, #0A0702 60%, #060400 100%);
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    #2a1e06 0%,
+    #0a0702 60%,
+    #060400 100%
+  );
   text-align: center;
   padding-bottom: 0;
 }
@@ -83,7 +98,7 @@ body {
 }
 
 .section-label {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 10px;
   letter-spacing: 5px;
   text-transform: uppercase;
@@ -93,7 +108,7 @@ body {
 }
 
 .section-title {
-  font-family: 'Cinzel Decorative', serif;
+  font-family: "Cinzel Decorative", serif;
   font-size: clamp(26px, 4vw, 42px);
   font-weight: 700;
   color: var(--text);
@@ -138,12 +153,11 @@ body {
   line-height: 1.8;
 }
 
-
 #globe-stage {
   position: relative;
   height: 85vh;
   min-height: 540px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 canvas#globe {
@@ -156,56 +170,79 @@ canvas#globe {
 .globe-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 32%, rgba(6, 4, 0, 0.80) 100%);
+  background:
+    linear-gradient(
+      to right,
+      rgba(6, 4, 0, 0.88) 0%,
+      rgba(6, 4, 0, 0.35) 32%,
+      transparent 55%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(6, 4, 0, 0.55) 0%,
+      transparent 18%,
+      transparent 82%,
+      rgba(6, 4, 0, 0.55) 100%
+    );
   pointer-events: none;
 }
 
 .globe-topbar {
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
   padding: 18px 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(to bottom, rgba(6, 4, 0, 0.85) 0%, transparent 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 4, 0, 0.85) 0%,
+    transparent 100%
+  );
   pointer-events: none;
 }
 
 .globe-topbar-title {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 13px;
   letter-spacing: 3px;
   color: var(--gold);
 }
 
 .globe-stop-counter {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 10px;
   letter-spacing: 3px;
   color: var(--text3);
   text-transform: uppercase;
 }
 
-
 #location-card {
   position: absolute;
-  left: 50px;
+  left: 90px;
   top: 50%;
   z-index: 10;
   transform: translateY(-50%) translateX(-140%);
-  width: 295px;
-  background: rgba(18, 12, 3, 0.96);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(16px);
-  padding: 26px;
+  width: 520px;
+  background: rgba(20, 13, 4, 0.98);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  backdrop-filter: blur(24px);
+  padding: 20px 36px;
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow:
+    0 8px 48px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(201, 168, 76, 0.12) inset;
 }
 
 #location-card::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 2px;
   background: linear-gradient(to right, transparent, var(--gold), transparent);
 }
@@ -215,64 +252,89 @@ canvas#globe {
 }
 
 .card-stop-num {
-  font-family: 'Cinzel', serif;
-  font-size: 9px;
+  font-family: "Cinzel", serif;
+  font-size: 11px;
   letter-spacing: 4px;
-  color: var(--text3);
+  color: var(--gold2);
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .card-flag {
-  font-size: 28px;
-  margin-bottom: 10px;
+  font-family:
+    "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-size: 36px;
+  margin-bottom: 8px;
   display: block;
+  line-height: 1;
 }
 
 .card-country {
-  font-family: 'Cinzel', serif;
-  font-size: 9px;
-  letter-spacing: 4px;
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  letter-spacing: 5px;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 5px;
+  color: var(--gold2);
+  margin-bottom: 4px;
 }
 
 .card-city {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 20px;
+  font-family: "Cinzel", serif;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 3px;
-  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 4px;
+  color: #ffffff;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.7);
+  letter-spacing: 1px;
 }
 
 .card-years {
-  font-size: 13px;
-  color: var(--text3);
+  font-size: 15px;
+  color: var(--gold3);
   font-style: italic;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .card-desc {
-  font-size: 13px;
-  line-height: 1.75;
-  color: var(--text2);
-  border-top: 1px solid var(--border);
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: #f0e8d0;
+  border-top: 1px solid rgba(201, 168, 76, 0.3);
   padding-top: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+}
+
+.card-desc-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+  background: rgba(201, 168, 76, 0.11);
+  border-left: 3px solid var(--gold2);
+  padding: 9px 13px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #e8d9aa;
+}
+
+.card-desc-highlight .di {
+  color: var(--gold3);
+  font-size: 18px;
+  margin-top: 1px;
+  flex-shrink: 0;
 }
 
 .learn-more-btn {
   width: 100%;
-  font-family: 'Cinzel', serif;
-  font-size: 10px;
+  font-family: "Cinzel", serif;
+  font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--bg);
   background: var(--gold);
   border: none;
-  padding: 11px 0;
+  padding: 10px 0;
   cursor: pointer;
   transition: background 0.3s;
   margin-bottom: 8px;
@@ -289,14 +351,14 @@ canvas#globe {
 
 .globe-nav-btn {
   flex: 1;
-  font-family: 'Cinzel', serif;
-  font-size: 10px;
+  font-family: "Cinzel", serif;
+  font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text3);
   background: transparent;
   border: 1px solid var(--border);
-  padding: 9px 0;
+  padding: 8px 0;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -310,7 +372,6 @@ canvas#globe {
   opacity: 0.25;
   cursor: default;
 }
-
 
 #globe-loading {
   position: absolute;
@@ -339,17 +400,20 @@ canvas#globe {
   animation: blink 1.2s ease-in-out infinite;
 }
 
-.g-dot:nth-child(2) { animation-delay: 0.2s; }
-.g-dot:nth-child(3) { animation-delay: 0.4s; }
+.g-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.g-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 .g-loading-text {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 10px;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--text3);
 }
-
 
 #journey-timeline {
   background: rgba(6, 4, 0, 0.97);
@@ -358,7 +422,7 @@ canvas#globe {
 }
 
 .jt-label {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 9px;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -374,7 +438,9 @@ canvas#globe {
 
 .jt-line {
   position: absolute;
-  top: 50%; left: 0; right: 0;
+  top: 50%;
+  left: 0;
+  right: 0;
   height: 1px;
   background: rgba(201, 168, 76, 0.15);
   transform: translateY(-50%);
@@ -426,7 +492,7 @@ canvas#globe {
 }
 
 .jt-name {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 8px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -437,19 +503,343 @@ canvas#globe {
   line-height: 1.3;
 }
 
-.jt-stop.active .jt-name { color: var(--gold); }
-.jt-stop.visited .jt-name { color: var(--text2); }
+.jt-stop.active .jt-name {
+  color: var(--gold);
+}
+.jt-stop.visited .jt-name {
+  color: var(--text2);
+}
 
+#writings-section {
+  background: linear-gradient(180deg, #060400 0%, #0e0a03 30%, #0e0a03 100%);
+  padding: 80px 0 100px;
+  overflow: hidden;
+}
+
+.writings-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.book-showcase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+  perspective: 1000px;
+}
+
+.book-wrap {
+  position: relative;
+  width: 260px;
+  height: 360px;
+  transform-style: preserve-3d;
+  animation: bookFloat 6s ease-in-out infinite;
+  cursor: pointer;
+  margin: 0 40px;
+}
+
+.book-wrap:hover {
+  animation: none;
+  transform: rotateY(-35deg) rotateX(5deg) scale(1.04);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.book-front {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #2a1e06 0%, #1a1004 60%, #120d03 100%);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 24px;
+  text-align: center;
+  transform: translateZ(18px);
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.12) inset,
+    6px 6px 30px rgba(0, 0, 0, 0.8),
+    -2px 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.book-front::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  pointer-events: none;
+}
+
+.book-front::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.6),
+    rgba(201, 168, 76, 0.08),
+    transparent
+  );
+  border-right: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.book-spine {
+  position: absolute;
+  left: -18px;
+  top: 0;
+  bottom: 0;
+  width: 18px;
+  background: linear-gradient(to bottom, #3a2a08, #1a1004, #120d03);
+  border-left: 1px solid rgba(201, 168, 76, 0.2);
+  transform: rotateY(-90deg) translateZ(9px) translateX(-9px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spine-text {
+  font-family: "Cinzel", serif;
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.book-back {
+  position: absolute;
+  inset: 0;
+  background: #0e0a03;
+  transform: translateZ(-18px) rotateY(180deg);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.book-ornament-top,
+.book-ornament-bottom {
+  font-size: 22px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.book-ornament-bottom {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.book-label {
+  font-family: "Cinzel", serif;
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.book-title-main {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 6px;
+  text-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+}
+
+.book-subtitle {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text3);
+  line-height: 1.5;
+}
+
+.book-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 14px auto;
+}
+
+.book-author {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold2);
+}
+
+.book-tabs {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.book-tab {
+  display: inline-block;
+  cursor: pointer;
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  color: var(--text3);
+  background: transparent;
+  transition: all 0.3s;
+  margin: 0 4px;
+}
+
+.book-tab.active {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+
+.writings-tab-content {
+  display: none;
+}
+.writings-tab-content.active {
+  display: block;
+}
+
+.writing-card {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 20, 6, 0.9) 0%,
+    rgba(18, 12, 3, 0.95) 100%
+  );
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s,
+    border-color 0.4s;
+  height: 100%;
+}
+
+.writing-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.writing-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 28px 28px;
+  border-color: transparent transparent var(--bg) transparent;
+  transition: border-width 0.3s;
+}
+
+.writing-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(201, 168, 76, 0.12);
+  border-color: rgba(201, 168, 76, 0.45);
+}
+
+.writing-card:hover::before {
+  opacity: 1;
+}
+.writing-card:hover::after {
+  border-width: 0 0 36px 36px;
+}
+
+.writing-card-inner {
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.wc-type {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.wc-icon {
+  font-size: 38px;
+  margin-bottom: 14px;
+}
+
+.wc-title {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.wc-place {
+  font-size: 14px;
+  color: var(--text3);
+  font-style: italic;
+  margin-bottom: 14px;
+}
+
+.wc-quote {
+  background: rgba(201, 168, 76, 0.07);
+  border-left: 2px solid var(--gold);
+  padding: 10px 14px;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.wc-desc {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text2);
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.wc-badge {
+  display: inline-block;
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid var(--border2);
+  color: var(--gold);
+  padding: 5px 14px;
+  align-self: flex-start;
+}
 
 #popup-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(4, 2, 0, 0.90);
+  background: rgba(4, 2, 0, 0.92);
   z-index: 1000;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
 }
 
 #popup-backdrop.show {
@@ -462,8 +852,8 @@ canvas#globe {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.94);
-  width: min(720px, 92vw);
-  max-height: 84vh;
+  width: min(760px, 94vw);
+  max-height: 88vh;
   overflow-y: auto;
   background: var(--bg2);
   border: 1px solid var(--border2);
@@ -474,9 +864,11 @@ canvas#globe {
 }
 
 #popup::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 2px;
   background: linear-gradient(to right, transparent, var(--gold), transparent);
 }
@@ -487,9 +879,16 @@ canvas#globe {
   transform: translate(-50%, -50%) scale(1);
 }
 
+#popup::-webkit-scrollbar {
+  width: 3px;
+}
+#popup::-webkit-scrollbar-thumb {
+  background: var(--gold-dim);
+}
+
 .popup-header {
   background: var(--bg3);
-  padding: 26px 30px 22px;
+  padding: 28px 32px 24px;
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
@@ -499,13 +898,13 @@ canvas#globe {
 }
 
 .popup-flag-lg {
-  font-size: 34px;
+  font-size: 36px;
   margin-bottom: 8px;
   display: block;
 }
 
 .popup-loc-label {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 9px;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -514,8 +913,8 @@ canvas#globe {
 }
 
 .popup-title {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 22px;
+  font-family: "Cinzel Decorative", serif;
+  font-size: 24px;
   font-weight: 700;
   color: var(--text);
 }
@@ -524,8 +923,8 @@ canvas#globe {
   background: none;
   border: 1px solid var(--border);
   color: var(--text3);
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
   font-size: 16px;
   display: flex;
@@ -542,11 +941,33 @@ canvas#globe {
 }
 
 .popup-body {
-  padding: 26px 30px;
+  padding: 28px 32px;
+}
+
+.popup-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.popup-meta-pill {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+
+.popup-meta-pill span {
+  color: var(--gold);
 }
 
 .popup-section {
-  margin-bottom: 26px;
+  margin-bottom: 28px;
 }
 
 .popup-section:last-child {
@@ -554,28 +975,28 @@ canvas#globe {
 }
 
 .popup-section-title {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 9px;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
 .popup-section-title::after {
-  content: '';
+  content: "";
   flex: 1;
   height: 1px;
   background: var(--border);
 }
 
 .popup-section-text {
-  font-size: 15px;
-  line-height: 1.85;
-  color: var(--text2);
+  font-size: 15.5px;
+  line-height: 1.9;
+  color: var(--text);
 }
 
 .popup-works {
@@ -587,19 +1008,20 @@ canvas#globe {
 .popup-work-item {
   background: var(--bg3);
   border-left: 2px solid var(--gold);
-  padding: 12px 16px;
-  font-size: 14px;
-  line-height: 1.6;
+  padding: 14px 18px;
+  font-size: 14.5px;
+  line-height: 1.7;
   color: var(--text2);
 }
 
 .popup-work-item strong {
   display: block;
   color: var(--gold2);
-  font-family: 'Cinzel', serif;
-  font-size: 12px;
+  font-family: "Cinzel", serif;
+  font-size: 11px;
   letter-spacing: 1px;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
 }
 
 .popup-people {
@@ -616,179 +1038,161 @@ canvas#globe {
   color: var(--text2);
 }
 
-#popup::-webkit-scrollbar { width: 3px; }
-#popup::-webkit-scrollbar-thumb { background: var(--gold-dim); }
-
-
-@keyframes blink {
-  0%, 80%, 100% { opacity: 0.2; }
-  40%           { opacity: 1; }
+.popup-fact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
+.popup-fact {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+}
+
+.popup-fact-label {
+  font-family: "Cinzel", serif;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 4px;
+}
+
+.popup-fact-val {
+  font-size: 15px;
+  color: var(--text);
+}
+
+@keyframes blink {
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes bookFloat {
+  0%,
+  100% {
+    transform: rotateY(-20deg) rotateX(5deg) translateY(0px);
+  }
+  50% {
+    transform: rotateY(-20deg) rotateX(5deg) translateY(-14px);
+  }
+}
+
+@keyframes pageFlip {
+  0% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateY(-90deg);
+    opacity: 0.2;
+  }
+  100% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.page-flip {
+  animation: pageFlip 0.6s ease-in-out;
+}
+
+@media (max-width: 991px) {
+  .book-showcase {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .book-wrap {
+    margin: 0 auto 20px;
+  }
+}
 
 @media (max-width: 768px) {
-  #mainNav { padding: 14px 20px; }
-  .globe-topbar { padding: 10px 16px; }
-  .globe-topbar-title { font-size: 11px; }
-
-  #globe-stage {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    overflow: visible;
+  #mainNav {
+    padding: 14px 20px;
   }
-
-  canvas#globe {
-    position: relative;
-    width: 100%;
-    height: 52vw;
-    min-height: 220px;
-    flex-shrink: 0;
-  }
-
-  .globe-vignette { display: none; }
 
   .globe-topbar {
+    padding: 10px 16px;
     position: absolute;
     top: 0;
   }
 
-  /* --- Compact card for mobile --- */
+  #globe-stage {
+    height: auto;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 24px;
+  }
+
+  canvas#globe {
+    position: relative;
+    width: 92%;
+    height: 60vw;
+    min-height: 260px;
+    margin: 0 auto;
+  }
+
+  .globe-vignette {
+    display: none;
+  }
+
   #location-card {
     position: static;
     transform: none;
     width: 100%;
     left: auto;
     top: auto;
-    bottom: auto;
-    padding: 12px 16px 10px;
-    border-left: none;
-    border-right: none;
-    border-top: none;
+    padding: 14px 16px;
+    border: none;
     border-bottom: 1px solid var(--border);
     backdrop-filter: none;
     background: rgba(18, 12, 3, 0.98);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-areas:
-      "flag  meta"
-      "desc  desc"
-      "btns  btns";
-    column-gap: 12px;
-    row-gap: 6px;
   }
 
-  #location-card.show { transform: none; }
+  #location-card.show {
+    transform: none;
+  }
 
   #location-card::before {
     display: none;
   }
 
-  /* Flag — left column */
-  .card-flag {
-    grid-area: flag;
-    font-size: 28px;
-    margin-bottom: 0;
-    align-self: center;
+  .card-desc-highlight {
+    font-size: 11px;
   }
 
-  /* Stop num + country + city + years — right column */
-  .card-stop-num {
-    display: none; /* hidden — shown in topbar already */
+  #journey-timeline {
+    padding: 10px 14px 14px;
   }
 
-  .card-country {
-    grid-area: meta;
+  .jt-label {
     font-size: 8px;
-    letter-spacing: 3px;
-    margin-bottom: 1px;
-    align-self: end;
+    margin-bottom: 10px;
   }
 
-  .card-city {
-    grid-area: meta;
-    font-size: 14px;
-    line-height: 1.1;
-    margin-bottom: 0;
-    align-self: start;
+  .jt-name {
+    font-size: 6px;
   }
 
-  .card-years {
-    font-size: 11px;
-    margin-bottom: 0;
-    color: var(--text3);
-    grid-area: meta;
-    align-self: end;
+  .popup-fact-grid {
+    grid-template-columns: 1fr;
   }
 
-  /* Stack meta items properly in single column */
-  #location-card {
-    grid-template-areas:
-      "flag  meta"
-      "desc  desc"
-      "btns  btns";
+  .popup-body {
+    padding: 20px 18px;
   }
-
-  /* Rearrange meta block into its own sub-stack */
-  .card-country,
-  .card-city,
-  .card-years {
-    grid-area: unset;
+  .popup-header {
+    padding: 20px 18px;
   }
-
-  /* Wrap country/city/years in a flex column inside meta */
-  .card-flag {
-    grid-row: 1;
-    grid-column: 1;
-  }
-
-  .card-stop-num { display: none; }
-  .card-country  { grid-row: 1; grid-column: 2; align-self: end;   font-size: 8px; margin-bottom: 0; }
-  .card-city     { grid-row: 1; grid-column: 2; align-self: center; font-size: 15px; }
-  .card-years    { grid-row: 1; grid-column: 2; align-self: start; font-size: 10px; margin-bottom: 0; }
-
-  /* Description — short and tight */
-  .card-desc {
-    grid-row: 2;
-    grid-column: 1 / -1;
-    font-size: 11px;
-    line-height: 1.55;
-    color: var(--text2);
-    border-top: 1px solid var(--border);
-    padding-top: 8px;
-    margin-bottom: 0;
-
-    /* Clamp to 3 lines max */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  /* Buttons row — compact */
-  .learn-more-btn {
-    grid-row: 3;
-    grid-column: 1 / -1;
-    padding: 8px 0;
-    font-size: 9px;
-    letter-spacing: 2px;
-    margin-bottom: 6px;
-  }
-
-  .globe-nav-btns {
-    grid-row: 4;
-    grid-column: 1 / -1;
-    gap: 6px;
-  }
-
-  .globe-nav-btn {
-    padding: 7px 0;
-    font-size: 9px;
-  }
-
-  /* Timeline — tighter */
-  #journey-timeline { padding: 10px 14px 14px; }
-  .jt-label { font-size: 8px; margin-bottom: 10px; }
-  .jt-name  { font-size: 6px; }
-  .jt-dot   { width: 7px; height: 7px; }
 }

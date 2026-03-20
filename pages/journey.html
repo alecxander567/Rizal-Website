@@ -1,110 +1,357 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>José Rizal — World Journey Map</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
-  <link rel="stylesheet" href="/style/journey.css"/>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>José Rizal — World Journey Map</title>
 
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
 
-       <!-- NAVBAR -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+      rel="stylesheet" />
 
-  <nav id="mainNav">
-    <a class="nav-brand" href="/pages/index.html">✦ Rizal</a>
-    <a class="nav-back" href="/pages/index.html">← Back to Main</a>
-  </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 
-  
-       <!-- HERO BANNER -->
+    <link rel="stylesheet" href="../style/journey.css" />
+  </head>
+  <body>
+    <nav id="mainNav">
+      <a class="nav-brand" href="../pages/index.html">✦ Rizal</a>
+      <a class="nav-back" href="../pages/index.html">← Back to Main</a>
+    </nav>
 
-  <div id="journey-hero">
-    <div class="journey-hero-inner">
-      <span class="section-label">His Footsteps Across the World</span>
-      <h2 class="section-title">The <span>World Journey</span> of Rizal</h2>
-      <div class="section-ornament">
-        <div class="section-ornament-line"></div>
-        <div class="section-ornament-diamond"></div>
-        <div class="section-ornament-line"></div>
-      </div>
-      <p class="section-intro">
-        From the Philippines to the capitals of Europe, Japan, and America —
-        trace every country, every sacrifice, every step of his extraordinary
-        journey on the globe below.
-      </p>
-    </div>
-  </div>
-
-
-       <!-- GLOBE STAGE -->
- 
-  <div id="globe-stage">
-    <canvas id="globe"></canvas>
-    <div class="globe-vignette"></div>
-
-    <!-- Top bar -->
-    <div class="globe-topbar">
-      <div class="globe-topbar-title">✦ Rizal's World Journey</div>
-      <div class="globe-stop-counter" id="stop-counter">Stop 1 of 7</div>
-    </div>
-
-    <!-- Location card -->
-    <div id="location-card">
-      <div class="card-stop-num" id="card-stop-num">Stop 1 of 7</div>
-      <span class="card-flag" id="card-flag">🇵🇭</span>
-      <div class="card-country" id="card-country">Philippines</div>
-      <div class="card-city" id="card-city">Philippines</div>
-      <div class="card-years" id="card-years">1861 – 1896</div>
-      <div class="card-desc" id="card-desc"></div>
-      <button class="learn-more-btn" onclick="openPopup()">✦ What Rizal Did Here</button>
-      <div class="globe-nav-btns">
-        <button class="globe-nav-btn" id="prev-btn" onclick="prevStop()" disabled>← Prev</button>
-        <button class="globe-nav-btn" id="next-btn" onclick="nextStop()">Next →</button>
+    <div id="journey-hero">
+      <div class="journey-hero-inner">
+        <span class="section-label">His Footsteps Across the World</span>
+        <h2 class="section-title">The <span>World Journey</span> of Rizal</h2>
+        <div class="section-ornament">
+          <div class="section-ornament-line"></div>
+          <div class="section-ornament-diamond"></div>
+          <div class="section-ornament-line"></div>
+        </div>
+        <p class="section-intro">
+          From the Philippines to the capitals of Europe, Japan, and America —
+          trace every country, every sacrifice, every step of his extraordinary
+          journey on the globe below.
+        </p>
       </div>
     </div>
 
-    <!-- Loading indicator -->
-    <div id="globe-loading">
-      <div>
-        <span class="g-dot"></span>
-        <span class="g-dot"></span>
-        <span class="g-dot"></span>
+    <div id="globe-stage">
+      <canvas id="globe"></canvas>
+      <div class="globe-vignette"></div>
+
+      <div class="globe-topbar">
+        <div class="globe-topbar-title">✦ Rizal's World Journey</div>
+        <div class="globe-stop-counter" id="stop-counter">Stop 1 of 7</div>
       </div>
-      <div class="g-loading-text">Loading world map…</div>
-    </div>
-  </div>
 
-  
-       <!-- JOURNEY TIMELINE BAR -->
-  
-  <div id="journey-timeline">
-    <div class="jt-label">Journey Timeline — Click any stop to navigate</div>
-    <div class="jt-track" id="jt-track">
-      <div class="jt-line"></div>
-      <div class="jt-progress" id="jt-progress" style="width:0%"></div>
-    </div>
-  </div>
-
- 
-       <!-- POPUP MODAL -->
-
-  <div id="popup-backdrop" onclick="closePopup()"></div>
-  <div id="popup">
-    <div class="popup-header">
-      <div>
-        <span class="popup-flag-lg" id="popup-flag">🇵🇭</span>
-        <div class="popup-loc-label" id="popup-loc-label">Philippines</div>
-        <div class="popup-title" id="popup-title">Philippines</div>
+      <div id="location-card">
+        <div class="card-stop-num" id="card-stop-num">Stop 1 of 7</div>
+        <span class="card-flag" id="card-flag">🇵🇭</span>
+        <div class="card-country" id="card-country">Philippines</div>
+        <div class="card-city" id="card-city">Philippines</div>
+        <div class="card-years" id="card-years">1861 – 1896</div>
+        <div class="card-desc" id="card-desc"></div>
+        <button class="learn-more-btn" onclick="openPopup()">
+          ✦ What Rizal Did Here
+        </button>
+        <div class="globe-nav-btns">
+          <button
+            class="globe-nav-btn"
+            id="prev-btn"
+            onclick="prevStop()"
+            disabled>
+            ← Prev
+          </button>
+          <button class="globe-nav-btn" id="next-btn" onclick="nextStop()">
+            Next →
+          </button>
+        </div>
       </div>
-      <button class="popup-close" onclick="closePopup()">✕</button>
-    </div>
-    <div class="popup-body" id="popup-body"></div>
-  </div>
 
-  <script src="/script/journey.js"></script>
-</body>
+      <div id="globe-loading">
+        <div>
+          <span class="g-dot"></span>
+          <span class="g-dot"></span>
+          <span class="g-dot"></span>
+        </div>
+        <div class="g-loading-text">Loading world map…</div>
+      </div>
+    </div>
+
+    <div id="journey-timeline">
+      <div class="jt-label">Journey Timeline — Click any stop to navigate</div>
+      <div class="jt-track" id="jt-track">
+        <div class="jt-line"></div>
+        <div class="jt-progress" id="jt-progress" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <section id="writings-section">
+      <div class="container">
+        <div class="writings-header">
+          <span class="section-label">His Immortal Legacy</span>
+          <h2 class="section-title">Works & <span>Writings</span></h2>
+          <div class="section-ornament">
+            <div class="section-ornament-line"></div>
+            <div class="section-ornament-diamond"></div>
+            <div class="section-ornament-line"></div>
+          </div>
+          <p class="section-intro">
+            The pen was Rizal's sword. From novels that ignited a revolution to
+            a final farewell poem hidden in an oil lamp — his words outlived
+            empires.
+          </p>
+        </div>
+
+        <div class="book-showcase">
+          <div class="book-wrap" id="showcaseBook" onclick="cycleBook()">
+            <div class="book-spine">
+              <span class="spine-text" id="spineText">Rizal</span>
+            </div>
+            <div class="book-front">
+              <div class="book-ornament-top" id="bookOrnamentTop">📖</div>
+              <div class="book-label" id="bookLabel">Novel · Berlin, 1887</div>
+              <div class="book-divider"></div>
+              <div class="book-title-main" id="bookTitleMain">
+                Noli Me<br />Tangere
+              </div>
+              <div class="book-divider"></div>
+              <div class="book-subtitle" id="bookSubtitle">
+                "Touch Me Not" — the novel that shook a colonial empire and
+                awakened a sleeping nation.
+              </div>
+              <div class="book-divider"></div>
+              <div class="book-author">José Rizal</div>
+              <div class="book-ornament-bottom">✦</div>
+            </div>
+            <div class="book-back"></div>
+          </div>
+        </div>
+
+        <div class="book-tabs mb-5">
+          <button class="book-tab active" onclick="switchTab('novels', this)">
+            Novels
+          </button>
+          <button class="book-tab" onclick="switchTab('poetry', this)">
+            Poetry
+          </button>
+          <button class="book-tab" onclick="switchTab('essays', this)">
+            Essays &amp; Science
+          </button>
+        </div>
+
+        <div class="writings-tab-content active" id="tab-novels">
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <div class="writing-card h-100">
+                <div class="writing-card-inner">
+                  <div class="wc-type">Novel · 1887</div>
+                  <div class="wc-icon">📖</div>
+                  <div class="wc-title">Noli Me Tangere</div>
+                  <div class="wc-place">✦ Published in Berlin, Germany</div>
+                  <div class="wc-quote">
+                    "There are no tyrants where there are no slaves."
+                  </div>
+                  <div class="wc-desc">
+                    Latin for "Touch Me Not," this groundbreaking novel laid
+                    bare the abuses of Spanish colonial rule and the corrupt
+                    Catholic clergy in the Philippines. Through the story of
+                    Crisostomo Ibarra returning from Europe, Rizal painted a
+                    devastating portrait of a society diseased by oppression.
+                    The book was immediately banned by Spanish authorities —
+                    which only accelerated its spread.
+                  </div>
+                  <div class="wc-badge">First Edition · 2,000 copies</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="writing-card h-100">
+                <div class="writing-card-inner">
+                  <div class="wc-type">Novel · 1891</div>
+                  <div class="wc-icon">⚔️</div>
+                  <div class="wc-title">El Filibusterismo</div>
+                  <div class="wc-place">✦ Published in Ghent, Belgium</div>
+                  <div class="wc-quote">
+                    "He who does not love his country cannot love anything."
+                  </div>
+                  <div class="wc-desc">
+                    The darker, more politically explosive sequel to Noli Me
+                    Tangere. Ibarra returns as Simoun — a mysterious jeweler
+                    stoking revolution. Rizal dedicated this novel to the memory
+                    of three Filipino priests executed in 1872. Unlike its
+                    predecessor's hope for reform, El Filibusterismo confronts
+                    the possibility that only radical action can break the
+                    chains of colonialism.
+                  </div>
+                  <div class="wc-badge">Dedicated to GOMBURZA Martyrs</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="writings-tab-content" id="tab-poetry">
+          <div class="row g-4">
+            <div class="col-lg-4">
+              <div class="writing-card h-100">
+                <div class="writing-card-inner">
+                  <div class="wc-type">Poem · 1896</div>
+                  <div class="wc-icon">✒️</div>
+                  <div class="wc-title">Mi Último Adiós</div>
+                  <div class="wc-place">✦ Written at Fort Santiago, Manila</div>
+                  <div class="wc-quote">
+                    "I die just when the dawn breaks, through the gloom of
+                    night."
+                  </div>
+                  <div class="wc-desc">
+                    Written on the eve of his execution, this farewell poem was
+                    hidden inside an alcohol lamp given to his family. Untitled
+                    when found, it is now his most celebrated work — a deeply
+                    moving testament of love for the Philippines and acceptance
+                    of death for a noble cause.
+                  </div>
+                  <div class="wc-badge">Found hidden in an oil lamp</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="writing-card h-100">
+                <div class="writing-card-inner">
+                  <div class="wc-type">Poem · 1879</div>
+                  <div class="wc-icon">🌿</div>
+                  <div class="wc-title">A La Juventud Filipina</div>
+                  <div class="wc-place">✦ Written at Ateneo, Manila</div>
+                  <div class="wc-quote">
+                    "Rise, O youth of the Philippine clime!"
+                  </div>
+                  <div class="wc-desc">
+                    Written at just 18 years old, this award-winning poem called
+                    upon Filipino youth to embrace education and lead the nation
+                    toward greatness. It won first prize at the Liceo
+                    Artistico-Literario de Manila — the first time a native
+                    Filipino was given such an honor.
+                  </div>
+                  <div class="wc-badge">Prize-winning · Age 18</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="writing-card h-100">
+                <div class="writing-card-inner">
+                  <div class="wc-type">Poem · 1882</div>
+                  <div class="wc-icon">🌊</div>
+                  <div class="wc-title">Junto Al Pasig</div>
+                  <div class="wc-place">✦ Intramuros, Manila</div>
+                  <div class="wc-quote">
+                    "Beside the Pasig flows, reflecting the pure skies…"
+                  </div>
+                  <div class="wc-desc">
+                    A theatrical zarzuela poem set along the banks of Manila's
+                    Pasig River, weaving imagery of Filipino landscape with
+                    deeper themes of identity, colonial alienation, and the
+                    longing for liberty. It was performed publicly and secretly
+                    carried nationalistic undertones.
+                  </div>
+                  <div class="wc-badge">Theatrical zarzuela form</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="writings-tab-content" id="tab-essays">
+          <div class="row g-4">
+            <div class="col-lg-4">
+              <div class="writing-card h-100">
+                <div class="writing-card-inner">
+                  <div class="wc-type">Political Essays · 1889–1895</div>
+                  <div class="wc-icon">🏛️</div>
+                  <div class="wc-title">La Solidaridad Articles</div>
+                  <div class="wc-place">✦ Published in Madrid, Spain</div>
+                  <div class="wc-desc">
+                    A prolific contributor to the La Solidaridad newspaper,
+                    Rizal wrote dozens of essays under the pen name "Laong Laan"
+                    (Ever Ready). He advocated for Philippine representation in
+                    the Spanish Cortes, freedom of the press, equal rights
+                    before law, and the secularization of the Philippine church.
+                  </div>
+                  <div class="wc-badge">Pen name: Laong Laan</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="writing-card h-100">
+                <div class="writing-card-inner">
+                  <div class="wc-type">Historical Essay · 1890</div>
+                  <div class="wc-icon">📜</div>
+                  <div class="wc-title">Sucesos de las Islas Filipinas</div>
+                  <div class="wc-place">✦ Annotated in Paris, France</div>
+                  <div class="wc-quote">
+                    "A people who don't know their history are doomed to repeat
+                    it."
+                  </div>
+                  <div class="wc-desc">
+                    Rizal annotated and republished Antonio de Morga's 1609
+                    historical account of the Philippines — adding extensive
+                    nationalist footnotes proving that Philippine civilization
+                    was rich, dignified, and thriving long before Spanish
+                    colonization. A landmark work in historical reclamation.
+                  </div>
+                  <div class="wc-badge">Historical counter-narrative</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="writing-card h-100">
+                <div class="writing-card-inner">
+                  <div class="wc-type">Medical Science · 1887</div>
+                  <div class="wc-icon">🔬</div>
+                  <div class="wc-title">Ophthalmological Research</div>
+                  <div class="wc-place">✦ Heidelberg &amp; Madrid, Europe</div>
+                  <div class="wc-desc">
+                    A licensed physician specializing in ophthalmology, Rizal
+                    studied under leading European specialists. He successfully
+                    performed cataract surgery on his own mother, Teodora
+                    Alonso, restoring her failing eyesight. He treated hundreds
+                    of impoverished patients in Dapitan during his exile —
+                    charging nothing.
+                  </div>
+                  <div class="wc-badge">Operated on his own mother</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="popup-backdrop" onclick="closePopup()"></div>
+
+    <div id="popup">
+      <div class="popup-header">
+        <div>
+          <span class="popup-flag-lg" id="popup-flag">🇵🇭</span>
+          <div class="popup-loc-label" id="popup-loc-label">Philippines</div>
+          <div class="popup-title" id="popup-title">Philippines</div>
+        </div>
+        <button class="popup-close" onclick="closePopup()">✕</button>
+      </div>
+      <div class="popup-body" id="popup-body"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../script/journey.js"></script>
+  </body>
 </html>
