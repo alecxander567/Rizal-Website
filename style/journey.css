@@ -135,6 +135,14 @@ body {
   color: var(--gold);
 }
 
+.nav-links a.active {
+  color: var(--gold);
+}
+
+.nav-links li.active::after {
+  transform: scaleX(1);
+}
+
 .nav-links li::after {
   content: "";
   position: absolute;

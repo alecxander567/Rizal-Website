@@ -41,6 +41,7 @@ body {
   overflow-x: hidden;
 }
 
+/* ── NAV ── */
 #mainNav {
   position: fixed;
   top: 0;
@@ -137,6 +138,14 @@ body {
   color: var(--gold);
 }
 
+.nav-links a.active {
+  color: var(--gold);
+}
+
+.nav-links li.active::after {
+  transform: scaleX(1);
+}
+
 .nav-links li::after {
   content: "";
   position: absolute;
@@ -163,6 +172,7 @@ body {
   flex-shrink: 0;
 }
 
+/* ── PAGE HERO ── */
 #edu-hero {
   padding-top: 58px;
   position: relative;
@@ -249,6 +259,7 @@ body {
   line-height: 1.8;
 }
 
+/* ── STATS BAR ── */
 #stats-bar {
   background: rgba(10, 6, 0, 0.98);
   border-top: 1px solid var(--border);
@@ -299,6 +310,7 @@ body {
   color: var(--text3);
 }
 
+/* ── TIMELINE SECTION ── */
 #edu-section {
   background: linear-gradient(180deg, #060400 0%, #0e0a03 15%, #0e0a03 100%);
   padding: 80px 0 110px;
@@ -316,6 +328,7 @@ body {
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
+/* Vertical spine line */
 .edu-spine {
   position: absolute;
   left: 50%;
@@ -338,6 +351,7 @@ body {
   margin-bottom: 70px;
 }
 
+/* ── EDU CARD ── */
 .edu-entry {
   display: flex;
   align-items: flex-start;
@@ -356,6 +370,7 @@ body {
   transform: translateY(0);
 }
 
+/* Alternating left/right */
 .edu-entry.left {
   flex-direction: row;
   justify-content: flex-end;
@@ -368,6 +383,7 @@ body {
   padding-left: calc(50% + 40px);
 }
 
+/* Spine dot */
 .edu-entry::before {
   content: "";
   position: absolute;
@@ -388,6 +404,7 @@ body {
   box-shadow: 0 0 24px rgba(201, 168, 76, 1);
 }
 
+/* Connector line from dot to card */
 .edu-entry.left::after {
   content: "";
   position: absolute;
@@ -451,6 +468,7 @@ body {
   opacity: 1;
 }
 
+/* School image area */
 .edu-card-img {
   width: 100%;
   height: 200px;
@@ -492,6 +510,7 @@ body {
   pointer-events: none;
 }
 
+/* Img placeholder */
 .edu-img-placeholder {
   width: 100%;
   height: 100%;
@@ -527,6 +546,7 @@ body {
   color: rgba(201, 168, 76, 0.3);
 }
 
+/* Photo corners */
 .img-corner {
   position: absolute;
   width: 14px;
@@ -561,6 +581,7 @@ body {
   border-width: 0 1px 1px 0;
 }
 
+/* Period badge */
 .edu-period-badge {
   position: absolute;
   top: 10px;
@@ -576,6 +597,7 @@ body {
   color: var(--gold2);
 }
 
+/* Card body */
 .edu-card-body {
   padding: 22px 26px 26px;
 }
@@ -654,6 +676,7 @@ body {
   line-height: 1.7;
 }
 
+/* ── LEARN MORE BUTTON ── */
 .edu-more-btn {
   width: 100%;
   font-family: "Cinzel", serif;
@@ -674,6 +697,7 @@ body {
   background: var(--gold3);
 }
 
+/* ── DEGREES SECTION ── */
 #degrees-section {
   background: #060400;
   padding: 90px 0;
@@ -803,6 +827,7 @@ body {
   display: block;
 }
 
+/* ── LANGUAGES SECTION ── */
 #languages-section {
   background: linear-gradient(135deg, #100800, #080500);
   padding: 90px 0;
@@ -884,6 +909,7 @@ body {
   width: var(--fill-width);
 }
 
+/* ── QUOTE BANNER ── */
 #quote-banner {
   background: linear-gradient(135deg, #100800, #080500);
   padding: 90px 0;
@@ -942,6 +968,7 @@ body {
   opacity: 1;
 }
 
+/* ── POPUP ── */
 #popup-backdrop {
   position: fixed;
   inset: 0;
@@ -1153,6 +1180,7 @@ body {
   margin-bottom: 10px;
 }
 
+/* ── ANIMATIONS ── */
 @keyframes fadeSlideUp {
   from {
     opacity: 0;
@@ -1164,6 +1192,7 @@ body {
   }
 }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 1100px) {
   #mainNav {
     padding: 0 20px;
@@ -1223,6 +1252,7 @@ body {
     border-right: none;
   }
 
+  /* Stack timeline on mobile */
   .edu-spine {
     display: none;
   }

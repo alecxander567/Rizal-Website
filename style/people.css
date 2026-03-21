@@ -41,6 +41,7 @@ body {
   overflow-x: hidden;
 }
 
+/* ── NAV ── */
 #mainNav {
   position: fixed;
   top: 0;
@@ -53,7 +54,7 @@ body {
   padding: 16px 40px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+
   height: 58px;
 }
 
@@ -75,6 +76,9 @@ body {
   border: 1px solid var(--border);
   padding: 8px 20px;
   transition: all 0.3s;
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-left: 20px;
 }
 
 .nav-back:hover {
@@ -87,6 +91,7 @@ body {
   align-items: center;
   height: 100%;
   gap: 0;
+  margin-left: auto;
 }
 
 .nav-sep {
@@ -132,6 +137,14 @@ body {
   color: var(--gold);
 }
 
+.nav-links a.active {
+  color: var(--gold);
+}
+
+.nav-links li.active::after {
+  transform: scaleX(1);
+}
+
 .nav-links li::after {
   content: "";
   position: absolute;
@@ -158,6 +171,7 @@ body {
   flex-shrink: 0;
 }
 
+/* ── PAGE HERO ── */
 #people-hero {
   padding-top: 58px;
   position: relative;
@@ -244,6 +258,7 @@ body {
   line-height: 1.8;
 }
 
+/* ── FILTER BAR ── */
 #filter-bar {
   background: rgba(10, 6, 0, 0.98);
   border-top: 1px solid var(--border);
@@ -297,6 +312,7 @@ body {
   border-color: var(--gold);
 }
 
+/* ── PEOPLE SECTION ── */
 #people-section {
   background: linear-gradient(180deg, #060400 0%, #0e0a03 20%, #0e0a03 100%);
   padding: 70px 0 100px;
@@ -324,6 +340,7 @@ body {
   color: var(--gold);
 }
 
+/* ── PERSON CARD ── */
 .person-col {
   transition:
     opacity 0.35s ease,
@@ -383,6 +400,7 @@ body {
   opacity: 1;
 }
 
+/* Photo */
 .person-photo-wrap {
   width: 100%;
   height: 300px;
@@ -425,6 +443,7 @@ body {
   pointer-events: none;
 }
 
+/* Placeholder */
 .person-photo-placeholder {
   width: 100%;
   height: 100%;
@@ -463,6 +482,7 @@ body {
   color: rgba(201, 168, 76, 0.3);
 }
 
+/* Photo corner ornaments */
 .photo-corner {
   position: absolute;
   width: 16px;
@@ -497,6 +517,7 @@ body {
   border-width: 0 1px 1px 0;
 }
 
+/* Relation badge */
 .person-badge {
   position: absolute;
   top: 12px;
@@ -512,6 +533,7 @@ body {
   color: var(--gold2);
 }
 
+/* Card body */
 .person-body {
   padding: 24px 26px 26px;
   display: flex;
@@ -582,6 +604,7 @@ body {
   background: var(--gold3);
 }
 
+/* ── POPUP ── */
 #popup-backdrop {
   position: fixed;
   inset: 0;
@@ -807,6 +830,7 @@ body {
   font-style: italic;
 }
 
+/* ── QUOTE BANNER ── */
 #quote-banner {
   background: linear-gradient(135deg, #100800, #080500);
   padding: 90px 0;
@@ -865,6 +889,7 @@ body {
   opacity: 1;
 }
 
+/* ── FOOTER ── */
 footer {
   background: #050300;
   padding: 50px 0 28px;
@@ -927,6 +952,7 @@ footer {
   opacity: 0.6;
 }
 
+/* ── ANIMATIONS ── */
 @keyframes fadeSlideUp {
   from {
     opacity: 0;
@@ -949,6 +975,7 @@ footer {
   }
 }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 1100px) {
   #mainNav {
     padding: 0 20px;
@@ -966,7 +993,6 @@ footer {
     flex-wrap: nowrap;
     height: 52px;
     align-items: center;
-    justify-content: space-between;
   }
 
   .nav-brand {

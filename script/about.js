@@ -20,7 +20,6 @@ document
   .querySelectorAll(".fade-up, .dedication-text, .dedication-attr")
   .forEach((el) => observer.observe(el));
 
-/* ── NAV SCROLL ── */
 window.addEventListener("scroll", () => {
   document.getElementById("mainNav").style.boxShadow =
     window.scrollY > 40 ? "0 2px 20px rgba(201,168,76,0.1)" : "none";

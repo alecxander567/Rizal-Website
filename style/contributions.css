@@ -41,6 +41,7 @@ body {
   overflow-x: hidden;
 }
 
+/* ── NAV ── */
 #mainNav {
   position: fixed;
   top: 0;
@@ -137,6 +138,14 @@ body {
   color: var(--gold);
 }
 
+.nav-links a.active {
+  color: var(--gold);
+}
+
+.nav-links li.active::after {
+  transform: scaleX(1);
+}
+
 .nav-links li::after {
   content: "";
   position: absolute;
@@ -163,6 +172,7 @@ body {
   flex-shrink: 0;
 }
 
+/* ── PAGE HERO ── */
 #contrib-hero {
   padding-top: 58px;
   position: relative;
@@ -249,6 +259,7 @@ body {
   line-height: 1.8;
 }
 
+/* ── IMPACT STATS ── */
 #impact-bar {
   background: rgba(10, 6, 0, 0.98);
   border-top: 1px solid var(--border);
@@ -299,6 +310,7 @@ body {
   line-height: 1.4;
 }
 
+/* ── CATEGORY TABS ── */
 #contrib-tabs {
   background: rgba(8, 5, 0, 0.98);
   border-bottom: 1px solid var(--border);
@@ -344,6 +356,7 @@ body {
   border-bottom-color: var(--gold);
 }
 
+/* ── CONTRIBUTIONS GRID ── */
 #contrib-section {
   background: linear-gradient(180deg, #060400 0%, #0e0a03 15%, #0e0a03 100%);
   padding: 80px 0 110px;
@@ -376,6 +389,7 @@ body {
   display: none;
 }
 
+/* ── CONTRIBUTION CARD ── */
 .contrib-card {
   background: linear-gradient(
     135deg,
@@ -425,6 +439,7 @@ body {
   opacity: 1;
 }
 
+/* Card header bar */
 .contrib-card-header {
   padding: 22px 26px 0;
   display: flex;
@@ -453,6 +468,7 @@ body {
   white-space: nowrap;
 }
 
+/* Card body */
 .contrib-card-body {
   padding: 16px 26px 26px;
   display: flex;
@@ -547,6 +563,7 @@ body {
   background: var(--gold3);
 }
 
+/* ── FEATURED CARD (wide) ── */
 .contrib-card.featured {
   flex-direction: row;
   flex-wrap: wrap;
@@ -556,6 +573,7 @@ body {
   width: 100%;
 }
 
+/* ── LEGACY SECTION ── */
 #legacy-section {
   background: radial-gradient(ellipse at center, #1a0d02 0%, var(--bg) 70%);
   padding: 90px 0;
@@ -635,6 +653,7 @@ body {
   font-style: italic;
 }
 
+/* ── QUOTE BANNER ── */
 #quote-banner {
   background: linear-gradient(135deg, #100800, #080500);
   padding: 90px 0;
@@ -693,6 +712,7 @@ body {
   opacity: 1;
 }
 
+/* ── POPUP ── */
 #popup-backdrop {
   position: fixed;
   inset: 0;
@@ -901,6 +921,7 @@ body {
   margin-bottom: 10px;
 }
 
+/* ── ANIMATIONS ── */
 @keyframes fadeSlideUp {
   from {
     opacity: 0;
@@ -912,6 +933,7 @@ body {
   }
 }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 1100px) {
   #mainNav {
     padding: 0 20px;

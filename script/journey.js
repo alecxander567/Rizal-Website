@@ -60,6 +60,24 @@ function cycleBook() {
   }, 300);
 }
 
+const currentPage = window.location.pathname.split("/").pop() || "journey.html";
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  const href = link.getAttribute("href");
+  if (!href) return;
+  // Match by filename for page links, or mark as active if it's an anchor (#)
+  // and we're on journey.html
+  const linkPage = href.split("/").pop();
+  const isAnchor = href.startsWith("#");
+  const isCurrentFile = linkPage === currentPage;
+  const isJourneyAnchor =
+    isAnchor && (currentPage === "journey.html" || currentPage === "");
+
+  if (isCurrentFile || isJourneyAnchor) {
+    link.classList.add("active");
+    link.parentElement.classList.add("active");
+  }
+});
+
 function switchTab(name, clickedBtn) {
   document
     .querySelectorAll(".writings-tab-content")
