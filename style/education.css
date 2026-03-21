@@ -1,0 +1,1289 @@
+/*
+   José Rizal — Education
+   education.css
+   Linked by: education.html
+
+   Contains all styles for the Education page.
+   Create a new file for other page styles.
+*/
+
+:root {
+  --gold: #c9a84c;
+  --gold2: #e2b96a;
+  --gold3: #f0d080;
+  --gold-dim: #7a4e1e;
+  --bg: #0e0a03;
+  --bg2: #140e04;
+  --bg3: #1c1508;
+  --text: #f0e8d0;
+  --text2: #c8b888;
+  --text3: #7a6a48;
+  --border: rgba(201, 168, 76, 0.22);
+  --border2: rgba(201, 168, 76, 0.45);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "EB Garamond", Georgia, serif;
+  overflow-x: hidden;
+}
+
+#mainNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: rgba(14, 10, 3, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+}
+
+.nav-brand {
+  font-family: "Cinzel", serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-back {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 8px 20px;
+  transition: all 0.3s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.nav-back:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 0;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.nav-sep {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+  margin: 0 16px;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+  height: 100%;
+}
+
+.nav-links a {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-decoration: none;
+  padding: 0 18px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-links li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 18px;
+  right: 18px;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+  transform-origin: center;
+}
+
+.nav-links li:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-divider {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+  margin: 0 4px;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+#edu-hero {
+  padding-top: 58px;
+  position: relative;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    #2a1e06 0%,
+    #0a0702 60%,
+    #060400 100%
+  );
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-feather {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0.07;
+  width: 520px;
+  height: auto;
+}
+
+.edu-hero-inner {
+  padding: 60px 20px 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.section-label {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-family: "Cinzel Decorative", serif;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.section-title span {
+  color: var(--gold);
+}
+
+.section-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.section-ornament-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+
+.section-ornament-line:last-child {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+
+.section-ornament-diamond {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.section-intro {
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text2);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+#stats-bar {
+  background: rgba(10, 6, 0, 0.98);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 10px 20px;
+  border-right: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.stat-item:last-child {
+  border-right: none;
+}
+
+.stat-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-num {
+  font-family: "Cinzel Decorative", serif;
+  font-size: clamp(22px, 3vw, 36px);
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+#edu-section {
+  background: linear-gradient(180deg, #060400 0%, #0e0a03 15%, #0e0a03 100%);
+  padding: 80px 0 110px;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+
+#edu-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.edu-spine {
+  position: absolute;
+  left: 50%;
+  top: 80px;
+  bottom: 110px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--gold-dim) 10%,
+    var(--gold-dim) 90%,
+    transparent
+  );
+  transform: translateX(-50%);
+  opacity: 0.35;
+}
+
+.edu-section-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.edu-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 56px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.edu-entry.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.edu-entry.left {
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: calc(50% + 40px);
+}
+
+.edu-entry.right {
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: calc(50% + 40px);
+}
+
+.edu-entry::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 28px;
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  border: 3px solid var(--bg);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  box-shadow: 0 0 14px rgba(201, 168, 76, 0.6);
+  transition: box-shadow 0.3s;
+}
+
+.edu-entry:hover::before {
+  box-shadow: 0 0 24px rgba(201, 168, 76, 1);
+}
+
+.edu-entry.left::after {
+  content: "";
+  position: absolute;
+  left: calc(50% - 40px);
+  top: 33px;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(to left, var(--gold-dim), transparent);
+  opacity: 0.5;
+}
+
+.edu-entry.right::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 33px;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-dim), transparent);
+  opacity: 0.5;
+}
+
+.edu-card {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 20, 6, 0.92) 0%,
+    rgba(18, 12, 3, 0.96) 100%
+  );
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 480px;
+  transition:
+    border-color 0.4s,
+    box-shadow 0.4s,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.edu-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.edu-card:hover {
+  border-color: var(--border2);
+  box-shadow:
+    0 16px 50px rgba(0, 0, 0, 0.55),
+    0 0 30px rgba(201, 168, 76, 0.08);
+  transform: translateY(-4px);
+}
+
+.edu-card:hover::before {
+  opacity: 1;
+}
+
+.edu-card-img {
+  width: 100%;
+  height: 200px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edu-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  filter: sepia(50%) contrast(1.1) brightness(0.8);
+  transition:
+    filter 0.4s,
+    transform 0.5s;
+  display: block;
+}
+
+.edu-card:hover .edu-card-img img {
+  filter: sepia(20%) contrast(1.1) brightness(0.95);
+  transform: scale(1.04);
+}
+
+.edu-card-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 55%,
+    rgba(6, 4, 0, 0.65) 100%
+  );
+  pointer-events: none;
+}
+
+.edu-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(30, 20, 5, 0.9),
+    rgba(6, 4, 0, 0.98)
+  );
+}
+
+.edu-img-placeholder span:first-child {
+  font-size: 3.5rem;
+  opacity: 0.14;
+  color: var(--text2);
+  line-height: 1;
+  transition: opacity 0.4s;
+}
+
+.edu-card:hover .edu-img-placeholder span:first-child {
+  opacity: 0.28;
+}
+
+.edu-img-placeholder span:last-child {
+  font-family: "Cinzel", serif;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.3);
+}
+
+.img-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--gold);
+  border-style: solid;
+  opacity: 0.3;
+  z-index: 2;
+  transition: opacity 0.3s;
+}
+.edu-card:hover .img-corner {
+  opacity: 0.6;
+}
+.img-corner.tl {
+  top: 8px;
+  left: 8px;
+  border-width: 1px 0 0 1px;
+}
+.img-corner.tr {
+  top: 8px;
+  right: 8px;
+  border-width: 1px 1px 0 0;
+}
+.img-corner.bl {
+  bottom: 8px;
+  left: 8px;
+  border-width: 0 0 1px 1px;
+}
+.img-corner.br {
+  bottom: 8px;
+  right: 8px;
+  border-width: 0 1px 1px 0;
+}
+
+.edu-period-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  font-family: "Cinzel", serif;
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  background: rgba(6, 4, 0, 0.88);
+  border: 1px solid var(--border2);
+  color: var(--gold2);
+}
+
+.edu-card-body {
+  padding: 22px 26px 26px;
+}
+
+.edu-card-period {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: rgba(201, 168, 76, 0.55);
+  margin-bottom: 6px;
+}
+
+.edu-card-school {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.edu-card-location {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 16px;
+}
+
+.edu-card-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-dim), transparent);
+  margin-bottom: 16px;
+  opacity: 0.45;
+}
+
+.edu-card-desc {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+
+.edu-card-subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.edu-subject-tag {
+  font-family: "Cinzel", serif;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  color: var(--text3);
+  transition: all 0.3s;
+}
+
+.edu-card:hover .edu-subject-tag {
+  border-color: rgba(201, 168, 76, 0.3);
+  color: var(--text2);
+}
+
+.edu-card-achievement {
+  background: rgba(201, 168, 76, 0.07);
+  border-left: 2px solid var(--gold);
+  padding: 10px 14px;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text2);
+  line-height: 1.7;
+}
+
+.edu-more-btn {
+  width: 100%;
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  border: none;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 16px;
+  display: block;
+}
+
+.edu-more-btn:hover {
+  background: var(--gold3);
+}
+
+#degrees-section {
+  background: #060400;
+  padding: 90px 0;
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+#degrees-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.degrees-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.degree-card {
+  background: linear-gradient(
+    135deg,
+    rgba(28, 18, 5, 0.95) 0%,
+    rgba(14, 10, 3, 0.98) 100%
+  );
+  border: 1px solid var(--border);
+  padding: 32px 28px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.4s,
+    box-shadow 0.4s,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.degree-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.degree-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.degree-card:hover {
+  border-color: var(--border2);
+  box-shadow:
+    0 16px 50px rgba(0, 0, 0, 0.5),
+    0 0 24px rgba(201, 168, 76, 0.08);
+  transform: translateY(-6px);
+}
+
+.degree-card:hover::before {
+  opacity: 1;
+}
+
+.degree-icon {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+  display: block;
+  opacity: 0.75;
+}
+
+.degree-tag {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.degree-title {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.degree-institution {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 16px;
+}
+
+.degree-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-dim), transparent);
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+
+.degree-desc {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text2);
+}
+
+.degree-year {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: rgba(201, 168, 76, 0.4);
+  margin-top: 16px;
+  display: block;
+}
+
+#languages-section {
+  background: linear-gradient(135deg, #100800, #080500);
+  padding: 90px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+#languages-section::before {
+  content: "\201C";
+  position: absolute;
+  top: -60px;
+  left: 4%;
+  font-family: "Cinzel Decorative", serif;
+  font-size: 22rem;
+  color: rgba(201, 168, 76, 0.03);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.languages-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.language-bar-wrap {
+  margin-bottom: 18px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.language-bar-wrap.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.language-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.language-name {
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+
+.language-level {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.language-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(201, 168, 76, 0.1);
+  position: relative;
+}
+
+.language-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--gold-dim), var(--gold));
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.language-bar-wrap.visible .language-fill {
+  width: var(--fill-width);
+}
+
+#quote-banner {
+  background: linear-gradient(135deg, #100800, #080500);
+  padding: 90px 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+#quote-banner::before {
+  content: "\201C";
+  position: absolute;
+  top: -60px;
+  left: 4%;
+  font-family: "Cinzel Decorative", serif;
+  font-size: 22rem;
+  color: rgba(201, 168, 76, 0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.banner-quote {
+  font-family: "EB Garamond", serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  line-height: 1.6;
+  color: var(--text);
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity 0.9s,
+    transform 0.9s;
+}
+
+.banner-quote.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.banner-attribution {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--gold);
+  text-align: center;
+  margin-top: 22px;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.9s 0.3s;
+}
+
+.banner-attribution.visible {
+  opacity: 1;
+}
+
+#popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 2, 0, 0.92);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  backdrop-filter: blur(8px);
+}
+
+#popup-backdrop.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.94);
+  width: min(760px, 94vw);
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  z-index: 1001;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#popup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+#popup.show {
+  opacity: 1;
+  pointer-events: all;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#popup::-webkit-scrollbar {
+  width: 3px;
+}
+#popup::-webkit-scrollbar-thumb {
+  background: var(--gold-dim);
+}
+
+.popup-header {
+  background: var(--bg3);
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.popup-period-label {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 5px;
+}
+
+.popup-school-name {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.popup-location {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--text3);
+  margin-top: 5px;
+}
+
+.popup-close {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text3);
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.popup-close:hover {
+  color: var(--gold);
+  border-color: var(--border2);
+}
+
+.popup-body {
+  padding: 28px 32px;
+}
+
+.popup-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.popup-meta-pill {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+
+.popup-meta-pill span {
+  color: var(--gold);
+}
+
+.popup-section {
+  margin-bottom: 26px;
+}
+.popup-section:last-child {
+  margin-bottom: 0;
+}
+
+.popup-section-title {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.popup-section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.popup-section-text {
+  font-size: 15.5px;
+  line-height: 1.9;
+  color: var(--text);
+}
+
+.popup-facts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.popup-fact {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+}
+
+.popup-fact-label {
+  font-family: "Cinzel", serif;
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 5px;
+}
+
+.popup-fact-val {
+  font-size: 15px;
+  color: var(--text);
+}
+
+.popup-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(201, 168, 76, 0.08);
+  border-left: 3px solid var(--gold2);
+  padding: 12px 16px;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--text2);
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1100px) {
+  #mainNav {
+    padding: 0 20px;
+  }
+  .nav-links a {
+    padding: 0 12px;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+
+  .edu-entry.left {
+    padding-right: calc(50% + 24px);
+  }
+  .edu-entry.right {
+    padding-left: calc(50% + 24px);
+  }
+}
+
+@media (max-width: 768px) {
+  #mainNav {
+    padding: 0 16px;
+    flex-wrap: nowrap;
+    height: 52px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .nav-right {
+    display: none;
+  }
+
+  .nav-back {
+    display: flex !important;
+    font-size: 8px;
+    letter-spacing: 2px;
+    padding: 6px 12px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    align-items: center;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-item:nth-child(2) {
+    border-right: none;
+  }
+  .stat-item:nth-child(3) {
+    border-top: 1px solid var(--border);
+  }
+  .stat-item:nth-child(4) {
+    border-top: 1px solid var(--border);
+    border-right: none;
+  }
+
+  .edu-spine {
+    display: none;
+  }
+
+  .edu-entry,
+  .edu-entry.left,
+  .edu-entry.right {
+    flex-direction: column;
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .edu-entry::before {
+    left: 16px;
+    top: 16px;
+    transform: none;
+  }
+
+  .edu-entry.left::after,
+  .edu-entry.right::after {
+    display: none;
+  }
+
+  .edu-card {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .edu-entry,
+  .edu-entry.left,
+  .edu-entry.right {
+    padding-left: 28px;
+    padding-right: 0;
+  }
+
+  .popup-facts-grid {
+    grid-template-columns: 1fr;
+  }
+  .popup-body {
+    padding: 20px 18px;
+  }
+  .popup-header {
+    padding: 20px 18px;
+  }
+
+  .hero-feather {
+    width: 300px;
+    opacity: 0.05;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-feather {
+    width: 220px;
+    opacity: 0.04;
+  }
+  .edu-card-body {
+    padding: 18px 18px 20px;
+  }
+  .edu-card-img {
+    height: 160px;
+  }
+}

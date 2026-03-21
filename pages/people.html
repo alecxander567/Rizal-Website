@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>José Rizal — Important People</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="../style/people.css" />
+  </head>
+  <body>
+    <nav id="mainNav">
+      <a class="nav-brand" href="index.html">✦ Rizal</a>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#people-section">All People</a></li>
+          <div class="nav-divider"></div>
+          <li><a href="#people-section" data-filter="family">Family</a></li>
+          <li>
+            <a href="#people-section" data-filter="love">Love Interests</a>
+          </li>
+          <li><a href="#people-section" data-filter="friend">Friends</a></li>
+          <li><a href="#people-section" data-filter="mentor">Mentors</a></li>
+          <li>
+            <a href="#people-section" data-filter="adversary">Adversaries</a>
+          </li>
+        </ul>
+      </div>
+      <a class="nav-back" href="journey.html">← Back to Journey</a>
+    </nav>
+
+    <div id="people-hero">
+      <svg
+        class="hero-feather"
+        width="520"
+        height="620"
+        viewBox="0 0 520 620"
+        xmlns="http://www.w3.org/2000/svg">
+        <g
+          fill="none"
+          stroke="#c9a84c"
+          stroke-linecap="round"
+          stroke-linejoin="round">
+          <path
+            d="M260 580 Q250 480 230 380 Q210 280 170 180 Q150 120 120 60"
+            stroke-width="2.5" />
+          <path
+            d="M260 580 L240 548 L260 560 L250 530"
+            stroke-width="1.5"
+            fill="#c9a84c"
+            opacity="0.6" />
+          <path
+            d="M230 380 Q280 360 340 330 Q390 305 430 270 Q460 250 470 220"
+            stroke-width="1.2" />
+          <path
+            d="M238 350 Q288 328 345 298 Q392 272 428 240"
+            stroke-width="1" />
+          <path
+            d="M222 410 Q272 388 332 358 Q382 332 422 298 Q452 272 460 245"
+            stroke-width="1.2" />
+          <path
+            d="M215 440 Q265 418 320 390 Q368 366 406 334 Q434 312 442 288"
+            stroke-width="1" />
+          <path
+            d="M230 380 Q190 355 148 320 Q112 290 88 255 Q68 228 60 200"
+            stroke-width="1.2" />
+          <path
+            d="M222 410 Q182 382 142 348 Q108 318 86 286 Q68 260 62 234"
+            stroke-width="1.2" />
+          <path
+            d="M215 440 Q178 414 140 382 Q108 354 88 324 Q72 300 68 276"
+            stroke-width="1" />
+          <path
+            d="M120 60 Q140 50 165 62 Q180 72 185 88 Q188 104 185 120 Q182 138 175 156"
+            stroke-width="1.4" />
+          <path
+            d="M120 60 Q108 72 110 90 Q112 108 118 126 Q124 144 130 162"
+            stroke-width="1.4" />
+          <ellipse
+            cx="261"
+            cy="617"
+            rx="3"
+            ry="4"
+            fill="#c9a84c"
+            opacity="0.5"
+            stroke="none" />
+        </g>
+      </svg>
+
+      <div class="people-hero-inner">
+        <span class="section-label">The Souls Who Shaped His Story</span>
+        <h1 class="section-title">People of <span>His Life</span></h1>
+        <div class="section-ornament">
+          <div class="section-ornament-line"></div>
+          <div class="section-ornament-diamond"></div>
+          <div class="section-ornament-line"></div>
+        </div>
+        <p class="section-intro">
+          Behind every great man stands a constellation of souls — the family
+          who sacrificed, the loves who inspired, the friends who stood firm,
+          and the adversaries who tempered his resolve. These are the people of
+          José Rizal's extraordinary life.
+        </p>
+      </div>
+    </div>
+
+    <div id="filter-bar">
+      <span class="filter-label">Filter by —</span>
+      <div class="filter-btns">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="family">Family</button>
+        <button class="filter-btn" data-filter="love">Love Interests</button>
+        <button class="filter-btn" data-filter="friend">
+          Friends &amp; Allies
+        </button>
+        <button class="filter-btn" data-filter="mentor">Mentors</button>
+        <button class="filter-btn" data-filter="adversary">Adversaries</button>
+      </div>
+    </div>
+
+    <section id="people-section">
+      <div class="container">
+        <div class="people-grid-header">
+          <span class="section-label" style="margin: 0">Rizal's Circle</span>
+          <span class="people-count"
+            >Showing <span id="visible-count">12</span> of 12 people</span
+          >
+        </div>
+
+        <div class="row g-4" id="people-grid">
+          <div class="col-xl-4 col-md-6 person-col" data-category="family">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img src="../assets/francisco.jpg" alt="Francisco Mercado" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">Father</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Francisco Mercado</div>
+                <div class="person-dates">1818 – 1898</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  A prosperous farmer and leaseholder of the Dominican hacienda
+                  in Calamba. Francisco was a hardworking, dignified man who
+                  gave young José comfort, stability, and education. His unjust
+                  imprisonment by colonial authorities would deepen Rizal's rage
+                  against oppression and sharpen the pen that shook an empire.
+                </p>
+                <button
+                  class="person-more-btn"
+                  onclick="openPopup('francisco')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 person-col" data-category="family">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img
+                  src="../assets/teodora.jpg"
+                  alt="Teodora Alonso Realonda" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">Mother</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Teodora Alonso Realonda</div>
+                <div class="person-dates">1827 – 1911</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  An educated and cultured woman who taught Rizal the alphabet
+                  and instilled in him a profound love for poetry and language.
+                  Rizal called her the greatest influence on his life. Her own
+                  wrongful imprisonment — forced to walk miles in chains —
+                  became one of his most powerful motivations for reform.
+                </p>
+                <div class="person-quote">
+                  "My mother is the most intelligent woman I have ever met." —
+                  Rizal
+                </div>
+                <button class="person-more-btn" onclick="openPopup('teodora')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 person-col" data-category="family">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img src="../assets/paciano.jpg" alt="Paciano Rizal" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">Brother</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Paciano Rizal</div>
+                <div class="person-dates">1851 – 1930</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  Rizal's only brother and his greatest earthly hero. Paciano
+                  was a political mentor who introduced José to the progressive
+                  ideas of Father Burgos. He sacrificed his own future, secretly
+                  financing Rizal's studies in Manila and Europe. He later
+                  became a general in the Philippine Revolution.
+                </p>
+                <button class="person-more-btn" onclick="openPopup('paciano')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 person-col" data-category="love">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img src="../assets/segunda.jpg" alt="Segunda Katigbak" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">First Love</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Segunda Katigbak</div>
+                <div class="person-dates">c. 1863 – unknown</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  Rizal's first known love, encountered when he was sixteen in
+                  Biñan, Laguna. A charming girl from Lipa, Batangas, she
+                  captivated him deeply. Their brief romance ended when Rizal
+                  learned she was already engaged. He described her in his
+                  memoirs with tender, lingering fondness as his earliest
+                  heartbreak.
+                </p>
+                <button class="person-more-btn" onclick="openPopup('segunda')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 person-col" data-category="love">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img src="../assets/leonor.jpg" alt="Leonor Rivera" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">Great Love</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Leonor Rivera</div>
+                <div class="person-dates">1867 – 1893</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  The great love of Rizal's life and the inspiration behind
+                  María Clara in <em>Noli Me Tángere</em>. They exchanged over
+                  three hundred letters during his years in Europe. Her mother
+                  intercepted his correspondence, leading Leonor to believe him
+                  unfaithful. She married a British engineer and died of
+                  tuberculosis three years later.
+                </p>
+                <button class="person-more-btn" onclick="openPopup('leonor')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 person-col" data-category="love">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img src="../assets/josephine.jpg" alt="Josephine Bracken" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">Final Companion</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Josephine Bracken</div>
+                <div class="person-dates">1876 – 1902</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  An Irish-Filipino woman who met Rizal during his exile in
+                  Dapitan, having come seeking treatment for her ailing
+                  stepfather. She stayed to become the companion of his final
+                  years. Rizal's request to marry her was refused by the Church.
+                  He is said to have placed <em>Mi Último Adiós</em> in her
+                  hands hours before his execution.
+                </p>
+                <button
+                  class="person-more-btn"
+                  onclick="openPopup('josephine')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 person-col" data-category="friend">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img
+                  src="../assets/ferdinand.jpg"
+                  alt="Ferdinand Blumentritt" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">Closest Friend</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Ferdinand Blumentritt</div>
+                <div class="person-dates">1853 – 1913</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  An Austrian ethnologist and professor who became Rizal's most
+                  beloved friend through letters alone. Their correspondence
+                  forms one of the great literary friendships of the 19th
+                  century. He traveled to Spain specifically to finally meet
+                  Rizal, and was Rizal's most passionate defender in Europe —
+                  weeping publicly upon hearing of the execution.
+                </p>
+                <button
+                  class="person-more-btn"
+                  onclick="openPopup('blumentritt')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 person-col" data-category="friend">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img src="../assets/marcelo.jpg" alt="Marcelo H. del Pilar" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">Compatriot</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Marcelo H. del Pilar</div>
+                <div class="person-dates">1850 – 1896</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  Fellow Propagandist and editor of <em>La Solidaridad</em>, del
+                  Pilar was Rizal's great rival and colleague in the reform
+                  movement. A gifted satirist and lawyer, he devoted everything
+                  to the cause of Philippine freedom — dying in poverty in
+                  Barcelona, his mission unfulfilled, his body buried in a
+                  pauper's grave.
+                </p>
+                <button class="person-more-btn" onclick="openPopup('delpilar')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 person-col" data-category="friend">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img src="../assets/graciano.jpg" alt="Graciano López Jaena" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">Fellow Propagandist</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Graciano López Jaena</div>
+                <div class="person-dates">1856 – 1896</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  Founder of <em>La Solidaridad</em> and the most electrifying
+                  orator of the Propaganda Movement. His impassioned speeches in
+                  Spain championed Filipino rights with fire and humor. He and
+                  Rizal shared the same blazing idealism — and the same tragic
+                  end, dying in Barcelona in the same year as Rizal's execution.
+                </p>
+                <button class="person-more-btn" onclick="openPopup('jaena')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 person-col" data-category="mentor">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img
+                  src="../assets/fr sanchez.jpg"
+                  alt="Fr. Francisco de Paula Sánchez" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">Mentor</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Fr. Francisco de Paula Sánchez</div>
+                <div class="person-dates">c. 1830 – unknown</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  A brilliant Jesuit professor at the Ateneo Municipal de Manila
+                  who recognized Rizal's extraordinary literary gifts and became
+                  his most important academic mentor. He guided Rizal's early
+                  writings and encouraged the young student to develop his
+                  poetry with discipline, passion, and intellectual rigor.
+                </p>
+                <button class="person-more-btn" onclick="openPopup('sanchez')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 person-col" data-category="adversary">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img
+                  src="../assets/valeriano.jpg"
+                  alt="Gov.-Gen. Valeriano Weyler" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">Adversary</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Gov.-Gen. Valeriano Weyler</div>
+                <div class="person-dates">1838 – 1930</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  The Spanish Governor-General who ordered Rizal's exile to
+                  Dapitan in 1892 after he returned to the Philippines and
+                  founded the Liga Filipina. His iron hand typified the colonial
+                  authority that Rizal spent his entire life opposing — through
+                  the pen rather than the sword.
+                </p>
+                <button class="person-more-btn" onclick="openPopup('weyler')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6 person-col" data-category="adversary">
+            <div class="person-card">
+              <div class="person-photo-wrap">
+                <img
+                  src="../assets/camilo.jpg"
+                  alt="Gov.-Gen. Camilo de Polavieja" />
+                <div class="photo-corner tl"></div>
+                <div class="photo-corner tr"></div>
+                <div class="photo-corner bl"></div>
+                <div class="photo-corner br"></div>
+                <span class="person-badge">Adversary</span>
+              </div>
+              <div class="person-body">
+                <div class="person-name">Gov.-Gen. Camilo de Polavieja</div>
+                <div class="person-dates">1838 – 1914</div>
+                <div class="person-divider"></div>
+                <p class="person-desc">
+                  The Governor-General who signed Rizal's death warrant. Despite
+                  international petitions for clemency, Polavieja upheld the
+                  sentence of execution by firing squad at Bagumbayan. His
+                  decision on December 28, 1896 sealed Rizal's fate — and
+                  paradoxically immortalized him as the nation's supreme martyr.
+                </p>
+                <button
+                  class="person-more-btn"
+                  onclick="openPopup('polavieja')">
+                  ✦ Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="quote-banner">
+      <div class="container">
+        <p class="banner-quote">
+          He was not alone — he was a constellation. Every person who loved him,
+          taught him, betrayed him, or mourned him became a thread in the
+          tapestry of a nation's awakening.
+        </p>
+        <p class="banner-attribution">— The Circle of José Rizal</p>
+      </div>
+    </div>
+
+    <div id="popup-backdrop" onclick="closePopup()"></div>
+
+    <div id="popup">
+      <div class="popup-header">
+        <div>
+          <div class="popup-relation-label" id="popup-relation">Relation</div>
+          <div class="popup-name" id="popup-name">Name</div>
+          <div class="popup-dates" id="popup-dates">Dates</div>
+        </div>
+        <button class="popup-close" onclick="closePopup()">✕</button>
+      </div>
+      <div class="popup-body" id="popup-body"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../script/people.js"></script>
+  </body>
+</html>

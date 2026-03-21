@@ -1,0 +1,558 @@
+/*
+   José Rizal — About This Project
+   about.css
+   Linked by: about.html
+
+   Contains all styles for the About page.
+   Create a new file for other page styles.
+*/
+
+:root {
+  --gold: #c9a84c;
+  --gold2: #e2b96a;
+  --gold3: #f0d080;
+  --gold-dim: #7a4e1e;
+  --bg: #0e0a03;
+  --bg2: #140e04;
+  --bg3: #1c1508;
+  --text: #f0e8d0;
+  --text2: #c8b888;
+  --text3: #7a6a48;
+  --border: rgba(201, 168, 76, 0.22);
+  --border2: rgba(201, 168, 76, 0.45);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "EB Garamond", Georgia, serif;
+  overflow-x: hidden;
+}
+
+#mainNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: rgba(14, 10, 3, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+}
+
+.nav-brand {
+  font-family: "Cinzel", serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-back {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 8px 20px;
+  transition: all 0.3s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.nav-back:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+#about-hero {
+  padding-top: 58px;
+  position: relative;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    #2a1e06 0%,
+    #0a0702 60%,
+    #060400 100%
+  );
+  text-align: center;
+  overflow: hidden;
+  min-height: 42vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-feather {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0.06;
+  width: 480px;
+  height: auto;
+}
+
+.about-hero-inner {
+  padding: 60px 20px 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.section-label {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-family: "Cinzel Decorative", serif;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.section-title span {
+  color: var(--gold);
+}
+
+.section-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.section-ornament-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+
+.section-ornament-line:last-child {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+
+.section-ornament-diamond {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.section-intro {
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text2);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+#about-section {
+  background: linear-gradient(180deg, #060400 0%, #0e0a03 15%, #0e0a03 100%);
+  padding: 90px 0 110px;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+
+#about-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.class-photo-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.class-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: sepia(30%) contrast(1.05) brightness(0.9);
+  transition: filter 0.5s ease;
+  display: block;
+}
+
+.class-photo-wrap:hover img {
+  filter: sepia(10%) contrast(1.05) brightness(1);
+}
+
+.class-photo-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(6, 4, 0, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+.class-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(30, 20, 5, 0.9),
+    rgba(6, 4, 0, 0.98)
+  );
+}
+
+.class-photo-placeholder span:first-child {
+  font-size: 4rem;
+  opacity: 0.15;
+  line-height: 1;
+}
+
+.class-photo-placeholder span:last-child {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.35);
+}
+
+.photo-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--gold);
+  border-style: solid;
+  opacity: 0.4;
+  z-index: 2;
+  transition: opacity 0.3s;
+}
+.class-photo-wrap:hover .photo-corner {
+  opacity: 0.7;
+}
+.photo-corner.tl {
+  top: 12px;
+  left: 12px;
+  border-width: 1px 0 0 1px;
+}
+.photo-corner.tr {
+  top: 12px;
+  right: 12px;
+  border-width: 1px 1px 0 0;
+}
+.photo-corner.bl {
+  bottom: 12px;
+  left: 12px;
+  border-width: 0 0 1px 1px;
+}
+.photo-corner.br {
+  bottom: 12px;
+  right: 12px;
+  border-width: 0 1px 1px 0;
+}
+
+.photo-caption {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.photo-caption-label {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.photo-caption-year {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.about-message-wrap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 48px;
+}
+
+.about-tag {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.about-title {
+  font-family: "Cinzel Decorative", serif;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.about-title span {
+  color: var(--gold);
+}
+
+.about-course {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 28px;
+}
+
+.about-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-dim), transparent);
+  margin-bottom: 28px;
+  opacity: 0.6;
+}
+
+.about-message {
+  font-size: 16.5px;
+  line-height: 1.9;
+  color: var(--text2);
+  margin-bottom: 24px;
+}
+
+.about-message em {
+  color: var(--gold2);
+  font-style: italic;
+}
+
+.about-message-second {
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--text3);
+  font-style: italic;
+  border-left: 2px solid rgba(201, 168, 76, 0.3);
+  padding-left: 18px;
+  margin-bottom: 32px;
+}
+
+.about-info-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.about-pill {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 8px 18px;
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text3);
+  transition:
+    border-color 0.3s,
+    color 0.3s;
+}
+
+.about-pill:hover {
+  border-color: var(--border2);
+  color: var(--gold2);
+}
+
+.about-pill span {
+  color: var(--gold);
+  margin-right: 6px;
+}
+
+#dedication-banner {
+  background: linear-gradient(135deg, #100800, #080500);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+#dedication-banner::before {
+  content: "\201C";
+  position: absolute;
+  top: -60px;
+  left: 4%;
+  font-family: "Cinzel Decorative", serif;
+  font-size: 22rem;
+  color: rgba(201, 168, 76, 0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.dedication-text {
+  font-family: "EB Garamond", serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.8vw, 2rem);
+  line-height: 1.65;
+  color: var(--text);
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity 0.9s,
+    transform 0.9s;
+}
+
+.dedication-text.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dedication-attr {
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--gold);
+  text-align: center;
+  margin-top: 22px;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.9s 0.3s;
+}
+
+.dedication-attr.visible {
+  opacity: 1;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 1100px) {
+  #mainNav {
+    padding: 0 20px;
+  }
+  .about-message-wrap {
+    padding-left: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  #mainNav {
+    padding: 0 16px;
+    flex-wrap: nowrap;
+    height: 52px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .nav-back {
+    display: flex !important;
+    font-size: 8px;
+    letter-spacing: 2px;
+    padding: 6px 12px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    align-items: center;
+  }
+
+  .about-message-wrap {
+    padding-left: 0;
+    padding-top: 36px;
+  }
+
+  .class-photo-wrap {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-feather {
+    width: 220px;
+    opacity: 0.04;
+  }
+  .about-message {
+    font-size: 15px;
+  }
+}
