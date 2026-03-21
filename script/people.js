@@ -37,7 +37,6 @@ const PEOPLE = {
       "Calamba Hacienda",
     ],
   },
-
   teodora: {
     relation: "Mother",
     name: "Teodora Alonso Realonda",
@@ -70,7 +69,6 @@ const PEOPLE = {
       "Narcisa Rizal",
     ],
   },
-
   paciano: {
     relation: "Brother",
     name: "Paciano Rizal",
@@ -103,7 +101,6 @@ const PEOPLE = {
       "Philippine Revolution",
     ],
   },
-
   segunda: {
     relation: "First Love",
     name: "Segunda Katigbak",
@@ -131,7 +128,6 @@ const PEOPLE = {
     ],
     connections: ["José Rizal", "Biñan, Laguna", "Manuel Luz"],
   },
-
   leonor: {
     relation: "Great Love",
     name: "Leonor Rivera",
@@ -164,7 +160,6 @@ const PEOPLE = {
       "Henry Kipping",
     ],
   },
-
   josephine: {
     relation: "Final Companion",
     name: "Josephine Bracken",
@@ -197,7 +192,6 @@ const PEOPLE = {
       "George Taufer",
     ],
   },
-
   blumentritt: {
     relation: "Closest Friend",
     name: "Ferdinand Blumentritt",
@@ -230,7 +224,6 @@ const PEOPLE = {
       "Leitmeritz",
     ],
   },
-
   delpilar: {
     relation: "Compatriot",
     name: "Marcelo H. del Pilar",
@@ -263,7 +256,6 @@ const PEOPLE = {
       "Propaganda Movement",
     ],
   },
-
   jaena: {
     relation: "Fellow Propagandist",
     name: "Graciano López Jaena",
@@ -296,7 +288,6 @@ const PEOPLE = {
       "Fray Botod",
     ],
   },
-
   sanchez: {
     relation: "Mentor",
     name: "Fr. Francisco de Paula Sánchez",
@@ -328,7 +319,6 @@ const PEOPLE = {
       "A La Juventud Filipina",
     ],
   },
-
   weyler: {
     relation: "Adversary",
     name: "Gov.-Gen. Valeriano Weyler",
@@ -361,7 +351,6 @@ const PEOPLE = {
       "Spanish Colonial Rule",
     ],
   },
-
   polavieja: {
     relation: "Adversary",
     name: "Gov.-Gen. Camilo de Polavieja",
@@ -474,10 +463,8 @@ filterBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     filterBtns.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
-
     const filter = btn.dataset.filter;
     let count = 0;
-
     personCols.forEach((col) => {
       if (filter === "all" || col.dataset.category === filter) {
         col.classList.remove("hidden");
@@ -486,7 +473,6 @@ filterBtns.forEach((btn) => {
         col.classList.add("hidden");
       }
     });
-
     visibleCount.textContent = count;
   });
 });
@@ -538,10 +524,63 @@ document
   });
 
 window.addEventListener("scroll", () => {
-  const nav = document.getElementById("mainNav");
-  if (window.scrollY > 40) {
-    nav.style.boxShadow = "0 2px 20px rgba(201,168,76,0.1)";
-  } else {
-    nav.style.boxShadow = "none";
+  document.getElementById("mainNav").style.boxShadow =
+    window.scrollY > 40 ? "0 2px 20px rgba(201,168,76,0.1)" : "none";
+});
+
+const currentPage = window.location.pathname.split("/").pop() || "people.html";
+
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  const href = link.getAttribute("href");
+  if (!href) return;
+  const linkPage = href.split("/").pop();
+  const isAnchor = href.startsWith("#");
+  const isCurrentAnchor =
+    isAnchor && (currentPage === "people.html" || currentPage === "");
+  if (linkPage === currentPage || isCurrentAnchor) {
+    link.classList.add("active");
+    link.parentElement.classList.add("active");
   }
 });
+
+(function () {
+  const toggler = document.getElementById("navToggler");
+  const collapse = document.getElementById("navCollapse");
+  if (!toggler || !collapse) return;
+
+  function getExpandedHeight() {
+    collapse.style.height = "auto";
+    const h = collapse.scrollHeight;
+    collapse.style.height = "";
+    return h;
+  }
+
+  function openMenu() {
+    collapse.style.height = getExpandedHeight() + "px";
+    toggler.classList.add("open");
+    toggler.setAttribute("aria-expanded", "true");
+    collapse.addEventListener("transitionend", function once() {
+      if (toggler.classList.contains("open")) collapse.style.height = "auto";
+      collapse.removeEventListener("transitionend", once);
+    });
+  }
+
+  function closeMenu() {
+    collapse.style.height = collapse.scrollHeight + "px";
+    requestAnimationFrame(() => {
+      collapse.style.height = "0px";
+    });
+    toggler.classList.remove("open");
+    toggler.setAttribute("aria-expanded", "false");
+  }
+
+  toggler.addEventListener("click", () => {
+    toggler.classList.contains("open") ? closeMenu() : openMenu();
+  });
+
+  collapse.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (toggler.classList.contains("open")) closeMenu();
+    });
+  });
+})();

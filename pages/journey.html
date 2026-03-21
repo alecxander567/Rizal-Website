@@ -20,17 +20,33 @@
   </head>
   <body>
     <nav id="mainNav">
-      <a class="nav-brand" href="index.html">✦ Rizal</a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="journey.html">Journey &amp; Works</a></li>
-          <div class="nav-divider"></div>
-          <li><a href="people.html">Important People</a></li>
-          <li><a href="education.html">Education</a></li>
-          <li><a href="contributions.html">Contributions</a></li>
-        </ul>
+      <div class="nav-inner">
+        <a class="nav-brand" href="index.html">✦ Rizal</a>
+
+        <button
+          class="nav-toggler"
+          id="navToggler"
+          aria-label="Toggle navigation"
+          aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-collapse" id="navCollapse">
+          <ul class="nav-links">
+            <li>
+              <a href="journey.html">Journey &amp; Works</a>
+            </li>
+            <div class="nav-divider"></div>
+            <li><a href="people.html">Important People</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="contributions.html">Contributions</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+          <a class="nav-back" href="index.html">← Back to Main</a>
+        </div>
       </div>
-      <a class="nav-back" href="index.html">← Back to Main</a>
     </nav>
 
     <div id="journey-hero">
@@ -279,7 +295,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col-lg-6">
               <div class="writing-card h-100">
                 <div class="writing-card-inner">
@@ -330,7 +345,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col-lg-4">
               <div class="writing-card h-100">
                 <div class="writing-card-inner">
@@ -352,7 +366,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col-lg-4">
               <div class="writing-card h-100">
                 <div class="writing-card-inner">
@@ -397,7 +410,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col-lg-4">
               <div class="writing-card h-100">
                 <div class="writing-card-inner">
@@ -420,7 +432,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col-lg-4">
               <div class="writing-card h-100">
                 <div class="writing-card-inner">
@@ -446,7 +457,6 @@
     </section>
 
     <div id="popup-backdrop" onclick="closePopup()"></div>
-
     <div id="popup">
       <div class="popup-header">
         <div>
@@ -461,6 +471,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../script/journey.js"></script>
-    <script src="../script/nav-highlight.js"></script>
   </body>
 </html>

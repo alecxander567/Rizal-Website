@@ -2,8 +2,6 @@
    José Rizal — World Journey Map
    journey.js
    Linked by: journey.html
-
-   Contains Globe and Book animations, create new file for other animation
 */
 
 const books = [
@@ -47,9 +45,7 @@ function cycleBook() {
   bookIdx = (bookIdx + 1) % books.length;
   const b = books[bookIdx];
   const el = document.getElementById("showcaseBook");
-
   el.classList.add("page-flip");
-
   setTimeout(() => {
     document.getElementById("spineText").textContent = b.spine;
     document.getElementById("bookLabel").textContent = b.label;
@@ -60,24 +56,6 @@ function cycleBook() {
   }, 300);
 }
 
-const currentPage = window.location.pathname.split("/").pop() || "journey.html";
-document.querySelectorAll(".nav-links a").forEach((link) => {
-  const href = link.getAttribute("href");
-  if (!href) return;
-  // Match by filename for page links, or mark as active if it's an anchor (#)
-  // and we're on journey.html
-  const linkPage = href.split("/").pop();
-  const isAnchor = href.startsWith("#");
-  const isCurrentFile = linkPage === currentPage;
-  const isJourneyAnchor =
-    isAnchor && (currentPage === "journey.html" || currentPage === "");
-
-  if (isCurrentFile || isJourneyAnchor) {
-    link.classList.add("active");
-    link.parentElement.classList.add("active");
-  }
-});
-
 function switchTab(name, clickedBtn) {
   document
     .querySelectorAll(".writings-tab-content")
@@ -85,10 +63,8 @@ function switchTab(name, clickedBtn) {
   document
     .querySelectorAll(".book-tab")
     .forEach((el) => el.classList.remove("active"));
-
   document.getElementById("tab-" + name).classList.add("active");
   clickedBtn.classList.add("active");
-
   const tabBookMap = { novels: 0, poetry: 2, essays: 3 };
   bookIdx = (tabBookMap[name] ?? 0) - 1;
   cycleBook();
@@ -422,7 +398,6 @@ let currentStop = 0;
 
 const canvas = document.getElementById("globe");
 const ctx = canvas.getContext("2d");
-
 let projection, path, worldData;
 let globeRotX = 0,
   globeRotY = 0;
@@ -452,7 +427,6 @@ function buildProjection() {
 
 function drawGlobe() {
   if (!worldData) return;
-
   const w = canvas.width,
     h = canvas.height;
   ctx.clearRect(0, 0, w, h);
@@ -493,7 +467,6 @@ function drawGlobe() {
   countries.features.forEach((f) => {
     ctx.beginPath();
     path(f);
-
     const landGrad = ctx.createRadialGradient(
       cx - r * 0.15,
       cy - r * 0.15,
@@ -507,7 +480,6 @@ function drawGlobe() {
     landGrad.addColorStop(1, "#312410");
     ctx.fillStyle = landGrad;
     ctx.fill();
-
     ctx.strokeStyle = "rgba(201, 155, 60, 0.35)";
     ctx.lineWidth = 0.6;
     ctx.stroke();
@@ -563,13 +535,11 @@ function drawGlobe() {
       ctx.strokeStyle = "rgba(201, 168, 76, 0.15)";
       ctx.lineWidth = 1;
       ctx.stroke();
-
       ctx.beginPath();
       ctx.arc(px, py, 11, 0, Math.PI * 2);
       ctx.strokeStyle = "rgba(201, 168, 76, 0.35)";
       ctx.lineWidth = 1.2;
       ctx.stroke();
-
       ctx.beginPath();
       ctx.arc(px, py, 6, 0, Math.PI * 2);
       ctx.fillStyle = "#F0D080";
@@ -577,25 +547,19 @@ function drawGlobe() {
       ctx.strokeStyle = "#C9A84C";
       ctx.lineWidth = 1.5;
       ctx.stroke();
-
       ctx.strokeStyle = "rgba(201, 168, 76, 0.5)";
       ctx.lineWidth = 0.8;
-      ctx.beginPath();
-      ctx.moveTo(px - 22, py);
-      ctx.lineTo(px - 13, py);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(px + 13, py);
-      ctx.lineTo(px + 22, py);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(px, py - 22);
-      ctx.lineTo(px, py - 13);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(px, py + 13);
-      ctx.lineTo(px, py + 22);
-      ctx.stroke();
+      [
+        [px - 22, py, px - 13, py],
+        [px + 13, py, px + 22, py],
+        [px, py - 22, px, py - 13],
+        [px, py + 13, px, py + 22],
+      ].forEach(([x1, y1, x2, y2]) => {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      });
     } else {
       ctx.beginPath();
       ctx.arc(px, py, 3.5, 0, Math.PI * 2);
@@ -615,7 +579,6 @@ function drawGlobe() {
   edgeGrad.addColorStop(1, "rgba(6,4,0,0.72)");
   ctx.fillStyle = edgeGrad;
   ctx.fill();
-
   ctx.beginPath();
   path({ type: "Sphere" });
   ctx.strokeStyle = "rgba(201, 168, 76, 0.32)";
@@ -630,12 +593,10 @@ function lerp(a, b, t) {
 function animateGlobe() {
   globeRotY = lerp(globeRotY, targetLon, 0.06);
   globeRotX = lerp(globeRotX, targetLat, 0.06);
-
   if (projection) {
     projection.rotate([globeRotY, -globeRotX]);
     path = d3.geoPath(projection, ctx);
   }
-
   drawGlobe();
   animFrame = requestAnimationFrame(animateGlobe);
 }
@@ -643,7 +604,6 @@ function animateGlobe() {
 function goToStop(i) {
   currentStop = i;
   const s = stops[i];
-
   targetLon = -s.lon;
   targetLat = s.lat;
 
@@ -655,28 +615,24 @@ function goToStop(i) {
   document.getElementById("card-country").textContent = s.name;
   document.getElementById("card-city").textContent = s.city;
   document.getElementById("card-years").textContent = s.years;
-
   document.getElementById("card-desc").innerHTML = s.desc
     .map(
       (d) =>
         `<div class="card-desc-highlight"><span class="di">${d.icon}</span><span>${d.text}</span></div>`,
     )
     .join("");
-
   document.getElementById("prev-btn").disabled = i === 0;
   document.getElementById("next-btn").disabled = i === stops.length - 1;
 
   const card = document.getElementById("location-card");
   card.classList.remove("show");
   setTimeout(() => card.classList.add("show"), 60);
-
   updateTimeline();
 }
 
 function nextStop() {
   if (currentStop < stops.length - 1) goToStop(currentStop + 1);
 }
-
 function prevStop() {
   if (currentStop > 0) goToStop(currentStop - 1);
 }
@@ -684,7 +640,6 @@ function prevStop() {
 function openPopup() {
   const s = stops[currentStop];
   const p = s.popup;
-
   document.getElementById("popup-flag").textContent = s.flag;
   document.getElementById("popup-loc-label").textContent = s.name;
   document.getElementById("popup-title").textContent = s.city;
@@ -695,18 +650,15 @@ function openPopup() {
         `<div class="popup-meta-pill">${m.label}: <span>${m.val}</span></div>`,
     )
     .join("");
-
   const works = p.works
     .map(
       (w) =>
         `<div class="popup-work-item"><strong>${w.title}</strong>${w.desc}</div>`,
     )
     .join("");
-
   const people = p.people
     .map((pp) => `<span class="popup-person">${pp}</span>`)
     .join("");
-
   const facts = p.facts
     .map(
       (f) =>
@@ -716,22 +668,10 @@ function openPopup() {
 
   document.getElementById("popup-body").innerHTML = `
     <div class="popup-meta-bar">${metaPills}</div>
-    <div class="popup-section">
-      <div class="popup-section-title">Overview</div>
-      <p class="popup-section-text">${p.overview}</p>
-    </div>
-    <div class="popup-section">
-      <div class="popup-section-title">Key Works Here</div>
-      <div class="popup-works">${works}</div>
-    </div>
-    <div class="popup-section">
-      <div class="popup-section-title">Key Figures</div>
-      <div class="popup-people">${people}</div>
-    </div>
-    <div class="popup-section">
-      <div class="popup-section-title">Quick Facts</div>
-      <div class="popup-fact-grid">${facts}</div>
-    </div>
+    <div class="popup-section"><div class="popup-section-title">Overview</div><p class="popup-section-text">${p.overview}</p></div>
+    <div class="popup-section"><div class="popup-section-title">Key Works Here</div><div class="popup-works">${works}</div></div>
+    <div class="popup-section"><div class="popup-section-title">Key Figures</div><div class="popup-people">${people}</div></div>
+    <div class="popup-section"><div class="popup-section-title">Quick Facts</div><div class="popup-fact-grid">${facts}</div></div>
   `;
 
   document.getElementById("popup-backdrop").classList.add("show");
@@ -745,7 +685,6 @@ function closePopup() {
 
 function buildTimeline() {
   const track = document.getElementById("jt-track");
-
   stops.forEach((s, i) => {
     const stop = document.createElement("div");
     stop.className = "jt-stop";
@@ -753,18 +692,14 @@ function buildTimeline() {
     stop.onclick = () => goToStop(i);
     track.appendChild(stop);
   });
-
   updateTimeline();
 }
 
 function updateTimeline() {
-  const jtstops = document.querySelectorAll(".jt-stop");
-
-  jtstops.forEach((el, i) => {
+  document.querySelectorAll(".jt-stop").forEach((el, i) => {
     el.classList.toggle("active", i === currentStop);
     el.classList.toggle("visited", i < currentStop);
   });
-
   const pct = currentStop === 0 ? 0 : (currentStop / (stops.length - 1)) * 100;
   document.getElementById("jt-progress").style.width = pct + "%";
 }
@@ -786,3 +721,65 @@ fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
       .getElementById("globe-loading")
       .querySelector(".g-loading-text").textContent = "Map unavailable.";
   });
+
+window.addEventListener("scroll", () => {
+  document.getElementById("mainNav").style.boxShadow =
+    window.scrollY > 40 ? "0 2px 20px rgba(201,168,76,0.1)" : "none";
+});
+
+const currentPage = window.location.pathname.split("/").pop() || "journey.html";
+
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  const href = link.getAttribute("href");
+  if (!href) return;
+  const linkPage = href.split("/").pop();
+  const isAnchor = href.startsWith("#");
+  const isCurrentAnchor =
+    isAnchor && (currentPage === "journey.html" || currentPage === "");
+  if (linkPage === currentPage || isCurrentAnchor) {
+    link.classList.add("active");
+    link.parentElement.classList.add("active");
+  }
+});
+
+(function () {
+  const toggler = document.getElementById("navToggler");
+  const collapse = document.getElementById("navCollapse");
+  if (!toggler || !collapse) return;
+
+  function getExpandedHeight() {
+    collapse.style.height = "auto";
+    const h = collapse.scrollHeight;
+    collapse.style.height = "";
+    return h;
+  }
+
+  function openMenu() {
+    collapse.style.height = getExpandedHeight() + "px";
+    toggler.classList.add("open");
+    toggler.setAttribute("aria-expanded", "true");
+    collapse.addEventListener("transitionend", function once() {
+      if (toggler.classList.contains("open")) collapse.style.height = "auto";
+      collapse.removeEventListener("transitionend", once);
+    });
+  }
+
+  function closeMenu() {
+    collapse.style.height = collapse.scrollHeight + "px";
+    requestAnimationFrame(() => {
+      collapse.style.height = "0px";
+    });
+    toggler.classList.remove("open");
+    toggler.setAttribute("aria-expanded", "false");
+  }
+
+  toggler.addEventListener("click", () => {
+    toggler.classList.contains("open") ? closeMenu() : openMenu();
+  });
+
+  collapse.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (toggler.classList.contains("open")) closeMenu();
+    });
+  });
+})();

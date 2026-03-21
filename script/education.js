@@ -38,12 +38,6 @@ document
   .querySelectorAll(".language-bar-wrap")
   .forEach((el) => langObserver.observe(el));
 
-window.addEventListener("scroll", () => {
-  const nav = document.getElementById("mainNav");
-  nav.style.boxShadow =
-    window.scrollY > 40 ? "0 2px 20px rgba(201,168,76,0.1)" : "none";
-});
-
 const EDU_DATA = {
   home: {
     period: "1869 – 1871",
@@ -280,3 +274,66 @@ document.querySelectorAll(".edu-card").forEach((card) => {
     });
   }
 });
+
+window.addEventListener("scroll", () => {
+  document.getElementById("mainNav").style.boxShadow =
+    window.scrollY > 40 ? "0 2px 20px rgba(201,168,76,0.1)" : "none";
+});
+
+const currentPage =
+  window.location.pathname.split("/").pop() || "education.html";
+
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  const href = link.getAttribute("href");
+  if (!href) return;
+  const linkPage = href.split("/").pop();
+  const isAnchor = href.startsWith("#");
+  const isCurrentAnchor =
+    isAnchor && (currentPage === "education.html" || currentPage === "");
+  if (linkPage === currentPage || isCurrentAnchor) {
+    link.classList.add("active");
+    link.parentElement.classList.add("active");
+  }
+});
+
+(function () {
+  const toggler = document.getElementById("navToggler");
+  const collapse = document.getElementById("navCollapse");
+  if (!toggler || !collapse) return;
+
+  function getExpandedHeight() {
+    collapse.style.height = "auto";
+    const h = collapse.scrollHeight;
+    collapse.style.height = "";
+    return h;
+  }
+
+  function openMenu() {
+    collapse.style.height = getExpandedHeight() + "px";
+    toggler.classList.add("open");
+    toggler.setAttribute("aria-expanded", "true");
+    collapse.addEventListener("transitionend", function once() {
+      if (toggler.classList.contains("open")) collapse.style.height = "auto";
+      collapse.removeEventListener("transitionend", once);
+    });
+  }
+
+  function closeMenu() {
+    collapse.style.height = collapse.scrollHeight + "px";
+    requestAnimationFrame(() => {
+      collapse.style.height = "0px";
+    });
+    toggler.classList.remove("open");
+    toggler.setAttribute("aria-expanded", "false");
+  }
+
+  toggler.addEventListener("click", () => {
+    toggler.classList.contains("open") ? closeMenu() : openMenu();
+  });
+
+  collapse.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (toggler.classList.contains("open")) closeMenu();
+    });
+  });
+})();

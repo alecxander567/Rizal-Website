@@ -4,30 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>José Rizal — Societal Contributions</title>
-
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet" />
-
     <link
       href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap"
       rel="stylesheet" />
-
     <link rel="stylesheet" href="../style/contributions.css" />
   </head>
   <body>
     <nav id="mainNav">
-      <a class="nav-brand" href="index.html">✦ Rizal</a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="journey.html">Journey &amp; Works</a></li>
-          <div class="nav-divider"></div>
-          <li><a href="people.html">Important People</a></li>
-          <li><a href="education.html">Education</a></li>
-          <li><a href="contributions.html">Contributions</a></li>
-        </ul>
+      <div class="nav-inner">
+        <a class="nav-brand" href="index.html">✦ Rizal</a>
+        <button
+          class="nav-toggler"
+          id="navToggler"
+          aria-label="Toggle navigation"
+          aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-collapse" id="navCollapse">
+          <ul class="nav-links">
+            <li><a href="journey.html">Journey &amp; Works</a></li>
+            <div class="nav-divider"></div>
+            <li><a href="people.html">Important People</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li>
+              <a href="contributions.html" class="active">Contributions</a>
+            </li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+          <a class="nav-back" href="index.html">← Back to Main</a>
+        </div>
       </div>
-      <a class="nav-back" href="index.html">← Back to Main</a>
     </nav>
 
     <div id="contrib-hero">
@@ -87,7 +96,6 @@
             stroke="none" />
         </g>
       </svg>
-
       <div class="contrib-hero-inner">
         <span class="section-label">The Mark He Left on the World</span>
         <h1 class="section-title">Societal <span>Contributions</span></h1>
@@ -109,24 +117,24 @@
       <div class="container">
         <div class="impact-grid">
           <div class="impact-item">
-            <span class="impact-num">2</span>
-            <span class="impact-label">Novels That Sparked a Revolution</span>
+            <span class="impact-num">2</span
+            ><span class="impact-label">Novels That Sparked a Revolution</span>
           </div>
           <div class="impact-item">
-            <span class="impact-num">300+</span>
-            <span class="impact-label">Free Medical Patients in Dapitan</span>
+            <span class="impact-num">300+</span
+            ><span class="impact-label">Free Medical Patients in Dapitan</span>
           </div>
           <div class="impact-item">
-            <span class="impact-num">3</span>
-            <span class="impact-label">New Animal Species Discovered</span>
+            <span class="impact-num">3</span
+            ><span class="impact-label">New Animal Species Discovered</span>
           </div>
           <div class="impact-item">
-            <span class="impact-num">1</span>
-            <span class="impact-label">School Built in Exile</span>
+            <span class="impact-num">1</span
+            ><span class="impact-label">School Built in Exile</span>
           </div>
           <div class="impact-item">
-            <span class="impact-num">22+</span>
-            <span class="impact-label">Languages — Bridge to the World</span>
+            <span class="impact-num">22+</span
+            ><span class="impact-label">Languages — Bridge to the World</span>
           </div>
         </div>
       </div>
@@ -139,9 +147,9 @@
       <button class="contrib-tab" data-filter="education">Education</button>
       <button class="contrib-tab" data-filter="science">Science</button>
       <button class="contrib-tab" data-filter="politics">
-        Politics & Reform
+        Politics &amp; Reform
       </button>
-      <button class="contrib-tab" data-filter="arts">Arts & Culture</button>
+      <button class="contrib-tab" data-filter="arts">Arts &amp; Culture</button>
     </div>
 
     <section id="contrib-section">
@@ -155,13 +163,12 @@
             <div class="section-ornament-line"></div>
           </div>
         </div>
-
         <div class="row g-4" id="contrib-grid">
           <div class="col-lg-4 col-md-6 contrib-col" data-category="literature">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">📖</span>
-                <span class="contrib-category-tag">Literature</span>
+                <span class="contrib-icon">📖</span
+                ><span class="contrib-category-tag">Literature</span>
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">Noli Me Tángere</div>
@@ -170,10 +177,9 @@
                 <p class="contrib-desc">
                   The novel that cracked open colonial Philippines. Through the
                   story of Crisostomo Ibarra, Rizal painted an unflinching
-                  portrait of Spanish clerical corruption, racial injustice, and
-                  the quiet suffering of the Filipino people. Banned immediately
-                  by Spanish authorities, it spread faster because of it —
-                  passed hand to hand, read in secret, memorized in corners.
+                  portrait of Spanish clerical corruption and racial injustice.
+                  Banned immediately by Spanish authorities, it spread faster
+                  because of it.
                 </p>
                 <div class="contrib-impact">
                   ✦ Directly inspired the formation of the Katipunan and the
@@ -181,9 +187,9 @@
                   Filipinos today.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Anti-Colonial</span>
-                  <span class="contrib-tag">National Identity</span>
-                  <span class="contrib-tag">Social Critique</span>
+                  <span class="contrib-tag">Anti-Colonial</span
+                  ><span class="contrib-tag">National Identity</span
+                  ><span class="contrib-tag">Social Critique</span>
                 </div>
                 <button class="contrib-more-btn" data-key="noli">
                   ✦ Learn More
@@ -195,8 +201,8 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="literature">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">⚔️</span>
-                <span class="contrib-category-tag">Literature</span>
+                <span class="contrib-icon">⚔️</span
+                ><span class="contrib-category-tag">Literature</span>
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">El Filibusterismo</div>
@@ -204,12 +210,9 @@
                 <div class="contrib-divider"></div>
                 <p class="contrib-desc">
                   The darker, more urgent sequel. Ibarra returns as Simoun — a
-                  mysterious jeweler plotting violent revolution. More radical
-                  than its predecessor, El Filibusterismo forced Filipinos to
-                  confront whether peaceful reform was ever enough against a
-                  system built on brutality. Dedicated to the three martyred
-                  priests of 1872, it gave their deaths lasting political
-                  meaning.
+                  mysterious jeweler plotting violent revolution. Dedicated to
+                  the three martyred priests of 1872, it gave their deaths
+                  lasting political meaning.
                 </p>
                 <div class="contrib-impact">
                   ✦ Widely considered the more politically dangerous of the two
@@ -217,9 +220,9 @@
                   revolution.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Revolution</span>
-                  <span class="contrib-tag">Martyrdom</span>
-                  <span class="contrib-tag">Filipino Identity</span>
+                  <span class="contrib-tag">Revolution</span
+                  ><span class="contrib-tag">Martyrdom</span
+                  ><span class="contrib-tag">Filipino Identity</span>
                 </div>
                 <button class="contrib-more-btn" data-key="fili">
                   ✦ Learn More
@@ -231,8 +234,8 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="literature">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">✒️</span>
-                <span class="contrib-category-tag">Literature</span>
+                <span class="contrib-icon">✒️</span
+                ><span class="contrib-category-tag">Literature</span>
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">Mi Último Adiós</div>
@@ -240,12 +243,9 @@
                 <div class="contrib-divider"></div>
                 <p class="contrib-desc">
                   Written the night before his execution and hidden inside an
-                  alcohol lamp given to his family, this farewell poem is
-                  Rizal's most intimate and powerful work. Eleven stanzas of
-                  love for his homeland, acceptance of death, and a prayer that
-                  his sacrifice would not be wasted. Found by Josephine Bracken,
-                  it was distributed across the Philippines within days and
-                  became an anthem of the revolution.
+                  alcohol lamp. Eleven stanzas of love for his homeland and
+                  acceptance of death. Found by Josephine Bracken, it was
+                  distributed across the Philippines within days.
                 </p>
                 <div class="contrib-impact">
                   ✦ Considered the most beautiful poem in Philippine literature
@@ -253,9 +253,9 @@
                   overnight.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Poetry</span>
-                  <span class="contrib-tag">Nationalism</span>
-                  <span class="contrib-tag">Sacrifice</span>
+                  <span class="contrib-tag">Poetry</span
+                  ><span class="contrib-tag">Nationalism</span
+                  ><span class="contrib-tag">Sacrifice</span>
                 </div>
                 <button class="contrib-more-btn" data-key="adios">
                   ✦ Learn More
@@ -267,8 +267,10 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="literature">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">📰</span>
-                <span class="contrib-category-tag">Literature & Politics</span>
+                <span class="contrib-icon">📰</span
+                ><span class="contrib-category-tag"
+                  >Literature &amp; Politics</span
+                >
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">La Solidaridad Essays</div>
@@ -278,12 +280,9 @@
                 <div class="contrib-divider"></div>
                 <p class="contrib-desc">
                   Under the pen name <em>Laong Laan</em>, Rizal contributed
-                  dozens of essays to the reform newspaper
-                  <em>La Solidaridad</em> — the voice of the Propaganda
-                  Movement. He argued for Philippine representation in the
-                  Spanish Cortes, equality before the law, freedom of the press,
-                  and the secularization of the Philippine church. His prose was
-                  sharp, measured, and devastating in its logic.
+                  dozens of essays to <em>La Solidaridad</em>. He argued for
+                  Philippine representation in the Spanish Cortes, equality
+                  before the law, and freedom of the press.
                 </p>
                 <div class="contrib-impact">
                   ✦ These essays established the intellectual foundation of the
@@ -291,9 +290,9 @@
                   political thinkers.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Reform</span>
-                  <span class="contrib-tag">Press Freedom</span>
-                  <span class="contrib-tag">Political Theory</span>
+                  <span class="contrib-tag">Reform</span
+                  ><span class="contrib-tag">Press Freedom</span
+                  ><span class="contrib-tag">Political Theory</span>
                 </div>
                 <button class="contrib-more-btn" data-key="solidaridad">
                   ✦ Learn More
@@ -305,8 +304,8 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="medicine">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">⚕️</span>
-                <span class="contrib-category-tag">Medicine</span>
+                <span class="contrib-icon">⚕️</span
+                ><span class="contrib-category-tag">Medicine</span>
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">Free Medical Clinic in Dapitan</div>
@@ -315,21 +314,19 @@
                 </div>
                 <div class="contrib-divider"></div>
                 <p class="contrib-desc">
-                  During his four-year exile in Dapitan, Mindanao, Rizal set up
-                  a free medical clinic and treated over 300 patients — many of
-                  them impoverished Visayan farmers and fishermen who had never
-                  seen a trained physician. He performed complex surgeries by
-                  lamplight, dispensed medicine at his own expense, and refused
-                  payment from those who could not afford it.
+                  During his four-year exile in Dapitan, Rizal set up a free
+                  medical clinic and treated over 300 patients — many of them
+                  impoverished farmers and fishermen. He refused payment from
+                  those who could not afford it.
                 </p>
                 <div class="contrib-impact">
                   ✦ His clinic represented one of the earliest examples of
                   community public health service in Philippine history.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Public Health</span>
-                  <span class="contrib-tag">Ophthalmology</span>
-                  <span class="contrib-tag">Community Service</span>
+                  <span class="contrib-tag">Public Health</span
+                  ><span class="contrib-tag">Ophthalmology</span
+                  ><span class="contrib-tag">Community Service</span>
                 </div>
                 <button class="contrib-more-btn" data-key="clinic">
                   ✦ Learn More
@@ -341,21 +338,19 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="medicine">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">👁️</span>
-                <span class="contrib-category-tag">Medicine</span>
+                <span class="contrib-icon">👁️</span
+                ><span class="contrib-category-tag">Medicine</span>
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">Restoring His Mother's Sight</div>
                 <div class="contrib-subtitle">Ophthalmology · Manila, 1887</div>
                 <div class="contrib-divider"></div>
                 <p class="contrib-desc">
-                  Shortly after returning from Europe in 1887, Rizal performed a
+                  Shortly after returning from Europe, Rizal performed a
                   cataract surgery on his mother Teodora Alonso, whose vision
                   had been steadily failing. Having trained under Europe's
-                  finest ophthalmologists in Paris and Heidelberg, he performed
-                  the delicate procedure successfully — restoring the sight of
-                  the woman who had first taught him to see the beauty of the
-                  written word.
+                  finest ophthalmologists, he performed the procedure
+                  successfully.
                 </p>
                 <div class="contrib-impact">
                   ✦ One of the first successful cataract operations performed by
@@ -363,9 +358,9 @@
                   professional triumph.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Surgery</span>
-                  <span class="contrib-tag">Ophthalmology</span>
-                  <span class="contrib-tag">Family</span>
+                  <span class="contrib-tag">Surgery</span
+                  ><span class="contrib-tag">Ophthalmology</span
+                  ><span class="contrib-tag">Family</span>
                 </div>
                 <button class="contrib-more-btn" data-key="cataract">
                   ✦ Learn More
@@ -377,8 +372,8 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="education">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">🏫</span>
-                <span class="contrib-category-tag">Education</span>
+                <span class="contrib-icon">🏫</span
+                ><span class="contrib-category-tag">Education</span>
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">The Dapitan School</div>
@@ -390,10 +385,7 @@
                   In exile, Rizal built and ran a school for the children of
                   Dapitan. He taught reading, writing, mathematics, Spanish,
                   English, and drawing to over 20 students at his own expense,
-                  refusing tuition from families who could not pay. He also
-                  introduced students to the natural sciences through hands-on
-                  observation of the local environment — frogs, insects, plants,
-                  and tides.
+                  refusing tuition from families who could not pay.
                 </p>
                 <div class="contrib-impact">
                   ✦ His Dapitan school was a model of humanistic,
@@ -401,9 +393,9 @@
                   Philippines.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Community Education</span>
-                  <span class="contrib-tag">Youth Development</span>
-                  <span class="contrib-tag">Free Schooling</span>
+                  <span class="contrib-tag">Community Education</span
+                  ><span class="contrib-tag">Youth Development</span
+                  ><span class="contrib-tag">Free Schooling</span>
                 </div>
                 <button class="contrib-more-btn" data-key="school">
                   ✦ Learn More
@@ -415,8 +407,10 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="education">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">📜</span>
-                <span class="contrib-category-tag">Education & History</span>
+                <span class="contrib-icon">📜</span
+                ><span class="contrib-category-tag"
+                  >Education &amp; History</span
+                >
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">Annotations of Morga's Sucesos</div>
@@ -427,11 +421,8 @@
                 <p class="contrib-desc">
                   Rizal annotated and republished Antonio de Morga's 1609
                   account of pre-colonial Philippines, adding over a hundred
-                  counter-notes that proved Filipino civilization was rich,
-                  dignified, and culturally sophisticated long before Spanish
-                  arrival. It was an act of historical reclamation — giving
-                  Filipinos their stolen past back, documented and verified from
-                  Spanish sources themselves.
+                  counter-notes proving Filipino civilization was rich and
+                  culturally sophisticated long before Spanish arrival.
                 </p>
                 <div class="contrib-impact">
                   ✦ A foundational work of Philippine historical scholarship —
@@ -439,9 +430,9 @@
                   civilization before Spain.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Historiography</span>
-                  <span class="contrib-tag">Pre-Colonial Philippines</span>
-                  <span class="contrib-tag">Decolonization</span>
+                  <span class="contrib-tag">Historiography</span
+                  ><span class="contrib-tag">Pre-Colonial Philippines</span
+                  ><span class="contrib-tag">Decolonization</span>
                 </div>
                 <button class="contrib-more-btn" data-key="morga">
                   ✦ Learn More
@@ -453,24 +444,21 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="science">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">🔬</span>
-                <span class="contrib-category-tag">Natural Science</span>
+                <span class="contrib-icon">🔬</span
+                ><span class="contrib-category-tag">Natural Science</span>
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">New Species Discovered</div>
                 <div class="contrib-subtitle">
-                  Biology & Zoology · Dapitan, 1892–1896
+                  Biology &amp; Zoology · Dapitan, 1892–1896
                 </div>
                 <div class="contrib-divider"></div>
                 <p class="contrib-desc">
-                  During his Dapitan exile, Rizal collected and catalogued
-                  dozens of local flora and fauna, sending specimens to European
-                  scientists. He discovered and documented several species
-                  previously unknown to Western science. Three were named after
-                  him: <em>Draco rizali</em> (a flying lizard),
+                  During his Dapitan exile, Rizal collected and catalogued local
+                  flora and fauna. Three species were named after him:
+                  <em>Draco rizali</em> (a flying lizard),
                   <em>Rachophorus rizali</em> (a tree frog), and
-                  <em>Apogonia rizali</em> (a beetle). His natural history work
-                  was published in scientific journals in Europe.
+                  <em>Apogonia rizali</em> (a beetle).
                 </p>
                 <div class="contrib-impact">
                   ✦ His biological discoveries were recognized by the scientific
@@ -478,9 +466,9 @@
                   legitimate naturalist of the 19th century.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Zoology</span>
-                  <span class="contrib-tag">Natural History</span>
-                  <span class="contrib-tag">Scientific Discovery</span>
+                  <span class="contrib-tag">Zoology</span
+                  ><span class="contrib-tag">Natural History</span
+                  ><span class="contrib-tag">Scientific Discovery</span>
                 </div>
                 <button class="contrib-more-btn" data-key="species">
                   ✦ Learn More
@@ -492,8 +480,8 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="politics">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">⚖️</span>
-                <span class="contrib-category-tag">Politics & Reform</span>
+                <span class="contrib-icon">⚖️</span
+                ><span class="contrib-category-tag">Politics &amp; Reform</span>
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">La Liga Filipina</div>
@@ -501,13 +489,10 @@
                 <div class="contrib-divider"></div>
                 <p class="contrib-desc">
                   Days after returning to the Philippines in 1892, Rizal founded
-                  La Liga Filipina — a civic organization designed to unite
-                  Filipinos across class, region, and language in pursuit of
-                  peaceful reform. It called for mutual aid, legal defense of
-                  Filipinos, and collective economic resistance to colonial
-                  exploitation. It lasted only days before he was arrested, but
-                  its founding is considered a landmark moment in the
-                  development of Filipino civil society.
+                  La Liga Filipina — a civic organization to unite Filipinos in
+                  pursuit of peaceful reform. It lasted only days before he was
+                  arrested, but its founding is a landmark in Filipino civil
+                  society.
                 </p>
                 <div class="contrib-impact">
                   ✦ La Liga directly inspired Andres Bonifacio to found the
@@ -515,9 +500,9 @@
                   Revolution.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Civil Society</span>
-                  <span class="contrib-tag">Collective Action</span>
-                  <span class="contrib-tag">Peaceful Reform</span>
+                  <span class="contrib-tag">Civil Society</span
+                  ><span class="contrib-tag">Collective Action</span
+                  ><span class="contrib-tag">Peaceful Reform</span>
                 </div>
                 <button class="contrib-more-btn" data-key="liga">
                   ✦ Learn More
@@ -529,8 +514,8 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="politics">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">🏛️</span>
-                <span class="contrib-category-tag">Politics & Reform</span>
+                <span class="contrib-icon">🏛️</span
+                ><span class="contrib-category-tag">Politics &amp; Reform</span>
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">The Propaganda Movement</div>
@@ -539,14 +524,10 @@
                 </div>
                 <div class="contrib-divider"></div>
                 <p class="contrib-desc">
-                  From Madrid, Barcelona, and Paris, Rizal was the intellectual
-                  cornerstone of the Propaganda Movement — a collective effort
-                  by Filipino expatriates to advocate for reform through
-                  writing, lobbying, and public persuasion. He wrote essays,
-                  gave speeches, and built relationships with Spanish liberals
-                  who supported Philippine representation. He believed, until
-                  late in his life, that change could come through reason rather
-                  than arms.
+                  From Madrid and Paris, Rizal was the intellectual cornerstone
+                  of the Propaganda Movement. He wrote essays, gave speeches,
+                  and built relationships with Spanish liberals who supported
+                  Philippine representation.
                 </p>
                 <div class="contrib-impact">
                   ✦ The Propaganda Movement was the first organized political
@@ -554,9 +535,9 @@
                   pen.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Political Advocacy</span>
-                  <span class="contrib-tag">Diaspora Activism</span>
-                  <span class="contrib-tag">Reform Movement</span>
+                  <span class="contrib-tag">Political Advocacy</span
+                  ><span class="contrib-tag">Diaspora Activism</span
+                  ><span class="contrib-tag">Reform Movement</span>
                 </div>
                 <button class="contrib-more-btn" data-key="propaganda">
                   ✦ Learn More
@@ -568,33 +549,30 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="arts">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">🗿</span>
-                <span class="contrib-category-tag">Arts & Culture</span>
+                <span class="contrib-icon">🗿</span
+                ><span class="contrib-category-tag">Arts &amp; Culture</span>
               </div>
               <div class="contrib-card-body">
-                <div class="contrib-title">Sculpture & Visual Arts</div>
+                <div class="contrib-title">Sculpture &amp; Visual Arts</div>
                 <div class="contrib-subtitle">
-                  Fine Arts · Europe & Dapitan, 1882–1896
+                  Fine Arts · Europe &amp; Dapitan, 1882–1896
                 </div>
                 <div class="contrib-divider"></div>
                 <p class="contrib-desc">
-                  Rizal was a trained sculptor, painter, and draftsman. In
-                  Europe he studied fine arts alongside medicine, producing
-                  drawings, paintings, and sculptural works in clay and wood.
-                  During his Dapitan exile he carved intricate reliefs, sculpted
-                  figures, and taught drawing to his students. His most
-                  celebrated sculpture is the <em>Mother's Revenge</em>
-                  — a striking relief of a mother crocodile and her young,
-                  widely interpreted as an allegory of Filipino resistance.
+                  Rizal was a trained sculptor, painter, and draftsman. During
+                  his Dapitan exile he carved intricate reliefs and sculptural
+                  figures. His most celebrated sculpture is the
+                  <em>Mother's Revenge</em> — widely interpreted as an allegory
+                  of Filipino resistance.
                 </p>
                 <div class="contrib-impact">
                   ✦ His artistic works were exhibited in Europe and remain
                   preserved in the National Museum of the Philippines today.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Sculpture</span>
-                  <span class="contrib-tag">Drawing</span>
-                  <span class="contrib-tag">Cultural Heritage</span>
+                  <span class="contrib-tag">Sculpture</span
+                  ><span class="contrib-tag">Drawing</span
+                  ><span class="contrib-tag">Cultural Heritage</span>
                 </div>
                 <button class="contrib-more-btn" data-key="arts">
                   ✦ Learn More
@@ -606,8 +584,8 @@
           <div class="col-lg-4 col-md-6 contrib-col" data-category="politics">
             <div class="contrib-card">
               <div class="contrib-card-header">
-                <span class="contrib-icon">🏗️</span>
-                <span class="contrib-category-tag">Civic Development</span>
+                <span class="contrib-icon">🏗️</span
+                ><span class="contrib-category-tag">Civic Development</span>
               </div>
               <div class="contrib-card-body">
                 <div class="contrib-title">Dapitan Civic Projects</div>
@@ -616,13 +594,10 @@
                 </div>
                 <div class="contrib-divider"></div>
                 <p class="contrib-desc">
-                  In Dapitan, Rizal did not wait for permission to improve his
-                  community. He designed and supervised the construction of a
-                  water supply system for the town — laying pipes, engineering
-                  drainage, and bringing clean water to residents who had never
-                  had it. He also designed a lighting system, reorganized the
-                  town plaza, and introduced new agricultural techniques to
-                  local farmers.
+                  In Dapitan, Rizal designed and supervised a water supply
+                  system for the town — laying pipes, engineering drainage, and
+                  bringing clean water to residents. He also designed a lighting
+                  system and introduced new agricultural techniques.
                 </p>
                 <div class="contrib-impact">
                   ✦ His water system in Dapitan is widely cited as among the
@@ -630,9 +605,9 @@
                   by a Filipino.
                 </div>
                 <div class="contrib-tags">
-                  <span class="contrib-tag">Engineering</span>
-                  <span class="contrib-tag">Public Works</span>
-                  <span class="contrib-tag">Community Development</span>
+                  <span class="contrib-tag">Engineering</span
+                  ><span class="contrib-tag">Public Works</span
+                  ><span class="contrib-tag">Community Development</span>
                 </div>
                 <button class="contrib-more-btn" data-key="dapitan">
                   ✦ Learn More
@@ -655,12 +630,11 @@
             <div class="section-ornament-line"></div>
           </div>
         </div>
-
         <div class="row g-4">
           <div class="col-lg-3 col-md-6">
             <div class="legacy-stat">
-              <span class="legacy-num">Dec 30</span>
-              <span class="legacy-label">National Hero's Day</span>
+              <span class="legacy-num">Dec 30</span
+              ><span class="legacy-label">National Hero's Day</span>
               <p class="legacy-desc">
                 Observed every year across the Philippines in his memory — the
                 day of his execution in 1896.
@@ -669,8 +643,8 @@
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="legacy-stat">
-              <span class="legacy-num">130+</span>
-              <span class="legacy-label">Countries with Rizal Monuments</span>
+              <span class="legacy-num">130+</span
+              ><span class="legacy-label">Countries with Rizal Monuments</span>
               <p class="legacy-desc">
                 His likeness stands in parks, plazas, and public squares on
                 every continent.
@@ -679,8 +653,8 @@
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="legacy-stat">
-              <span class="legacy-num">RA 1425</span>
-              <span class="legacy-label">Rizal Law — 1956</span>
+              <span class="legacy-num">RA 1425</span
+              ><span class="legacy-label">Rizal Law — 1956</span>
               <p class="legacy-desc">
                 The Philippine law requiring all schools to teach Noli Me
                 Tángere and El Filibusterismo to every student.
@@ -689,8 +663,8 @@
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="legacy-stat">
-              <span class="legacy-num">∞</span>
-              <span class="legacy-label"
+              <span class="legacy-num">∞</span
+              ><span class="legacy-label"
                 >The Words That Outlived an Empire</span
               >
               <p class="legacy-desc">
@@ -711,7 +685,6 @@
     </div>
 
     <div id="popup-backdrop" onclick="closePopup()"></div>
-
     <div id="popup">
       <div class="popup-header">
         <div>
@@ -726,7 +699,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../script/contributions.js"></script>
-
     <script src="../script/nav-highlight.js"></script>
+    <script src="../script/nav-toggle.js"></script>
   </body>
 </html>
