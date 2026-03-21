@@ -46,20 +46,30 @@ body {
   left: 0;
   right: 0;
   z-index: 200;
-  background: rgba(14, 10, 3, 0.97);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   padding: 0 40px;
-  height: 58px;
-  overflow: visible; 
+  height: 90px; /* increased from 58px */
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
+  overflow: visible;
+  transition:
+    background 0.4s,
+    box-shadow 0.4s,
+    border-color 0.4s;
+}
+
+#mainNav.scrolled {
+  background: rgba(26, 15, 0, 0.97);
+  box-shadow: 0 2px 20px rgba(200, 144, 46, 0.15);
+  border-bottom: 1px solid rgba(200, 144, 46, 0.2);
 }
 
 .nav-brand {
-  font-family: "Cinzel", serif;
-  font-size: 15px;
-  letter-spacing: 3px;
+  font-family: "Cinzel Decorative", serif;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
   color: var(--gold);
   text-decoration: none;
   flex-shrink: 0;
@@ -73,37 +83,39 @@ body {
   width: 36px;
   height: 36px;
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(200, 144, 46, 0.4);
+  border-radius: 4px;
   padding: 6px 8px;
   cursor: pointer;
   margin-left: auto;
   flex-shrink: 0;
-  transition: border-color 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
-
 .nav-toggler:hover {
   border-color: var(--gold);
+  box-shadow: 0 0 8px rgba(200, 144, 46, 0.2);
 }
-
 .nav-toggler span {
   display: block;
   width: 100%;
-  height: 1px;
+  height: 2px;
   background: var(--gold);
+  border-radius: 2px;
   transition:
     transform 0.3s,
     opacity 0.3s;
   transform-origin: center;
 }
-
 .nav-toggler.open span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 .nav-toggler.open span:nth-child(2) {
   opacity: 0;
 }
 .nav-toggler.open span:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 .nav-collapse {
@@ -141,10 +153,10 @@ body {
 
 .nav-links a {
   font-family: "Cinzel", serif;
-  font-size: 9px;
-  letter-spacing: 2.5px;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--text3);
+  color: var(--text);
   text-decoration: none;
   padding: 0 16px;
   height: 100%;
@@ -152,8 +164,8 @@ body {
   align-items: center;
   transition: color 0.3s;
   white-space: nowrap;
+  position: relative;
 }
-
 .nav-links a:hover,
 .nav-links a.active {
   color: var(--gold);
@@ -171,7 +183,6 @@ body {
   transition: transform 0.3s;
   transform-origin: center;
 }
-
 .nav-links li:hover::after {
   transform: scaleX(1);
 }
@@ -179,7 +190,7 @@ body {
 .nav-divider {
   width: 1px;
   height: 16px;
-  background: var(--border);
+  background: rgba(200, 144, 46, 0.25);
   margin: 0 4px;
   align-self: center;
   flex-shrink: 0;
@@ -187,19 +198,20 @@ body {
 
 .nav-back {
   font-family: "Cinzel", serif;
-  font-size: 10px;
+  font-size: 0.72rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--text3);
+  color: var(--text);
   text-decoration: none;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(245, 230, 200, 0.25);
   padding: 8px 20px;
-  transition: all 0.3s;
+  transition:
+    border-color 0.3s,
+    color 0.3s;
   margin-left: 20px;
   white-space: nowrap;
   flex-shrink: 0;
 }
-
 .nav-back:hover {
   color: var(--gold);
   border-color: var(--gold);
@@ -211,12 +223,12 @@ body {
   }
   .nav-links a {
     padding: 0 11px;
-    font-size: 8px;
+    font-size: 0.7rem;
     letter-spacing: 1.5px;
   }
   .nav-back {
     padding: 8px 14px;
-    font-size: 9px;
+    font-size: 0.68rem;
     margin-left: 12px;
     letter-spacing: 2px;
   }
@@ -225,9 +237,7 @@ body {
 @media (max-width: 900px) {
   #mainNav {
     padding: 0 16px;
-    height: 58px;
     flex-wrap: nowrap;
-    overflow: visible;
   }
 
   .nav-toggler {
@@ -239,16 +249,17 @@ body {
     align-items: stretch;
     justify-content: flex-start;
     position: absolute;
-    top: 58px;
+    top: 70px;
     left: 0;
     right: 0;
-    background: rgba(14, 10, 3, 0.99);
-    border-bottom: 1px solid var(--border);
+    background: rgba(26, 15, 0, 0.99);
+    border-bottom: 1px solid rgba(200, 144, 46, 0.2);
     height: 0;
     overflow: hidden;
     transition: height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     z-index: 199;
     margin-left: 0;
+    flex: unset;
   }
 
   .nav-right {
@@ -263,7 +274,7 @@ body {
     align-items: stretch;
     height: auto;
     padding: 8px 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(200, 144, 46, 0.15);
   }
 
   .nav-links li {
@@ -275,7 +286,7 @@ body {
   .nav-links a {
     padding: 12px 24px;
     height: auto;
-    font-size: 9px;
+    font-size: 0.78rem;
     letter-spacing: 2px;
     display: block;
   }
@@ -293,7 +304,7 @@ body {
     padding: 10px 16px;
     display: flex;
     justify-content: center;
-    font-size: 9px;
+    font-size: 0.72rem;
     letter-spacing: 2px;
   }
 }
@@ -302,9 +313,10 @@ body {
   padding-top: 58px;
   position: relative;
   background: radial-gradient(
-    ellipse at 50% 0%,
-    #2a1e06 0%,
-    #0a0702 60%,
+    ellipse at 50% 60%,
+    #3a1f00 0%,
+    #1c0e00 40%,
+    #0a0500 70%,
     #060400 100%
   );
   text-align: center;
@@ -575,7 +587,13 @@ body {
 }
 
 #dedication-banner {
-  background: linear-gradient(135deg, #100800, #080500);
+  background: radial-gradient(
+    ellipse at 50% 60%,
+    #3a1f00 0%,
+    #1c0e00 40%,
+    #0a0500 70%,
+    #060400 100%
+  );
   padding: 90px 0;
   position: relative;
   overflow: hidden;
@@ -712,4 +730,14 @@ body {
     font-size: 7.5px;
     padding: 5px 10px;
   }
+}
+
+/* ── EMBERS ── */
+.embers-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }
